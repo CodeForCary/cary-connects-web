@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import L from 'leaflet'; 
+import L from 'leaflet';
 import {Map, TileLayer, Marker, Polygon, Popup } from 'react-leaflet';
-import './App.css';
+import './styles.css';
 
 // Due to a bug in react-leaflet Marker isn't working.
 // Using Leaflet to create an image
@@ -44,8 +44,8 @@ class App extends Component {
   		[35.781243751334,-78.78191024065018]
   	]
   }
-  	
-  componentDidMount() { // when this is loaded/mounted 
+
+  componentDidMount() { // when this is loaded/mounted
   	navigator.geolocation.getCurrentPosition((position) => { // get user location
   		//do_something(position.coords.latitude, position.coords.longitude);
   		//console.log(position);
@@ -57,7 +57,7 @@ class App extends Component {
   		});
   	});
   }
-  	
+
   render() {
   	const position = [this.state.location.lat, this.state.location.lng]; // the position, either initial or user
   	const pLoc01 = [35.785810, -78.778632]; // Methodist Church Lot Entrance Walker
@@ -101,7 +101,7 @@ class App extends Component {
     	  	<Popup>
       			<center>Entrance: Methodist Church Lot, Waldo Street</center>
     	  	</Popup>
-    	  	
+
     	  </Marker>
     	  <Polygon positions={this.state.loc01} color="blue">
     	  	<Popup>

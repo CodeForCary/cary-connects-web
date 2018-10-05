@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import L from 'leaflet';
 import {Map, TileLayer, Marker, Polygon, Popup } from 'react-leaflet';
-import './styles.css';
+import './App.css';
 
 // Due to a bug in react-leaflet Marker isn't working.
 // Using Leaflet to create an image
@@ -113,7 +113,6 @@ class App extends Component {
     	  		<center>Cary Elementary Lot</center>
     	  	</Popup>
     	  </Polygon>
-				
       </Map>
     );
   }

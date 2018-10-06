@@ -1,3 +1,15 @@
 .map { /* a height is required for the map */
 	height: 500px;
 }
+
+a {
+	color: black;
+	text-decoration: none;
+	font-weight: 300;
+}
+
+.nav {
+	padding-top: 5px;
+	padding-bottom: 10px;
+
+}

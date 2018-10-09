@@ -1,27 +1,162 @@
+
 [
   {
-    "name": "Serendipity Gourmet Deli",
-    "amenity": "Restaurant",
-    "coordinates": [-78.781330, 35.786530]
+    "type": "Feature",
+    "properties":
+    {
+      "marker-color": "#7a0070",
+      "marker-size": "medium",
+      "marker-symbol": "beer",
+      "name": "Bond Brothers Beer Company",
+      "address": "202 E Cedar St, Cary, NC 27511",
+      "phone": "(919) 459-2670",
+      "web": "https://www.bondbrothersbeer.com/"
+    },
+    "geometry":
+    {
+      "type": "Point",
+      "coordinates": [-78.77783060073851,35.78818474852826]
+    }
   },
   {
-    "name": "Once In A Blue Moon Bakery & Cafe",
-    "amenity": "Restaurant & Bakery",
-    "coordinates": [-78.781875, 35.786680]
-  },
-  {
-    "name": "Academy Street Bistro",
-    "amenity": "Restaurant",
-    "coordinates": [-78.781357, 35.786557]
-  },
-  {
-    "name": "La Farm Bakery",
-    "amenity": "Bakery",
-    "coordinates": [-78.78389, 35.78739]
-  },
-  {
-    "name": "Annelore's German Bakery",
-    "amenity": "Bakery",
-    "coordinates": [-78.78662, 35.78718]
-  }
-]
+    "type": "Feature",
+    "properties":
+    {
+      "marker-color": "#7a0070",
+      "marker-size": "medium",
+      "marker-symbol":"beer",
+      "name": "Jordan Lake Brewing Company",
+      "address": "320 E Durham Rd, Cary, NC 27513",
+      "phone": "(919) 694-5096",
+      "web": "http://jordanlakebrewing.com/"},
+      "geometry":
+      {
+        "type": "Point",
+        "coordinates": [-78.77577066421509,35.79010810256478]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties":
+      {
+        "marker-color": "#7a0070",
+        "marker-size": "medium",
+        "marker-symbol": "restaurant",
+        "name": "Big Dom's Bagel Shop",
+        "address": "203 E Chatham St, Cary, NC 27511",
+        "web": "https://www.bigdomsbagelshop.com/"},
+        "geometry":
+        {
+          "type": "Point",
+          "coordinates": [-78.77844750881195,35.78779093387261]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties":
+        {
+          "marker-color": "#7a0070",
+          "marker-size": "medium",
+          "marker-symbol": "restaurant",
+          "name": "Pro's Epicurean Market & Café",
+          "address": "211 E Chatham St, Cary, NC 27511",
+          "phone": "(919) 377-1788",
+          "web":"https://www.prosepicurean.com/"
+        },
+        "geometry":
+        {
+          "type": "Point",
+          "coordinates": [-78.77780109643936,35.78782357052045]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties":
+        {
+          "marker-color": "#7a0070",
+          "marker-size": "medium",
+          "marker-symbol": "restaurant",
+          "name": "Serendipity Gourmet Deli",
+          "address": "",
+          "phone": "",
+          "web":""
+        },
+        "geometry":
+        {
+          "type": "Point",
+          "coordinates": [-78.781330, 35.786530]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties":
+        {
+          "marker-color": "#7a0070",
+          "marker-size": "medium",
+          "marker-symbol": "restaurant",
+          "name": "Once In A Blue Moon Bakery & Cafe",
+          "address": "",
+          "phone": "",
+          "web":""
+        },
+        "geometry":
+        {
+          "type": "Point",
+          "coordinates": [-78.781875, 35.786680]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties":
+        {
+          "marker-color": "#7a0070",
+          "marker-size": "medium",
+          "marker-symbol": "restaurant",
+          "name": "Academy Street Bistro",
+          "address": "",
+          "phone": "",
+          "web":""
+        },
+        "geometry":
+        {
+          "type": "Point",
+          "coordinates": [-78.781357, 35.786557]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties":
+        {
+          "marker-color": "",
+          "marker-size": "medium",
+          "marker-symbol": "bakery",
+          "name": "La Farm Bakery",
+          "address": "",
+          "phone": "",
+          "web":""
+        },
+        "geometry":
+        {
+          "type": "Point",
+          "coordinates": [-78.78389, 35.78739]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties":
+        {
+          "marker-color": "",
+          "marker-size": "medium",
+          "marker-symbol": "bakery",
+          "name": "Annelore's German Bakery",
+          "address": "",
+          "phone": "",
+          "web":""
+        },
+        "geometry":
+        {
+          "type": "Point",
+          "coordinates": [-78.78662, 35.78718]
+        }
+      }
+  ]

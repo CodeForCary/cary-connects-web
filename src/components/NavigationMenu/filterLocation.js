@@ -1,9 +1,9 @@
-import geoJSON from "./geoJSON.json";
+import Data from "./Data.js";
 
 export default function filterLocation(searchText, maxResults) {
 
-  return geoJSON
-    .filter(location => {
+  return Data
+    .features.filter(location => {
       if ((location.properties.name.toLowerCase().includes(searchText.toLowerCase()) || location.properties["marker-symbol"].toLowerCase().includes(searchText.toLowerCase()))) {
         return true;
       }

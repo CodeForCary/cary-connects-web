@@ -9,7 +9,7 @@ class LocationResultsRow extends Component {
         className="component-location-result-row"
         >
         <span className="name">{this.props.name}</span>
-        <span className="amenity"> -<strong> {this.props.amenity}</strong></span>
+        <span className="marker-symbol"> -<strong> {this.props["marker-symbol"]}</strong></span>
       </div>
     );
   }

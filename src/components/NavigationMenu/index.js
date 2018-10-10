@@ -14,20 +14,21 @@ class NavigationMenu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      filteredLocation: filterLocation("", 0)
+      filteredLocation: []
     };
+  }
+
+  componentDidMount() {
+    filterLocation("", 0).then(filteredLocation => this.setState({ filteredLocation }));
   }
 
   handleSearchChange = event => {
     if (event.target.value == 0) {
-      this.setState({
-      filteredLocation: filterLocation(event.target.value, 0)
-    });
-  } else {
-    this.setState({
-      filteredLocation: filterLocation(event.target.value, 7)
-    });
-  }};
+      filterLocation(event.target.value, 0).then(filteredLocation => this.setState({ filteredLocation }));
+    } else {
+      filterLocation(event.target.value, 9).then(filteredLocation => this.setState({ filteredLocation }));
+    }
+  };
 
   render () {
     return (

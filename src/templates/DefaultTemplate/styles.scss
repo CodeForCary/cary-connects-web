@@ -1,0 +1,13 @@
+#root {
+    display: grid;
+}
+#default-template {
+    ~#navigation-menu {
+        display: block;
+        grid-row-start: 1;
+    }
+    ~.map {
+        display: block;
+        grid-row-start: 2;
+    }
+}

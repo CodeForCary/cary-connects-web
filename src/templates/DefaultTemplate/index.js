@@ -1,14 +1,12 @@
-import React, { Component } from 'react'
-import NavigationMenu from 'src/components/NavigationMenu'
-import Map from 'src/components/Map'
+import React from 'react'
 
-export default class DefaultTemplate extends Component {
+import './styles.scss'
+
+export default class DefaultTemplate extends React.Component {
+
   render () {
     return (
       <div id='default-template'>
-        <NavigationMenu />
-        <Map />
-
         { this.props.children }
       </div>
     )

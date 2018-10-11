@@ -8,11 +8,11 @@ export default class NavigationItem extends Component {
   render () {
     return (
       <Grid item xs={1}>
-        <Link url={this.props.navigatesTo}>
-          <Button variant="contained">
+        <Button variant="contained">
+          <Link url={this.props.navigatesTo}>
             { this.props.title }
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </Grid>
     )
   }

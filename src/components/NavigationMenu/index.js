@@ -31,7 +31,7 @@ class NavigationMenu extends Component {
 
   render () {
     return (
-      <div id='navigation-menu'>
+      <div>
         <Grid container className="nav" spacing={16}>
           <NavigationItem title='Home' navigatesTo={PageDirectory.WELCOME_PAGE.path} />
           <NavigationItem title='Feedback' navigatesTo={PageDirectory.FEEDBACK_PAGE.path} />

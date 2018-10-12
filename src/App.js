@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import L from 'leaflet';
 import {Map, TileLayer, Marker, Polygon, Popup } from 'react-leaflet';
-import './styles.css';
+import './App.css';
 
 // Due to a bug in react-leaflet Marker isn't working.
 // Using Leaflet to create an image
@@ -14,15 +14,11 @@ var myIcon = L.icon({
 
 class App extends Component {
   state = { // this state provides data for initial location and lots
-	bounds: [
-		[ 35.773958, -78.798776 ],
-		[ 35.796304, -78.761682 ]
-	],
   	location: { // starting location, Academy and W. Chatham
   		lat: 35.787317,
   		lng: -78.781226
   	},
-  	zoom: 14, // reasonable zoom level
+  	zoom: 17, // reasonable zoom level
   	loc01: [ // polygon of Methodist Church Lot
   		[35.78571086387208,-78.77872914075851],
   		[35.78631139176287,-78.77870500087738],
@@ -69,7 +65,7 @@ class App extends Component {
   	const pLoc02 = [35.781771, -78.782612]; // Cary Arts Center Lot Entrance
 
     return ( // build a Map
-      <Map className="map" maxBounds={this.state.bounds} center={position} zoom={this.state.zoom}>
+      <Map className="map" center={position} zoom={this.state.zoom}>
 	      <TileLayer // attribution is required for OSM
     	  	attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         	  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -117,7 +113,6 @@ class App extends Component {
     	  		<center>Cary Elementary Lot</center>
     	  	</Popup>
     	  </Polygon>
-				
       </Map>
     );
   }

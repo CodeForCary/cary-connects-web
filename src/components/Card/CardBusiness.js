@@ -16,31 +16,54 @@ const styles = theme => ({
   }
 });
 
+const ListItemEl = props => {
+  let icon;
+  if(props.icon === 'BusinessIcon'){
+    icon = <BusinessIcon />;
+  }else if (props.icon === 'PhoneIcon') {
+    icon = <PhoneIcon />;
+  }else if (props.icon === 'WebsiteIcon') {
+    icon = <LinkIcon />;
+  }
 
+  return (
+    <React.Fragment>
+      <ListItem>
+        <ListItemIcon>
+          {icon}
+        </ListItemIcon>
+        <ListItemText primary={props.text} />
+      </ListItem>
+    </React.Fragment>
+  )
+}
+
+const generateList = data => {
+  const arr = [];
+  let id = 0;
+  for(let key in data){
+    let item;
+    if(key === "address"){
+      item = <ListItemEl icon="BusinessIcon" text={data[key]} key={id} />
+    }else if(key === "phone") {
+      item = <ListItemEl icon="PhoneIcon" text={data[key]} key={id} />
+    }else if(key === "website") {
+      item = <ListItemEl icon="WebsiteIcon" text={data[key]} key={id} />
+    }
+    arr.push(item);
+    id++;
+  }
+  return arr;
+}
 
 const CardData = props => {
-  const { classes } = props;
+  const { classes, data } = props;
+  const list = generateList(data);
+
   return(
     <Grid container item xs={12} md={4}>
       <List dense>
-        <ListItem>
-          <ListItemIcon>
-            <BusinessIcon />
-          </ListItemIcon>
-          <ListItemText primary="123 Oakwood Dr." />
-        </ListItem>
-        <ListItem>
-          <ListItemIcon>
-            <PhoneIcon />
-          </ListItemIcon>
-          <ListItemText primary="(555)555-5555" />
-        </ListItem>
-        <ListItem>
-          <ListItemIcon>
-            <LinkIcon />
-          </ListItemIcon>
-          <ListItemText primary="www.website.com" />
-        </ListItem>
+        {list}
       </List>
     </Grid>
     

@@ -6,16 +6,34 @@ import Link from 'src/elements/Link'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 
-const business = {
+const business = [{
   name: 'Enter Business Title Here',
   address: '123 Oakwood Dr',
   phone: '(555)555-5555',
-  website: 'www.website.com'
+  website: 'www.website.com',
+  info1: 'something here',
+  info2: 'something else here'
+},
+{
+  name: 'Another Business',
+  address: '456 blueLake St'
+}]
+
+const generateCards = (data) => {
+  let arr = [];
+  data.forEach((val, i) => {
+    const item = <Card type='business' data={val} id={i} />
+    arr.push(item)
+  })
+  return arr;
 }
 
-export default class BusinessDetailsPage extends React.Component {
 
+
+export default class BusinessDetailsPage extends React.Component {
+  
   render () {
+    const cards = generateCards(business);
     return (
       <DefaultTemplate>
         Business Details Page for ID: { this.props.match.params.id }
@@ -28,7 +46,7 @@ export default class BusinessDetailsPage extends React.Component {
             </Button>
           </Grid>
         </Grid>
-        <Card type='business' data={this.business} />
+        {cards}
       </DefaultTemplate>
     )
   }

@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import CardBusiness from './CardBusiness'
+import CardParking from './CardParking';
 
 const styles = theme => ({
   root: {
@@ -17,15 +18,15 @@ const styles = theme => ({
 });
 
 const Contact = props => {
-  const { classes } = props
+  const { classes, type, data } = props
   return(
     <Grid container justify="center" className={ classes.root }>
       <Grid item xs={10}>
         <Paper className={classes.card}>
           <Typography variant="title">
-            Business Title Here
+            {data.name}
           </Typography>
-          <CardBusiness />
+          {type === "business" ? <CardBusiness data={data} /> : <CardParking data={data} />}
         </Paper>
       </Grid>
     </Grid>

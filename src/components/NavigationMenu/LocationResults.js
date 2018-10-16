@@ -10,8 +10,8 @@ class LocationResults extends Component {
       <div className="component-location-results">
         {this.props.locationData.map(locationData => (
           <LocationResultRow
-            name={locationData.name}
-            amenity={locationData.amenity}
+            name={locationData.properties.name}
+            amenity={locationData.properties["marker-symbol"]}
           />
         ))}
       </div>

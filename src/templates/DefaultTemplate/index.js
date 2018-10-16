@@ -4,17 +4,26 @@ import Map from 'src/components/Map'
 
 export default class DefaultTemplate extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.state: {
-      data: null
-    }
+    this.state = {
+      data: null,
+    };
+  }
+
+  componentDidMount() {
+    fetch('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/CodeForCary/cary-connects-data/master/business.geojson')
+      .then(response => response.json())
+      .then(rawJSON => rawJSON.features)
+      .then(data => this.setState({ data }));
   }
 
   render () {
+    const { data } = this.state;
+
     return (
       <div id='default-template'>
-        <NavigationMenu />
+        <NavigationMenu data={ data }/>
         <Map />
 
         { this.props.children }

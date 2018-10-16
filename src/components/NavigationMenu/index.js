@@ -25,7 +25,7 @@ class NavigationMenu extends Component {
     });
   } else {
     this.setState({
-      filteredLocation: filterLocation(event.target.value, 7)
+      filteredLocation: filterLocation(event.target.value, 7, this.props.data)
     });
   }};
 

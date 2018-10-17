@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import L from 'leaflet';
 import {Map, TileLayer, Marker, Polygon, Popup } from 'react-leaflet';
+import PropTypes from "prop-types";
+import parkingIcon from '../../assets/parkingIcon.png'
 import './styles.css';
 
 // Due to a bug in react-leaflet Marker isn't working.
@@ -12,45 +14,23 @@ var myIcon = L.icon({
 	popupAnchor: [0, -48],
 });
 
+var pIcon = L.icon({
+	iconUrl: parkingIcon,
+	iconSize: [48,48],
+	iconAnchor: [24,48],
+	popupAnchor: [0, -48]
+});
+
 class App extends Component {
   state = {
 	animate: true,
 	bounds: [
 		[ 35.773958, -78.798776 ],
 		[ 35.796304, -78.761682 ]
-	],
-  	location: { // starting location, Academy and W. Chatham
-  		lat: 35.787317,
-  		lng: -78.781226
-  	},
-  	zoom: 14, // reasonable zoom level
-  	loc01: [ // polygon of Methodist Church Lot
-  		[35.78571086387208,-78.77872914075851],
-  		[35.78631139176287,-78.77870500087738],
-  		[35.78654637970242,-78.77900809049606],
-  		[35.7865289732122,-78.78003537654877],
-  		[35.78618084260735,-78.78005415201187],
-  		[35.78617649096513,-78.77975642681122],
-  		[35.78572827054148,-78.77976179122925],
-  		[35.7857108638720,-78.77872914075851]
-  	],
-  	loc02: [ // polygon of Cary Arts Center
-  		[35.781243751334,-78.78191024065018],
-  		[35.781811673870635,-78.78190755844116],
-  		[35.781970517378916,-78.7819504737854],
-  		[35.78194658207606,-78.78223478794098],
-  		[35.781857368611,-78.78237694501877],
-  		[35.7817768588127,-78.78251910209656],
-  		[35.78172028431105,-78.78257542848587],
-  		[35.78157449598664,-78.78263175487518],
-  		[35.78145046690316,-78.78265589475632],
-  		[35.7813481971624,-78.78265589475632],
-  		[35.781252455158295,-78.78265857696533],
-  		[35.781243751334,-78.78191024065018]
-  	]
-  }
+	]}
 
-  componentDidMount() { // when this is loaded/mounted
+  componentDidMount() {
+		 // when this is loaded/mounted
   	{/*navigator.geolocation.getCurrentPosition((position) => { // get user location
   		//do_something(position.coords.latitude, position.coords.longitude);
   		//console.log(position);
@@ -63,70 +43,74 @@ class App extends Component {
   	});*/}
   }
 
-
 	handleClick = (e) => {
       this.props.modifyLocation(e.latlng, e.zoom)
   }
 
   render() {
-  	const position = [this.state.location.lat, this.state.location.lng]; // the position, either initial or user
+
   	const pLoc01 = [35.785810, -78.778632]; // Methodist Church Lot Entrance Walker
   	const pLoc01b = [35.786575, -78.779638]; // Methoist Church Lot Entrance Waldo
   	const pLoc02 = [35.781771, -78.782612]; // Cary Arts Center Lot Entrance
 
-    return ( // build a Map
+		if (!this.props.polygonData){
+        return <div>Loading...</div>
+    }
+
+    return (
+			// build a Map
       <Map className="map" onClick={this.handleClick} animate={this.state.animate} maxBounds={this.state.bounds} center={this.props.relocateMap} zoom={this.props.zoomMap}>
 	      <TileLayer // attribution is required for OSM
     	  	attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         	  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
    		  />
 	      <Marker // Our initial position or user location maker
-	      	position={position}
+	      	position={this.props.relocateMap}
 	      	icon={myIcon}
 	      	>
     	  	<Popup>
       			<center>User location</center>
     	  	</Popup>
     	  </Marker>
-    	  <Marker // Cary Art Center entrance location
+
+    	  <Marker onClick={this.handleClick}// Cary Art Center entrance location
 	      	position={pLoc02}
-	      	icon={myIcon}
+	      	icon={pIcon}
 	      	>
     	  	<Popup>
       			<center>Entrance: Cary Art Center</center>
     	  	</Popup>
-    	  </Marker>
+    	  </Marker >
     	  <Marker // Methodist Church entrance off Walker
 	      	position={pLoc01}
-	      	icon={myIcon}
+	      	icon={pIcon}
 	      	>
     	  	<Popup>
       			<center>Entrance: Methodist Church Lot, Walker Street</center>
     	  	</Popup>
     	  </Marker>
-    	  <Marker // Methodist Church entrance off Waldo - one-way street
+    	  <Marker onClick={this.handleClick}// Methodist Church entrance off Waldo - one-way street
 	      	position={pLoc01b}
-	      	icon={myIcon}
+	      	icon={pIcon}
 	      	>
     	  	<Popup>
       			<center>Entrance: Methodist Church Lot, Waldo Street</center>
     	  	</Popup>
+				</Marker>
 
-    	  </Marker>
-    	  <Polygon positions={this.state.loc01} color="blue">
-    	  	<Popup>
-    	  		<center>Methodist Church Lot</center>
-    	  	</Popup>
-    	  </Polygon>
-    	  <Polygon positions={this.state.loc02} color="red">
-    	  	<Popup>
-    	  		<center>Cary Elementary Lot</center>
-    	  	</Popup>
-    	  </Polygon>
-
+				{this.props.polygonData.map(polygonData => (
+				  <Polygon onClick={this.handleClick} positions={polygonData.geometry.coordinates[0]} color="red" >
+				    <Popup>
+				      <center>{polygonData.properties.name}</center>
+				    </Popup>
+				  </Polygon>
+				))}
       </Map>
+
     );
   }
 }
+
+
 
 export default App;

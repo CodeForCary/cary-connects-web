@@ -13,7 +13,8 @@ var myIcon = L.icon({
 });
 
 class App extends Component {
-  state = { // this state provides data for initial location and lots
+  state = {
+	animate: true,
 	bounds: [
 		[ 35.773958, -78.798776 ],
 		[ 35.796304, -78.761682 ]
@@ -62,6 +63,11 @@ class App extends Component {
   	});*/}
   }
 
+
+	handleClick = (e) => {
+      this.props.modifyLocation(e.latlng, e.zoom)
+  }
+
   render() {
   	const position = [this.state.location.lat, this.state.location.lng]; // the position, either initial or user
   	const pLoc01 = [35.785810, -78.778632]; // Methodist Church Lot Entrance Walker
@@ -69,7 +75,7 @@ class App extends Component {
   	const pLoc02 = [35.781771, -78.782612]; // Cary Arts Center Lot Entrance
 
     return ( // build a Map
-      <Map className="map" maxBounds={this.state.bounds} center={this.props.relocateMap} zoom={this.props.zoomMap}>
+      <Map className="map" onClick={this.handleClick} animate={this.state.animate} maxBounds={this.state.bounds} center={this.props.relocateMap} zoom={this.props.zoomMap}>
 	      <TileLayer // attribution is required for OSM
     	  	attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         	  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

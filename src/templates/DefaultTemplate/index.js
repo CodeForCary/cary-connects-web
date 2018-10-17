@@ -17,7 +17,7 @@ export default class DefaultTemplate extends Component {
   }
 
   componentDidMount() {
-    fetch('https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/CodeForCary/cary-connects-data/master/business.geojson')
+    fetch('https://raw.githubusercontent.com/CodeForCary/cary-connects-data/master/business.geojson')
       .then(response => response.json())
       .then(rawJSON => rawJSON.features)
       .then(data => this.setState({ data: data }));
@@ -35,6 +35,13 @@ export default class DefaultTemplate extends Component {
     });
   };
 
+  moveMap(location, zoom) {
+    this.setState({
+      location: location,
+      zoom: zoom
+    });
+  }
+
 
   render () {
     const { data } = this.state;
@@ -42,7 +49,7 @@ export default class DefaultTemplate extends Component {
     return (
       <div id='default-template'>
         <NavigationMenu data={ data } thirdNamePass={this.relocater}/>
-        <Map relocateMap={this.state.location} zoomMap={this.state.zoom}/>
+        <Map relocateMap={this.state.location} zoomMap={this.state.zoom} modifyLocation={this.moveMap.bind(this)}/>
 
         { this.props.children }
       </div>

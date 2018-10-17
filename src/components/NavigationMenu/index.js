@@ -39,10 +39,10 @@ class NavigationMenu extends Component {
   render () {
     return (
       <div>
-        <Grid container className="nav" spacing={16}>
+
           <NavigationItem title='Home' navigatesTo={PageDirectory.WELCOME_PAGE.path} />
           <NavigationItem title='Feedback' navigatesTo={PageDirectory.FEEDBACK_PAGE.path} />
-        </Grid>
+
 
         <SearchInput textChange={this.handleSearchChange} />
         <LocationResults locationData={this.state.filteredLocation} secondPassName={this.settleName.bind(this)}/>

@@ -9,10 +9,18 @@ class SearchInput extends Component {
   };
 
   render() {
+    const flex = {
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'flex-end'
+    }
+    const width = {
+      width: '33%',
+  };
     return (
       <div className="component-search-input">
-        <div>
-          <input onChange={this.handleChange} />
+        <div style={flex}>
+          <input onChange={this.handleChange} style={width}/>
         </div>
       </div>
     );

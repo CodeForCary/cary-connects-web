@@ -50,7 +50,7 @@ class App extends Component {
   }
 
   componentDidMount() { // when this is loaded/mounted
-  	navigator.geolocation.getCurrentPosition((position) => { // get user location
+  	{/*navigator.geolocation.getCurrentPosition((position) => { // get user location
   		//do_something(position.coords.latitude, position.coords.longitude);
   		//console.log(position);
   		this.setState({ // update the initial location with the user location
@@ -59,7 +59,7 @@ class App extends Component {
   				lng: position.coords.longitude
   			}
   		});
-  	});
+  	});*/}
   }
 
   render() {
@@ -69,7 +69,7 @@ class App extends Component {
   	const pLoc02 = [35.781771, -78.782612]; // Cary Arts Center Lot Entrance
 
     return ( // build a Map
-      <Map className="map" maxBounds={this.state.bounds} center={position} zoom={this.state.zoom}>
+      <Map className="map" maxBounds={this.state.bounds} center={this.props.relocateMap} zoom={this.props.zoomMap}>
 	      <TileLayer // attribution is required for OSM
     	  	attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         	  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -117,7 +117,7 @@ class App extends Component {
     	  		<center>Cary Elementary Lot</center>
     	  	</Popup>
     	  </Polygon>
-				
+
       </Map>
     );
   }

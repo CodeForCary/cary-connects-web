@@ -14,7 +14,7 @@ class NavigationMenu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      filteredLocation: filterLocation("", 0)
+      filteredLocation: filterLocation("", 0),
     };
   }
 
@@ -29,6 +29,13 @@ class NavigationMenu extends Component {
     });
   }};
 
+  settleName(name) {
+      this.props.thirdNamePass(name);
+      this.setState({
+        filteredLocation: filterLocation("", 0)
+      });
+  }
+
   render () {
     return (
       <div>
@@ -38,7 +45,7 @@ class NavigationMenu extends Component {
         </Grid>
 
         <SearchInput textChange={this.handleSearchChange} />
-        <LocationResults locationData={this.state.filteredLocation} />
+        <LocationResults locationData={this.state.filteredLocation} secondPassName={this.settleName.bind(this)}/>
       </div>
     )
   }

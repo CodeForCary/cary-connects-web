@@ -3,6 +3,7 @@ import L from 'leaflet';
 import {Map, TileLayer, Marker, Polygon, Popup } from 'react-leaflet';
 import PropTypes from "prop-types";
 import parkingIcon from '../../assets/parkingIcon.png'
+import userIcon from '../../assets/userIcon.svg'
 import Button from '@material-ui/core/Button';
 import './styles.css';
 
@@ -22,12 +23,16 @@ var pIcon = L.icon({
 	popupAnchor: [0, -48]
 });
 
+var uIcon = L.icon({
+	iconUrl: userIcon,
+	iconSize: [36,36],
+	iconAnchor: [0,0],
+	popupAnchor: [0, 0]
+});
+
 class App extends Component {
   state = {
-		userLocation: {
-			lat: null,
-			lng: null
-		},
+		minZoom: 15,
 		animate: true,
 		bounds: [
 			[ 35.773958, -78.798776 ],
@@ -68,7 +73,7 @@ class App extends Component {
 
     return (
 			// build a Map
-      <Map className="map" onClick={this.handleClick} animate={this.state.animate} maxBounds={this.state.bounds} center={this.props.relocateMap} zoom={this.props.zoomMap}>
+      <Map className="map" onClick={this.handleClick} animate={this.state.animate} maxBounds={this.state.bounds} center={this.props.relocateMap} minZoom={this.state.minZoom} zoom={this.props.zoomMap}>
 	      <TileLayer // attribution is required for OSM
     	  	attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         	  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

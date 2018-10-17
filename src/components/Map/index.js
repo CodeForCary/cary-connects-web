@@ -3,6 +3,7 @@ import L from 'leaflet';
 import {Map, TileLayer, Marker, Polygon, Popup } from 'react-leaflet';
 import PropTypes from "prop-types";
 import parkingIcon from '../../assets/parkingIcon.png'
+import Button from '@material-ui/core/Button';
 import './styles.css';
 
 // Due to a bug in react-leaflet Marker isn't working.
@@ -23,29 +24,37 @@ var pIcon = L.icon({
 
 class App extends Component {
   state = {
-	animate: true,
-	bounds: [
-		[ 35.773958, -78.798776 ],
-		[ 35.796304, -78.761682 ]
-	]}
+		userLocation: {
+			lat: null,
+			lng: null
+		},
+		animate: true,
+		bounds: [
+			[ 35.773958, -78.798776 ],
+			[ 35.796304, -78.761682 ]
+		]}
 
-  componentDidMount() {
-		 // when this is loaded/mounted
-  	{/*navigator.geolocation.getCurrentPosition((position) => { // get user location
-  		//do_something(position.coords.latitude, position.coords.longitude);
-  		//console.log(position);
-  		this.setState({ // update the initial location with the user location
-		  location: {
-  				lat: position.coords.latitude,
-  				lng: position.coords.longitude
-  			}
-  		});
-  	});*/}
-  }
+	componentDidMount() {
+	  navigator.geolocation.getCurrentPosition((position) => {
+	  		this.setState({
+			  userLocation: {
+	  				lat: position.coords.latitude,
+	  				lng: position.coords.longitude
+	  			}
+	  		});
+	  	});
+		}
 
 	handleClick = (e) => {
       this.props.modifyLocation(e.latlng, e.zoom)
   }
+
+	toGoogleMaps(locationData, e) {
+		if (locationData.geometry == null) {
+			window.open('https://www.google.com/maps/dir/?api=1&destination=' + locationData[0] + ',' + locationData[1]);
+		} else {
+		window.open('https://www.google.com/maps/dir/?api=1&destination=' + locationData.geometry.coordinates[0][0][0] + ',' + locationData.geometry.coordinates[0][0][1]);
+	}}
 
   render() {
 
@@ -64,21 +73,15 @@ class App extends Component {
     	  	attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         	  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
    		  />
-	      <Marker // Our initial position or user location maker
-	      	position={this.props.relocateMap}
-	      	icon={myIcon}
-	      	>
-    	  	<Popup>
-      			<center>User location</center>
-    	  	</Popup>
-    	  </Marker>
-
     	  <Marker onClick={this.handleClick}// Cary Art Center entrance location
 	      	position={pLoc02}
 	      	icon={pIcon}
 	      	>
     	  	<Popup>
       			<center>Entrance: Cary Art Center</center>
+						<Button>
+							<directions onClick={this.toGoogleMaps.bind(this, pLoc02)}>Directions</directions>
+						</Button>
     	  	</Popup>
     	  </Marker >
     	  <Marker // Methodist Church entrance off Walker
@@ -87,6 +90,9 @@ class App extends Component {
 	      	>
     	  	<Popup>
       			<center>Entrance: Methodist Church Lot, Walker Street</center>
+						<Button>
+							<directions onClick={this.toGoogleMaps.bind(this, pLoc01)}>Directions</directions>
+						</Button>
     	  	</Popup>
     	  </Marker>
     	  <Marker onClick={this.handleClick}// Methodist Church entrance off Waldo - one-way street
@@ -95,13 +101,23 @@ class App extends Component {
 	      	>
     	  	<Popup>
       			<center>Entrance: Methodist Church Lot, Waldo Street</center>
+						<Button>
+							<directions onClick={this.toGoogleMaps.bind(this, pLoc01b)}>Directions</directions>
+						</Button>
     	  	</Popup>
 				</Marker>
 
 				{this.props.polygonData.map(polygonData => (
 				  <Polygon onClick={this.handleClick} positions={polygonData.geometry.coordinates[0]} color="red" >
 				    <Popup>
-				      <center>{polygonData.properties.name}</center>
+				      <center>
+								<h3>
+									{polygonData.properties.name}
+								</h3>
+								<Button>
+									<directions onClick={this.toGoogleMaps.bind(this, polygonData)}>Directions</directions>
+								</Button>
+							</center>
 				    </Popup>
 				  </Polygon>
 				))}

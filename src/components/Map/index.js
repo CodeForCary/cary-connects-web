@@ -81,83 +81,61 @@ class App extends Component {
     }
 
     return (
-      // build a Map
-      <Map
-        className="map"
-        onClick={this.handleClick}
-        animate={this.state.animate}
-        maxBounds={this.state.bounds}
-        center={this.props.relocateMap}
-        minZoom={this.state.minZoom}
-        zoom={this.props.zoomMap}
-      >
-        <TileLayer // attribution is required for OSM
-          attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker
-          onClick={this.handleClick} // Cary Art Center entrance location
-          position={pLoc02}
-          icon={pIcon}
-        >
-          <Popup>
-            <center>Entrance: Cary Art Center</center>
-            <Button>
-              <directions onClick={this.toGoogleMaps.bind(this, pLoc02)}>
-                Directions
-              </directions>
-            </Button>
-          </Popup>
-        </Marker>
-        <Marker // Methodist Church entrance off Walker
-          position={pLoc01}
-          icon={pIcon}
-        >
-          <Popup>
-            <center>Entrance: Methodist Church Lot, Walker Street</center>
-            <Button>
-              <directions onClick={this.toGoogleMaps.bind(this, pLoc01)}>
-                Directions
-              </directions>
-            </Button>
-          </Popup>
-        </Marker>
-        <Marker
-          onClick={this.handleClick} // Methodist Church entrance off Waldo - one-way street
-          position={pLoc01b}
-          icon={pIcon}
-        >
-          <Popup>
-            <center>Entrance: Methodist Church Lot, Waldo Street</center>
-            <Button>
-              <directions onClick={this.toGoogleMaps.bind(this, pLoc01b)}>
-                Directions
-              </directions>
-            </Button>
-          </Popup>
-        </Marker>
+			// build a Map
 
-        {this.props.polygonData.map(polygonData => (
-          <Polygon
-            onClick={this.handleClick}
-            positions={polygonData.geometry.coordinates[0]}
-            color="red"
-            key={polygonData.geometry.coordinates[0][0]}
-          >
-            <Popup>
-              <center>
-                <h3>{polygonData.properties.name}</h3>
-                <Button>
-                  <directions
-                    onClick={this.toGoogleMaps.bind(this, polygonData)}
-                  >
-                    Directions
-                  </directions>
-                </Button>
-              </center>
-            </Popup>
-          </Polygon>
-        ))}
+      <Map className="map" onClick={this.handleClick} animate={this.state.animate} maxBounds={this.state.bounds} center={this.props.relocateMap} minZoom={this.state.minZoom} zoom={this.props.zoomMap}>
+	      <TileLayer // attribution is required for OSM
+    	  	attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+        	  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+   		  />
+    	  <Marker onClick={this.handleClick}// Cary Art Center entrance location
+	      	position={pLoc02}
+	      	icon={pIcon}
+	      	>
+    	  	<Popup>
+      			<center>Entrance: Cary Art Center</center>
+						<Button>
+							<directions onClick={this.toGoogleMaps.bind(this, pLoc02)}>Directions</directions>
+						</Button>
+    	  	</Popup>
+    	  </Marker >
+    	  <Marker // Methodist Church entrance off Walker
+	      	position={pLoc01}
+	      	icon={pIcon}
+	      	>
+    	  	<Popup>
+      			<center>Entrance: Methodist Church Lot, Walker Street</center>
+						<Button>
+							<directions onClick={this.toGoogleMaps.bind(this, pLoc01)}>Directions</directions>
+						</Button>
+    	  	</Popup>
+    	  </Marker>
+    	  <Marker onClick={this.handleClick}// Methodist Church entrance off Waldo - one-way street
+	      	position={pLoc01b}
+	      	icon={pIcon}
+	      	>
+    	  	<Popup>
+      			<center>Entrance: Methodist Church Lot, Waldo Street</center>
+						<Button>
+							<directions onClick={this.toGoogleMaps.bind(this, pLoc01b)}>Directions</directions>
+						</Button>
+    	  	</Popup>
+				</Marker>
+
+				{this.props.polygonData.map(polygonData => (
+				  <Polygon onClick={this.handleClick} positions={polygonData.geometry.coordinates[0]} color="red" >
+				    <Popup>
+				      <center>
+								<h3>
+									{polygonData.properties.name}
+								</h3>
+								<Button>
+									<directions onClick={this.toGoogleMaps.bind(this, polygonData)}>Directions</directions>
+								</Button>
+							</center>
+				    </Popup>
+				  </Polygon>
+				))}
       </Map>
     );
   }

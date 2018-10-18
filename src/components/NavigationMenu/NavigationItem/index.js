@@ -7,11 +7,9 @@ import Grid from '@material-ui/core/Grid';
 export default class NavigationItem extends Component {
   render () {
     return (
-        <Button >
-          <Link url={this.props.navigatesTo}>
-            { this.props.title }
-          </Link>
-        </Button>
+      <Link url={this.props.navigatesTo}>
+        { this.props.children }
+      </Link>
     )
   }
 }

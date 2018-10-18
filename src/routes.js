@@ -3,6 +3,7 @@
  */
 import React from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import CssBaseline from '@material-ui/core/CssBaseline'
 
 import PageDirectory from './pages/PageDirectory'
 
@@ -11,6 +12,7 @@ import Theme from './Theme.js'
 export default function Routes () {
   return (
     <Theme>
+      <CssBaseline />
       <BrowserRouter>
         <Switch>
           {

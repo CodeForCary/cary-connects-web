@@ -16,6 +16,7 @@ class LocationResults extends Component {
             name={locationData.properties.name}
             amenity={locationData.properties["marker-symbol"]}
             passName={this.showName.bind(this)}
+            key={locationData.properties.name}
           />
         ))}
       </div>

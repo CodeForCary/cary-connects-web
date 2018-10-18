@@ -2,12 +2,16 @@ import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import NavigationMenu from 'src/components/NavigationMenu'
 import Map from 'src/components/Map'
+import MediaQuery from 'react-responsive';
 import flip from 'geojson-flip'
 import Grid from '@material-ui/core/Grid'
 
 const styles = theme => ({
-  container: {
-    margin: '0rem'
+  mobileContainer: {
+    'margin-top': '0rem'
+  },
+  computerContainer: {
+    'margin-top': '2rem'
   }
 })
 
@@ -68,13 +72,23 @@ class DefaultTemplate extends Component {
 
     return (
       <div id='default-template'>
-      <NavigationMenu data={ businessData } thirdNamePass={this.relocater}/>
-      <Grid container justify="center" alignItems="center" className={classes.container}>
-        <Grid item xs={12} md={8}>
-          <Map relocateMap={this.state.location} zoomMap={this.state.zoom} modifyLocation={this.moveMap.bind(this)} polygonData={ parkingData }/>
-          { this.props.children }
-        </Grid>
-      </Grid>
+        <NavigationMenu data={ businessData } thirdNamePass={this.relocater}/>
+        <MediaQuery query="(min-width: 700px)">
+          <Grid container justify="center" alignItems="center" className={classes.computerContainer}>
+            <Grid item xs={12} md={8}>
+              <Map relocateMap={this.state.location} zoomMap={this.state.zoom} modifyLocation={this.moveMap.bind(this)} polygonData={ parkingData }/>
+              { this.props.children }
+            </Grid>
+          </Grid>
+        </MediaQuery>
+        <MediaQuery query="(max-width: 700px)">
+          <Grid container justify="center" alignItems="center" className={classes.mobileContainer}>
+            <Grid item xs={12} md={8}>
+              <Map relocateMap={this.state.location} zoomMap={this.state.zoom} modifyLocation={this.moveMap.bind(this)} polygonData={ parkingData }/>
+              { this.props.children }
+            </Grid>
+          </Grid>
+        </MediaQuery>
       </div>
     )
   }

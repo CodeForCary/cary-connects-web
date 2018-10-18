@@ -13,7 +13,7 @@ const styles = theme => ({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-end'
-  }, 
+  },
   width: {
     width: '33%'
   },
@@ -34,14 +34,14 @@ class SearchInput extends Component {
 
   render() {
     const { classes } = this.props
-  
+
     return (
       <div>
         <div className={classes.flex}>
           <InputBase
-            variant="outlined" 
-            onChange={this.handleChange} 
-            className={classnames(classes.componentSearchInput, classes.width)} 
+            variant="outlined"
+            onChange={this.handleChange}
+            className={classnames(classes.componentSearchInput, classes.width)}
             endAdornment={<SearchIcon />}
           />
         </div>

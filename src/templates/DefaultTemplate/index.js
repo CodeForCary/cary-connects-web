@@ -1,9 +1,17 @@
 import React, { Component } from 'react'
+import { withStyles } from '@material-ui/core/styles'
 import NavigationMenu from 'src/components/NavigationMenu'
 import Map from 'src/components/Map'
 import flip from 'geojson-flip'
+import Grid from '@material-ui/core/Grid'
 
-export default class DefaultTemplate extends Component {
+const styles = theme => ({
+  container: {
+    margin: '2rem'
+  }
+})
+
+class DefaultTemplate extends Component {
   constructor(props) {
     super(props);
 
@@ -56,15 +64,21 @@ export default class DefaultTemplate extends Component {
   render () {
     const { businessData } = this.state;
     const { parkingData } = this.state;
+    const { classes } = this.props;
 
     return (
       <div id='default-template'>
-        <NavigationMenu data={ businessData } thirdNamePass={this.relocater}/>
-        <Map relocateMap={this.state.location} zoomMap={this.state.zoom} modifyLocation={this.moveMap.bind(this)} polygonData={ parkingData }/>
-
-        { this.props.children }
+      <NavigationMenu data={ businessData } thirdNamePass={this.relocater}/>
+      <Grid container justify="center" alignItems="center" className={classes.container}>
+        <Grid item xs={12} md={8}>
+          <Map relocateMap={this.state.location} zoomMap={this.state.zoom} modifyLocation={this.moveMap.bind(this)} polygonData={ parkingData }/>
+          { this.props.children }
+        </Grid>
+      </Grid>
       </div>
     )
   }
 
 }
+
+export default withStyles(styles)(DefaultTemplate)

@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid'
 
 const styles = theme => ({
   container: {
-    margin: '2rem'
+    margin: '0rem'
   }
 })
 

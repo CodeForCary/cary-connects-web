@@ -31,49 +31,50 @@ var uIcon = L.icon({
 });
 
 class App extends Component {
-  state = {
+	state = {
 		minZoom: 15,
 		animate: true,
 		bounds: [
 			[ 35.773958, -78.798776 ],
 			[ 35.796304, -78.761682 ]
-		]}
+		]
+	}
 
 	componentDidMount() {
-	  navigator.geolocation.getCurrentPosition((position) => {
+		navigator.geolocation.getCurrentPosition((position) => {
 	  		this.setState({
-			  userLocation: {
+				userLocation: {
 	  				lat: position.coords.latitude,
 	  				lng: position.coords.longitude
 	  			}
 	  		});
 	  	});
-		}
+	}
 
 	handleClick = (e) => {
-      this.props.modifyLocation(e.latlng, e.zoom)
-  }
+      	this.props.modifyLocation(e.latlng, e.zoom)
+  	}
 
 	toGoogleMaps(locationData, e) {
 		if (locationData.geometry == null) {
 			window.open('https://www.google.com/maps/dir/?api=1&destination=' + locationData[0] + ',' + locationData[1]);
 		} else {
-		window.open('https://www.google.com/maps/dir/?api=1&destination=' + locationData.geometry.coordinates[0][0][0] + ',' + locationData.geometry.coordinates[0][0][1]);
-	}}
+			window.open('https://www.google.com/maps/dir/?api=1&destination=' + locationData.geometry.coordinates[0][0][0] + ',' + locationData.geometry.coordinates[0][0][1]);
+		}
+	}
 
   render() {
-
   	const pLoc01 = [35.785810, -78.778632]; // Methodist Church Lot Entrance Walker
   	const pLoc01b = [35.786575, -78.779638]; // Methoist Church Lot Entrance Waldo
   	const pLoc02 = [35.781771, -78.782612]; // Cary Arts Center Lot Entrance
 
-		if (!this.props.polygonData){
+	if (!this.props.polygonData){
         return <div>Loading...</div>
     }
 
     return (
-			// build a Map
-      <Map className="map" onClick={this.handleClick} animate={this.state.animate} maxBounds={this.state.bounds} center={this.props.relocateMap} minZoom={this.state.minZoom} zoom={this.props.zoomMap}>
+		// build a Map
+    	<Map className="map" onClick={this.handleClick} animate={this.state.animate} maxBounds={this.state.bounds} center={this.props.relocateMap} minZoom={this.state.minZoom} zoom={this.props.zoomMap}>
 	      <TileLayer // attribution is required for OSM
     	  	attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         	  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -113,7 +114,7 @@ class App extends Component {
 				</Marker>
 
 				{this.props.polygonData.map(polygonData => (
-				  <Polygon onClick={this.handleClick} positions={polygonData.geometry.coordinates[0]} color="red" >
+				  <Polygon onClick={this.handleClick} positions={polygonData.geometry.coordinates[0]} color="red" key={polygonData.geometry.coordinates[0]}>
 				    <Popup>
 				      <center>
 								<h3>

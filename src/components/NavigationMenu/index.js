@@ -50,13 +50,6 @@ class NavigationMenu extends Component {
     });
   }};
 
-  settleName(name) {
-      this.props.thirdNamePass(name);
-      this.setState({
-        filteredLocation: filterLocation("", 0)
-      });
-  }
-
   render () {
     const { classes } = this.props;
     return (
@@ -66,16 +59,16 @@ class NavigationMenu extends Component {
           <NavigationItem navigatesTo={PageDirectory.WELCOME_PAGE.path}>
             <img className={classes.icon} src={CaryConnectsIcon} alt='cary connects icon' />
           </NavigationItem>
-            
+
             <Typography variant="title" className={classes.brandText}>
               Cary Connects
             </Typography>
-          
+
           <div className={classes.grow} />
           <SearchInput textChange={this.handleSearchChange} />
         </Toolbar>
       </AppBar>
-      <LocationResults locationData={this.state.filteredLocation} secondPassName={this.settleName.bind(this)}/>
+      <LocationResults locationData={this.state.filteredLocation} />
       </div>
     )
   }

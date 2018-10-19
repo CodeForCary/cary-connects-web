@@ -1,42 +1,44 @@
-import React, { Component } from 'react'
-import DefaultTemplate from 'src/templates/DefaultTemplate'
-import Card from 'src/components/Card'
-import PageDirectory from 'src/pages/PageDirectory'
-import Link from 'src/elements/Link'
-import Grid from '@material-ui/core/Grid'
-import Button from '@material-ui/core/Button';
+import React, { Component } from "react";
+import DefaultTemplate from "src/templates/DefaultTemplate";
+import Card from "src/components/Card";
+import PageDirectory from "src/pages/PageDirectory";
+import Link from "src/elements/Link";
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 
-import { Context } from '../../components/Provider';
+import { Context } from "../../components/Provider";
 
-const businesses = [{
-  name: 'Enter Business Title Here',
-  address: '123 Oakwood Dr',
-  phone: '(555)555-5555',
-  website: 'www.website.com',
-  info1: 'something here',
-  info2: 'something else here'
-},
-{
-  name: 'Another Business',
-  address: '456 blueLake St'
-}];
+const businesses = [
+  {
+    name: "Enter Business Title Here",
+    address: "123 Oakwood Dr",
+    phone: "(555)555-5555",
+    website: "www.website.com",
+    info1: "something here",
+    info2: "something else here"
+  },
+  {
+    name: "Another Business",
+    address: "456 blueLake St"
+  }
+];
 
-const generateCards = (businesses) => {
-  return businesses.map((business) => {
-    return <Card type='business' data={business} key={business.name} />
+const generateCards = businesses => {
+  return businesses.map(business => {
+    return <Card type="business" data={business} key={business.name} />;
   });
 };
 
 export default class BusinessDetailsPage extends Component {
-  render () {
+  render() {
     const cards = generateCards(businesses);
     return (
       <DefaultTemplate>
-        Business Details Page for ID: { this.props.match.params.id }
+        Business Details Page for ID: {this.props.match.params.id}
         <Context.Consumer>
-          {(context) => (
+          {context => (
             <React.Fragment>
-              {console.log(context.state.location)}
+              {/* {console.log(context.state.location)} */}
             </React.Fragment>
           )}
         </Context.Consumer>
@@ -51,6 +53,6 @@ export default class BusinessDetailsPage extends Component {
         </Grid>
         {cards}
       </DefaultTemplate>
-    )
+    );
   }
 }

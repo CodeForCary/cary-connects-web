@@ -5,6 +5,7 @@ export const Context = React.createContext();
 
 class Provider extends Component {
   state = {
+    selectedMapItem: null,
     businessData: null,
     parkingData: null,
     location: {
@@ -38,6 +39,16 @@ class Provider extends Component {
       <Context.Provider
         value={{
           state: this.state,
+          clickPolygon: event => {
+            const name = event.target.options.name;
+            const parkingData = this.state.parkingData.filter(
+              polygon => polygon.properties.name === name
+            );
+            console.log(parkingData);
+            this.setState({
+              selectedMapItem: parkingData
+            });
+          },
           getLocation: location => {
             this.setState({
               location: {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import L from 'leaflet';
-import {Map, TileLayer, Marker, Polygon, Popup } from 'react-leaflet';
+import {Map as LeafletMap, TileLayer, Marker, Polygon, Popup } from 'react-leaflet';
 import PropTypes from "prop-types";
 import parkingIcon from '../../assets/parkingIcon.png'
 import userIcon from '../../assets/userIcon.svg'
@@ -30,7 +30,7 @@ var uIcon = L.icon({
 	popupAnchor: [0, 0]
 });
 
-class App extends Component {
+class Map extends Component {
 	state = {
 		minZoom: 15,
 		animate: true,
@@ -74,7 +74,7 @@ class App extends Component {
 
     return (
 		// build a Map
-    	<Map className="map" onClick={this.handleClick} animate={this.state.animate} maxBounds={this.state.bounds} center={this.props.relocateMap} minZoom={this.state.minZoom} zoom={this.props.zoomMap}>
+    	<LeafletMap className="map" onClick={this.handleClick} animate={this.state.animate} maxBounds={this.state.bounds} center={this.props.relocateMap} minZoom={this.state.minZoom} zoom={this.props.zoomMap}>
 	      <TileLayer // attribution is required for OSM
     	  	attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         	  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -127,12 +127,9 @@ class App extends Component {
 				    </Popup>
 				  </Polygon>
 				))}
-      </Map>
-
+      </LeafletMap>
     );
   }
 }
 
-
-
-export default App;
+export default Map;

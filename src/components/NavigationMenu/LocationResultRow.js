@@ -4,9 +4,6 @@ import { Context } from "../Provider";
 import "./LocationResultRow.css";
 
 class LocationResultsRow extends Component {
-  takeName(locationName, e) {
-    this.props.passName(locationName);
-  }
 
   render() {
     return (

@@ -4,7 +4,9 @@ import Card from 'src/components/Card'
 import PageDirectory from 'src/pages/PageDirectory'
 import Link from 'src/elements/Link'
 import Grid from '@material-ui/core/Grid'
-import Button from '@material-ui/core/Button'
+import Button from '@material-ui/core/Button';
+
+import { Context } from '../../components/Provider';
 
 const businesses = [{
   name: 'Enter Business Title Here',
@@ -31,6 +33,13 @@ export default class BusinessDetailsPage extends Component {
     return (
       <DefaultTemplate>
         Business Details Page for ID: { this.props.match.params.id }
+        <Context.Consumer>
+          {(context) => (
+            <React.Fragment>
+              {console.log(context.state.location)}
+            </React.Fragment>
+          )}
+        </Context.Consumer>
         <Grid container justify="center">
           <Grid item>
             <Button variant="contained">

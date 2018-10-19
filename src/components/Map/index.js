@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import parkingIcon from '../../assets/parkingIcon.png'
 import userIcon from '../../assets/userIcon.svg'
 import Button from '@material-ui/core/Button';
+import { Context } from '../../components/Provider';
 import './styles.css';
 
 // Due to a bug in react-leaflet Marker isn't working.
@@ -74,60 +75,65 @@ class Map extends Component {
 
     return (
 		// build a Map
-    	<LeafletMap className="map" onClick={this.handleClick} animate={this.state.animate} maxBounds={this.state.bounds} center={this.props.relocateMap} minZoom={this.state.minZoom} zoom={this.props.zoomMap}>
-	      <TileLayer // attribution is required for OSM
-    	  	attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-        	  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-   		  />
-    	  <Marker onClick={this.handleClick}// Cary Art Center entrance location
-	      	position={pLoc02}
-	      	icon={pIcon}
-	      	>
-    	  	<Popup>
-      			<center>Entrance: Cary Art Center</center>
-						<Button>
-							<directions onClick={this.toGoogleMaps.bind(this, pLoc02)}>Directions</directions>
-						</Button>
-    	  	</Popup>
-    	  </Marker >
-    	  <Marker // Methodist Church entrance off Walker
-	      	position={pLoc01}
-	      	icon={pIcon}
-	      	>
-    	  	<Popup>
-      			<center>Entrance: Methodist Church Lot, Walker Street</center>
-						<Button>
-							<directions onClick={this.toGoogleMaps.bind(this, pLoc01)}>Directions</directions>
-						</Button>
-    	  	</Popup>
-    	  </Marker>
-    	  <Marker onClick={this.handleClick}// Methodist Church entrance off Waldo - one-way street
-	      	position={pLoc01b}
-	      	icon={pIcon}
-	      	>
-    	  	<Popup>
-      			<center>Entrance: Methodist Church Lot, Waldo Street</center>
-						<Button>
-							<directions onClick={this.toGoogleMaps.bind(this, pLoc01b)}>Directions</directions>
-						</Button>
-    	  	</Popup>
-				</Marker>
+		<Context.Consumer>
+			{(context) => (
+				<LeafletMap className="map" onClick={context.getLocation} animate={this.state.animate} maxBounds={this.state.bounds} center={context.state.location} minZoom={this.state.minZoom} zoom={context.state.zoom}>
+					<TileLayer // attribution is required for OSM
+						attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+					/>
+					<Marker onClick={this.handleClick}// Cary Art Center entrance location
+						position={pLoc02}
+						icon={pIcon}
+					>
+						<Popup>
+							<center>Entrance: Cary Art Center</center>
+							<Button>
+								<directions onClick={this.toGoogleMaps.bind(this, pLoc02)}>Directions</directions>
+							</Button>
+						</Popup>
+					</Marker >
+					<Marker // Methodist Church entrance off Walker
+						position={pLoc01}
+						icon={pIcon}
+					>
+						<Popup>
+							<center>Entrance: Methodist Church Lot, Walker Street</center>
+							<Button>
+								<directions onClick={this.toGoogleMaps.bind(this, pLoc01)}>Directions</directions>
+							</Button>
+						</Popup>
+					</Marker>
+					<Marker onClick={this.handleClick}// Methodist Church entrance off Waldo - one-way street
+						position={pLoc01b}
+						icon={pIcon}
+					>
+						<Popup>
+							<center>Entrance: Methodist Church Lot, Waldo Street</center>
+							<Button>
+								<directions onClick={this.toGoogleMaps.bind(this, pLoc01b)}>Directions</directions>
+							</Button>
+						</Popup>
+					</Marker>
 
-				{this.props.polygonData.map(polygonData => (
-				  <Polygon onClick={this.handleClick} positions={polygonData.geometry.coordinates[0]} color="red" key={polygonData.geometry.coordinates[0]}>
-				    <Popup>
-				      <center>
-								<h3>
-									{polygonData.properties.name}
-								</h3>
-								<Button>
-									<directions onClick={this.toGoogleMaps.bind(this, polygonData)}>Directions</directions>
-								</Button>
-							</center>
-				    </Popup>
-				  </Polygon>
-				))}
-      </LeafletMap>
+					{this.props.polygonData.map(polygonData => (
+						<Polygon onClick={this.handleClick} positions={polygonData.geometry.coordinates[0]} color="red" key={polygonData.geometry.coordinates[0]}>
+							<Popup>
+								<center>
+									<h3>
+										{polygonData.properties.name}
+									</h3>
+									<Button>
+										<directions onClick={this.toGoogleMaps.bind(this, polygonData)}>Directions</directions>
+									</Button>
+								</center>
+							</Popup>
+						</Polygon>
+					))}
+				</LeafletMap>
+			)}
+		</Context.Consumer>
+
     );
   }
 }

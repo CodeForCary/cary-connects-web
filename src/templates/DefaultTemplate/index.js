@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import NavigationMenu from 'src/components/NavigationMenu'
 import Map from 'src/components/Map'
-import flip from 'geojson-flip'
+import flip from 'geojson-flip';
+
+import Provider, { Context } from '../../components/Provider';
 
 export default class DefaultTemplate extends Component {
   constructor(props) {
@@ -56,14 +58,15 @@ export default class DefaultTemplate extends Component {
   render () {
     const { businessData } = this.state;
     const { parkingData } = this.state;
-
+    console.log(`from default: ${this.state}`)
     return (
-      <div id='default-template'>
-        <NavigationMenu data={ businessData } thirdNamePass={this.relocater}/>
-        <Map relocateMap={this.state.location} zoomMap={this.state.zoom} modifyLocation={this.moveMap.bind(this)} polygonData={ parkingData }/>
-
-        { this.props.children }
-      </div>
+      <Provider>
+        <div id='default-template'>
+          <NavigationMenu data={businessData} thirdNamePass={this.relocater} />
+          <Map relocateMap={this.state.location} zoomMap={this.state.zoom} modifyLocation={this.moveMap.bind(this)} polygonData={parkingData} />
+          {this.props.children}
+        </div>
+      </Provider>
     )
   }
 

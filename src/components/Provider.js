@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import flip from "geojson-flip";
+import filterLocation from './NavigationMenu/filterLocation'
 
 export const Context = React.createContext();
 
@@ -11,7 +12,9 @@ class Provider extends Component {
       lat: 35.787317,
       lng: -78.781226
     },
-    zoom: 15
+    zoom: 15,
+    filteredLocation: filterLocation("", 0),
+    handleSearchChange: null
   };
 
   componentDidMount() {
@@ -33,7 +36,23 @@ class Provider extends Component {
     });
   }
 
+  clicker = name => {
+    let feature = this.state.businessData.find(
+      feature => feature.properties.name === name.name
+    );
+    this.setState({
+      location: {
+        lat: feature.geometry.coordinates[1],
+        lng: feature.geometry.coordinates[0]
+      },
+      zoom: 18,
+      filteredLocation: filterLocation("", 0)
+    });
+  }
+
+
   render() {
+
     return (
       <Context.Provider
         value={{
@@ -46,18 +65,17 @@ class Provider extends Component {
               }
             });
           },
-          relocater: name => {
-            let feature = this.state.businessData.find(
-              feature => feature.properties.name === name.name
-            );
-            this.setState({
-              location: {
-                lat: feature.geometry.coordinates[1],
-                lng: feature.geometry.coordinates[0]
-              },
-              zoom: 18
+          clicker: this.clicker,
+          handleSearchChange: event => {
+            if (event.target.value == 0) {
+              this.setState({
+              filteredLocation: filterLocation(event.target.value, 0)
             });
-          }
+          } else {
+            this.setState({
+              filteredLocation: filterLocation(event.target.value, 7, this.state.businessData)
+            });
+          }}
         }}
       >
         {this.props.children}

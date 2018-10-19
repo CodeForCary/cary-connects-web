@@ -12,6 +12,7 @@ import InputBase from '@material-ui/core/InputBase'
 import SearchIcon from '@material-ui/icons/Search'
 import Typography from '@material-ui/core/Typography'
 import CaryConnectsIcon from './../../assets/CaryConnectIcon.png'
+import Provider, { Context } from "../../components/Provider";
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -32,27 +33,13 @@ const styles = theme => ({
 })
 
 class NavigationMenu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      filteredLocation: filterLocation("", 0),
-    };
-  }
-
-  handleSearchChange = event => {
-    if (event.target.value == 0) {
-      this.setState({
-      filteredLocation: filterLocation(event.target.value, 0)
-    });
-  } else {
-    this.setState({
-      filteredLocation: filterLocation(event.target.value, 7, this.props.data)
-    });
-  }};
 
   render () {
     const { classes } = this.props;
+
     return (
+      <Context.Consumer>
+      {context => (
       <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
@@ -65,11 +52,13 @@ class NavigationMenu extends Component {
             </Typography>
 
           <div className={classes.grow} />
-          <SearchInput textChange={this.handleSearchChange} />
+          <SearchInput textChange={context.handleSearchChange} />
         </Toolbar>
       </AppBar>
-      <LocationResults locationData={this.state.filteredLocation} />
+      <LocationResults locationData={context.state.filteredLocation}/>
       </div>
+      )}
+      </Context.Consumer>
     )
   }
 }

@@ -39,7 +39,7 @@ class DefaultTemplate extends Component {
         <Context.Consumer>
           {context => (
             <div id="default-template">
-              <NavigationMenu data={context.state.businessData} />
+              <NavigationMenu />
               <MediaQuery query="(min-width: 700px)">
                 <Grid container justify="center" alignItems="center" className={classes.computerContainer}>
                   <Grid item xs={12} md={8}>

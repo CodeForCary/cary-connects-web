@@ -38,20 +38,19 @@ export default class BusinessDetailsPage extends Component {
         <Context.Consumer>
           {context => (
             <React.Fragment>
-              {/* {console.log(context.state.location)} */}
+              <Grid container justify="center">
+                <Grid item>
+                  <Button variant="contained">
+                    <Link url={PageDirectory.PARKING_DETAILS_PAGE.path}>
+                      Parking Details
+                    </Link>
+                  </Button>
+                </Grid>
+              </Grid>
+              {console.log(context.state.selectedMapItem)}
             </React.Fragment>
           )}
         </Context.Consumer>
-        <Grid container justify="center">
-          <Grid item>
-            <Button variant="contained">
-              <Link url={PageDirectory.PARKING_DETAILS_PAGE.path}>
-                Parking Details
-              </Link>
-            </Button>
-          </Grid>
-        </Grid>
-        {cards}
       </DefaultTemplate>
     );
   }

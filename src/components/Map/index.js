@@ -54,6 +54,7 @@ class Map extends Component {
         }
       });
     });
+    // this.handleClick = this.handleClick.bind(this);
   }
 
   toGoogleMaps(locationData, e) {
@@ -72,6 +73,10 @@ class Map extends Component {
           locationData.geometry.coordinates[0][0][1]
       );
     }
+  }
+
+  handleClick(event) {
+    console.log(this);
   }
 
   render() {
@@ -141,12 +146,12 @@ class Map extends Component {
                 </Button>
               </Popup>
             </Marker>
-
             {this.props.polygonData.map(polygonData => (
               <Polygon
-                onClick={this.handleClick}
+                onClick={context.clickPolygon}
                 positions={polygonData.geometry.coordinates[0]}
                 color="red"
+                name={polygonData.properties.name}
                 key={polygonData.geometry.coordinates[0]}
               >
                 <Popup>

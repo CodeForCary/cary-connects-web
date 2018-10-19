@@ -77,7 +77,8 @@ class Provider extends Component {
               location: {
                 lat: location.latlng.lat,
                 lng: location.latlng.lng
-              }
+              },
+              zoom: location.zoom
             });
           },
           clicker: this.clicker,

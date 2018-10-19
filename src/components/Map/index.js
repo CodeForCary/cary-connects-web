@@ -26,7 +26,7 @@ var myIcon = L.icon({
 
 var pIcon = L.icon({
   iconUrl: parkingIcon,
-  iconSize: [48, 48],
+  iconSize: [38, 38],
   iconAnchor: [24, 48],
   popupAnchor: [0, -48]
 });
@@ -105,20 +105,7 @@ class Map extends Component {
               attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker
-              onClick={this.handleClick} // Cary Art Center entrance location
-              position={pLoc02}
-              icon={pIcon}
-            >
-              <Popup>
-                <center>Entrance: Cary Art Center</center>
-                <Button>
-                  <directions onClick={this.toGoogleMaps.bind(this, pLoc02)}>
-                    Directions
-                  </directions>
-                </Button>
-              </Popup>
-            </Marker>
+            
             <Marker // Methodist Church entrance off Walker
               position={pLoc01}
               icon={pIcon}

@@ -4,6 +4,8 @@ import Map from "src/components/Map";
 import flip from "geojson-flip";
 import { withStyles } from '@material-ui/core/styles';
 import Provider, { Context } from "../../components/Provider";
+import MediaQuery from 'react-responsive';
+import Grid from '@material-ui/core/Grid'
 
 const styles = theme => ({
   mobileContainer: {
@@ -30,14 +32,30 @@ class DefaultTemplate extends Component {
   }
 
   render() {
+    const { classes } = this.props;
+
     return (
       <Provider>
         <Context.Consumer>
           {context => (
             <div id="default-template">
               <NavigationMenu data={context.state.businessData} />
-              <Map polygonData={context.state.parkingData} />
-              {this.props.children}
+              <MediaQuery query="(min-width: 700px)">
+                <Grid container justify="center" alignItems="center" className={classes.computerContainer}>
+                  <Grid item xs={12} md={8}>
+                    <Map polygonData={context.state.parkingData} />
+                    {this.props.children}
+                  </Grid>
+                </Grid>
+              </MediaQuery>
+              <MediaQuery query="(max-width: 700px)">
+                <Grid container justify="center" alignItems="center" className={classes.mobileContainer}>
+                  <Grid item xs={12} md={8}>
+                    <Map polygonData={context.state.parkingData} />
+                    {this.props.children}
+                  </Grid>
+                </Grid>
+              </MediaQuery>
             </div>
           )}
         </Context.Consumer>

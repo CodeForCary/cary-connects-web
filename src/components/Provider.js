@@ -5,7 +5,10 @@ import filterLocation from './NavigationMenu/filterLocation'
 export const Context = React.createContext();
 
 class Provider extends Component {
-  state = {
+  constructor(props) {
+    super(props);
+
+  this.state = {
     selectedMapItem: null,
     businessData: null,
     parkingData: null,
@@ -17,6 +20,7 @@ class Provider extends Component {
     filteredLocation: filterLocation("", 0),
     handleSearchChange: null
   };
+}
 
   componentDidMount() {
     return new Promise((resolve, reject) => {
@@ -68,7 +72,7 @@ class Provider extends Component {
               selectedMapItem: parkingData
             });
           },
-          getLocation: location => {
+          moveMap: location => {
             this.setState({
               location: {
                 lat: location.latlng.lat,

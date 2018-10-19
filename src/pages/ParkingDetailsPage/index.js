@@ -17,16 +17,6 @@ export default class ParkingDetailsPage extends React.Component {
 
     return (
       <DefaultTemplate>
-        Parking Details Page for ID: {this.props.match.params.id}
-        <Grid container justify="center">
-          <Grid item>
-            <Button variant="contained">
-              <Link url={PageDirectory.BUSINESS_DETAILS_PAGE.path}>
-                Business Details
-              </Link>
-            </Button>
-          </Grid>
-        </Grid>
         <Context.Consumer>
           {context => (
             <Card type="parking" data={context.state.selectedMapItem} />

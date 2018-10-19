@@ -94,7 +94,7 @@ class Map extends Component {
         {context => (
           <LeafletMap
             className="map"
-            onClick={context.getLocation}
+            onClick={context.moveMap}
             animate={this.state.animate}
             maxBounds={this.state.bounds}
             center={context.state.location}

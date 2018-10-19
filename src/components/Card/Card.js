@@ -1,7 +1,7 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import Typography from "@material-ui/core/Typography"
 import Paper from "@material-ui/core/Paper";
 import CardBusiness from "./CardBusiness";
 import CardParking from "./CardParking";
@@ -19,15 +19,25 @@ const styles = theme => ({
 
 const Contact = props => {
   const { classes, type, data } = props;
-  if (!props.data) {
-    return <div>Loading...</div>;
+
+    if (!data) {
+        return <div />
+    };
+
+function Parking(props) {
+  const hasSpaces = props.hasSpaces;
+  if (data[0].properties.stdParking > 0) {
+    return <Typography variant="body1">Parking Spots: {data[0].properties.stdParking + data[0].properties.hcParking + data[0].properties.elecParking}</Typography>
   }
+  return 'Parking Spots: 0'
+}
+
   return (
     <Grid container justify="center" className={classes.root}>
       <Grid item xs={10}>
         <Paper className={classes.card}>
           <Typography variant="title">{data[0].properties.name}</Typography>
-          {console.log(data)}
+          <Parking hasSpaces={false}/>
           {type === "business" ? (
             <CardBusiness data={data[0]} />
           ) : (

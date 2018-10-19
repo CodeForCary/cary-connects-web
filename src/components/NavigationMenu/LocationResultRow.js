@@ -14,7 +14,6 @@ class LocationResultsRow extends Component {
         {(context) => (
           <div
             className="component-location-result-row"
-            // onClick={this.takeName.bind(this, this.props)}
             onClick={context.clicker.bind(this, this.props)}
           >
             <span className="name">{this.props.name}</span>

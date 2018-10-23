@@ -43,7 +43,7 @@ class SearchInput extends Component {
         <div className={classes.flex}>
           <InputBase
             variant="outlined"
-            placeholder="Where are you going?"
+            placeholder="Where to?"
 
             onChange={this.handleChange}
             className={classnames(classes.componentSearchInput, classes.width)}

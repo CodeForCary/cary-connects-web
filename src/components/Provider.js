@@ -98,7 +98,12 @@ class Provider extends Component {
             this.setState({
               filteredLocation: filterLocation("", 0)
             })
-        }
+          },
+          clearSearch: event => {
+            this.setState({
+              searchValue: ""
+            })
+          }
       }}
       >
         {this.props.children}

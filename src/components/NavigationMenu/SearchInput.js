@@ -48,6 +48,7 @@ class SearchInput extends Component {
             autoComplete={context.state.businessData}
             value={context.state.searchValue}
             onChange={this.handleChange}
+            onClick={context.clearSearch}
             className={classnames(classes.componentSearchInput, classes.width)}
             endAdornment={<SearchIcon />}
           />

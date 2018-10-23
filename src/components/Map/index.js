@@ -85,7 +85,7 @@ class Map extends Component {
     const pLoc02 = [35.781771, -78.782612]; // Cary Arts Center Lot Entrance
 
     if (!this.props.polygonData) {
-      return <div>Loading...</div>;
+      return <div></div>;
     }
 
     return (

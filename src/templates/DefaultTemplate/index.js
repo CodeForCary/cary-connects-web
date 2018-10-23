@@ -24,7 +24,7 @@ const styles = theme => ({
   },
   navContainer: {
     'display': 'block',
-    'position': 'sticky'
+    'position': 'fixed'
   }
 })
 

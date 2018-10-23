@@ -18,7 +18,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   root: {
-    width: '100%'
+    width: '100%',
+    position: 'fixed'
   },
   grow: {
     flexGrow: '1'

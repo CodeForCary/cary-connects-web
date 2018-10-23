@@ -12,7 +12,7 @@ const styles = theme => ({
     'margin-top': '0rem',
     'position': 'fixed',
     'top': '74px',
-    'z-index': '200'
+    'z-index': '-200'
   },
   computerContainer: {
     'margin-top': '2rem',
@@ -21,8 +21,8 @@ const styles = theme => ({
     'z-index': '200'
   },
   navContainer: {
-    display: 'block',
-    position: 'sticky'
+    'display': 'block',
+    'position': 'sticky',
   },
 })
 

@@ -29,6 +29,9 @@ const styles = theme => ({
   },
   brandText: {
     color: '#fff'
+  },
+  overlap: {
+    'position': 'absolute'
   }
 })
 
@@ -55,7 +58,7 @@ class NavigationMenu extends Component {
           <SearchInput textChange={context.handleSearchChange} />
         </Toolbar>
       </AppBar>
-      <LocationResults locationData={context.state.filteredLocation}/>
+      <LocationResults className={classes.overlap} locationData={context.state.filteredLocation}/>
       </div>
       )}
       </Context.Consumer>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import './LocationResults.css';
 import PropTypes from "prop-types";
 
 import LocationResultRow from "./LocationResultRow";

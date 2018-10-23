@@ -24,6 +24,14 @@ const Contact = props => {
         return <div />
     };
 
+
+function ParkingName(props) {
+  if (data[0].properties.name.toLowerCase().includes('lot') || data[0].properties.name.toLowerCase().includes('deck')) {
+    return <Typography variant="title">{data[0].properties.name}</Typography>;
+  }
+  return <Typography variant="title">{data[0].properties.name} Lot</Typography>;
+}
+
 function Parking(props) {
   const hasSpaces = props.hasSpaces;
   if (data[0].properties.stdParking > 0) {
@@ -36,7 +44,7 @@ function Parking(props) {
     <Grid container justify="center" className={classes.root}>
       <Grid item xs={10}>
         <Paper className={classes.card}>
-          <Typography variant="title">{data[0].properties.name}</Typography>
+        <ParkingName />
           <Parking hasSpaces={false}/>
           {type === "business" ? (
             <CardBusiness data={data[0]} />

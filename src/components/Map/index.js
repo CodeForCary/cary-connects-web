@@ -94,8 +94,6 @@ class Map extends Component {
         {context => (
           <LeafletMap
             className="map"
-            onClick={context.moveMap}
-            animate={this.state.animate}
             maxBounds={this.state.bounds}
             center={context.state.location}
             minZoom={this.state.minZoom}
@@ -105,7 +103,7 @@ class Map extends Component {
               attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            
+
             <Marker // Methodist Church entrance off Walker
               position={pLoc01}
               icon={pIcon}

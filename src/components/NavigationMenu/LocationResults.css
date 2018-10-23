@@ -1,0 +1,6 @@
+.component-location-results {
+  position: relative;
+  display: block;
+  z-index: 300;
+  background: white;
+}

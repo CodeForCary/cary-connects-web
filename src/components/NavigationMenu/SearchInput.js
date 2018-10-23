@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import classnames from 'classnames'
 import InputBase from '@material-ui/core/InputBase'
 import SearchIcon from '@material-ui/icons/Search'
+import { Context } from "../Provider";
 
 import "./SearchInput.css";
 import { InputAdornment } from "@material-ui/core";
@@ -37,14 +38,20 @@ class SearchInput extends Component {
 
     return (
       <div>
+      <Context.Consumer>
+        {(context) => (
         <div className={classes.flex}>
           <InputBase
             variant="outlined"
+            placeholder="Where are you going?"
+
             onChange={this.handleChange}
             className={classnames(classes.componentSearchInput, classes.width)}
             endAdornment={<SearchIcon />}
           />
         </div>
+      )}
+      </Context.Consumer>
       </div>
     );
   }

@@ -18,7 +18,8 @@ class Provider extends Component {
     },
     zoom: 15,
     filteredLocation: filterLocation("", 0),
-    handleSearchChange: null
+    handleSearchChange: null,
+    searchValue: ""
   };
 }
 
@@ -41,7 +42,7 @@ class Provider extends Component {
     });
   }
 
-  clicker = name => {
+  refocusLocation = name => {
     let feature = this.state.businessData.find(
       feature => feature.properties.name === name.name
     );
@@ -53,11 +54,16 @@ class Provider extends Component {
       zoom: 18,
       filteredLocation: filterLocation("", 0)
     });
+    this.clearSearch;
   }
 
+  clearSearch() {
+    this.setState({
+      searchValue: ""
+    })
+  }
 
   render() {
-
     return (
       <Context.Provider
         value={{
@@ -81,7 +87,7 @@ class Provider extends Component {
               zoom: location.zoom
             });
           },
-          clicker: this.clicker,
+          chooseBusiness: this.refocusLocation,
           handleSearchChange: event => {
             if (event.target.value == 0) {
               this.setState({
@@ -90,7 +96,7 @@ class Provider extends Component {
           } else {
             this.setState({
               filteredLocation: filterLocation(event.target.value, 7, this.state.businessData)
-            });
+            })
           }}
         }}
       >

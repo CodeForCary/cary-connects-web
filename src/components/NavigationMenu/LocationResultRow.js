@@ -4,9 +4,6 @@ import { Context } from "../Provider";
 import "./LocationResultRow.css";
 
 class LocationResultsRow extends Component {
-  onClick() {
-
-  }
 
   render() {
     return (
@@ -14,7 +11,7 @@ class LocationResultsRow extends Component {
         {(context) => (
           <div
             className="component-location-result-row"
-            onClick={context.clicker.bind(this, this.props)}
+            onClick={context.chooseBusiness.bind(this, this.props)}
           >
             <span className="name">{this.props.name}</span>
             <span className="amenity"> <strong> {this.props["marker-symbol"]}</strong></span>

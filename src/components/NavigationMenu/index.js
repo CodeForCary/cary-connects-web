@@ -29,9 +29,6 @@ const styles = theme => ({
   },
   brandText: {
     color: '#fff'
-  },
-  overlap: {
-    'position': 'absolute'
   }
 })
 

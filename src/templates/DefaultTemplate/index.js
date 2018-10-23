@@ -10,19 +10,20 @@ import Grid from '@material-ui/core/Grid'
 const styles = theme => ({
   mobileContainer: {
     'margin-top': '0rem',
-    'height': '80%',
-    'position': 'absolute',
     'position': 'fixed',
-   'top': '74px',
-   'z-index': '200'
+    'top': '74px',
+    'z-index': '200'
   },
   computerContainer: {
     'margin-top': '2rem',
-    'position': 'absolute',
     'position': 'fixed',
-   'top': '74px',
-   'z-index': '200'
-  }
+    'top': '74px',
+    'z-index': '200'
+  },
+  navContainer: {
+    display: 'block',
+    position: 'sticky'
+  },
 })
 
 class DefaultTemplate extends Component {
@@ -43,15 +44,12 @@ class DefaultTemplate extends Component {
 
   render() {
     const { classes } = this.props;
-    const nav = {
-      position: 'absolute'
-    };
     return (
       <Provider>
         <Context.Consumer>
           {context => (
             <div id="default-template">
-              <NavigationMenu style={nav}/>
+              <NavigationMenu className={classes.navContainer}/>
               <MediaQuery query="(min-width: 700px)">
                 <Grid container justify="center" alignItems="center" className={classes.computerContainer}>
                   <Grid item xs={12} md={8}>

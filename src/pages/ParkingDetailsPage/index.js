@@ -11,12 +11,16 @@ const parking = {
   name: "Business Name Here"
 };
 
+const bodyContainer = {
+  height: '100%'
+};
+
 export default class ParkingDetailsPage extends React.Component {
   render() {
     const { classes, data } = this.props;
 
     return (
-      <DefaultTemplate>
+      <DefaultTemplate style="bodyContainer">
         <Context.Consumer>
           {context => (
             <Card type="parking" data={context.state.selectedMapItem} />

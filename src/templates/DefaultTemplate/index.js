@@ -12,7 +12,9 @@ const styles = theme => ({
     'margin-top': '0rem',
     'position': 'fixed',
     'top': '74px',
-    'z-index': '-200'
+    'z-index': '-200',
+    'height': '100%',
+    'display': 'block'
   },
   computerContainer: {
     'margin-top': '2rem',
@@ -22,8 +24,8 @@ const styles = theme => ({
   },
   navContainer: {
     'display': 'block',
-    'position': 'sticky',
-  },
+    'position': 'sticky'
+  }
 })
 
 class DefaultTemplate extends Component {

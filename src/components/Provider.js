@@ -51,7 +51,7 @@ class Provider extends Component {
         lat: feature.geometry.coordinates[1],
         lng: feature.geometry.coordinates[0]
       },
-      zoom: 18,
+      zoom: 17.33,
       filteredLocation: filterLocation("", 0)
     });
     this.clearSearch;

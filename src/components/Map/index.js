@@ -90,6 +90,7 @@ class Map extends Component {
 
     return (
       // build a Map
+      <div>
       <Context.Consumer>
         {context => (
           <LeafletMap
@@ -156,6 +157,7 @@ class Map extends Component {
           </LeafletMap>
         )}
       </Context.Consumer>
+      </div>
     );
   }
 }

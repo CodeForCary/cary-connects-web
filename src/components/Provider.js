@@ -52,15 +52,9 @@ class Provider extends Component {
         lng: feature.geometry.coordinates[0]
       },
       zoom: 17.33,
-      filteredLocation: filterLocation("", 0)
+      filteredLocation: filterLocation("", 0),
+      searchValue: name.name
     });
-    this.clearSearch;
-  }
-
-  clearSearch() {
-    this.setState({
-      searchValue: ""
-    })
   }
 
   render() {
@@ -91,14 +85,21 @@ class Provider extends Component {
           handleSearchChange: event => {
             if (event.target.value == 0) {
               this.setState({
-              filteredLocation: filterLocation(event.target.value, 0)
+              filteredLocation: filterLocation(event.target.value, 0),
+              searchValue: event.target.value
             });
           } else {
             this.setState({
-              filteredLocation: filterLocation(event.target.value, 7, this.state.businessData)
+              filteredLocation: filterLocation(event.target.value, 7, this.state.businessData),
+              searchValue: event.target.value
             })
-          }}
-        }}
+          }},
+          clearResults: event => {
+            this.setState({
+              filteredLocation: filterLocation("", 0)
+            })
+        }
+      }}
       >
         {this.props.children}
       </Context.Provider>

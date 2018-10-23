@@ -31,6 +31,7 @@ const styles = theme => ({
 class SearchInput extends Component {
   handleChange = event => {
     this.props.textChange(event);
+
   };
 
   render() {
@@ -44,7 +45,8 @@ class SearchInput extends Component {
           <InputBase
             variant="outlined"
             placeholder="Where to?"
-
+            autoComplete={context.state.businessData}
+            value={context.state.searchValue}
             onChange={this.handleChange}
             className={classnames(classes.componentSearchInput, classes.width)}
             endAdornment={<SearchIcon />}

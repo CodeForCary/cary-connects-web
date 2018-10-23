@@ -20,7 +20,7 @@ const styles = theme => ({
     'margin-top': '2rem',
     'position': 'fixed',
     'top': '74px',
-    'z-index': '200'
+    'z-index': '-200'
   },
   navContainer: {
     'display': 'block',
@@ -50,7 +50,7 @@ class DefaultTemplate extends Component {
       <Provider>
         <Context.Consumer>
           {context => (
-            <div id="default-template">
+            <div id="default-template" onClick={context.clearResults}>
               <NavigationMenu className={classes.navContainer}/>
               <MediaQuery query="(min-width: 700px)">
                 <Grid container justify="center" alignItems="center" className={classes.computerContainer}>

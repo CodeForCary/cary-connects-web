@@ -20,7 +20,7 @@ export default class ParkingDetailsPage extends React.Component {
     const { classes, data } = this.props;
 
     return (
-      <DefaultTemplate style="bodyContainer">
+      <DefaultTemplate style={bodyContainer}>
         <Context.Consumer>
           {context => (
             <Card type="parking" data={context.state.selectedMapItem} />

@@ -75,10 +75,6 @@ class Map extends Component {
     }
   }
 
-  handleClick(event) {
-    console.log(this);
-  }
-
   render() {
     const pLoc01 = [35.78581, -78.778632]; // Methodist Church Lot Entrance Walker
     const pLoc01b = [35.786575, -78.779638]; // Methoist Church Lot Entrance Waldo
@@ -99,6 +95,7 @@ class Map extends Component {
             center={context.state.location}
             minZoom={this.state.minZoom}
             zoom={context.state.zoom}
+            onClick={context.closePopups}
           >
             <TileLayer // attribution is required for OSM
               attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"

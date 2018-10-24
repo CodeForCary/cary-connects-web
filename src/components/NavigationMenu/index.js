@@ -33,6 +33,7 @@ const styles = theme => ({
   }
 })
 
+
 class NavigationMenu extends Component {
 
   render () {
@@ -41,7 +42,7 @@ class NavigationMenu extends Component {
     return (
       <Context.Consumer>
       {context => (
-      <div className={classes.root}>
+      <div className={classes.root} >
       <AppBar position="static">
         <Toolbar>
           <NavigationItem navigatesTo={PageDirectory.WELCOME_PAGE.path}>

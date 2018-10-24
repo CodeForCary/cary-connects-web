@@ -13,7 +13,11 @@ const styles = theme => ({
   },
   card: {
     ...theme.mixins.gutters(),
-    padding: theme.spacing.unit
+    padding: theme.spacing.unit,
+    width: '250px'
+  },
+  gridItem: {
+    'flex-basis': '0%'
   }
 });
 
@@ -42,7 +46,7 @@ function Parking(props) {
 
   return (
     <Grid container justify="center" className={classes.root}>
-      <Grid item xs={10}>
+      <Grid item xs={10} className={classes.gridItem}>
         <Paper className={classes.card}>
         <ParkingName />
           <Parking hasSpaces={false}/>

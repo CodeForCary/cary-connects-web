@@ -25,6 +25,9 @@ const styles = theme => ({
   navContainer: {
     'display': 'block',
     'position': 'fixed'
+  },
+  bodyContainer: {
+    'height': '100%'
   }
 })
 
@@ -51,7 +54,8 @@ class DefaultTemplate extends Component {
         <Context.Consumer>
           {context => (
             <div id="default-template" onClick={context.clearResults}>
-              <NavigationMenu className={classes.navContainer}/>
+              <NavigationMenu className={classes.navContainer} />
+              <div className={classes.bodyContainer}>
               <MediaQuery query="(min-width: 700px)">
                 <Grid container justify="center" alignItems="center" className={classes.computerContainer}>
                   <Grid item xs={12} md={8}>
@@ -68,6 +72,7 @@ class DefaultTemplate extends Component {
                   </Grid>
                 </Grid>
               </MediaQuery>
+              </div>
             </div>
           )}
         </Context.Consumer>

@@ -5,6 +5,7 @@ import classnames from 'classnames'
 import InputBase from '@material-ui/core/InputBase'
 import SearchIcon from '@material-ui/icons/Search'
 import { Context } from "../Provider";
+import MediaQuery from 'react-responsive';
 
 import "./SearchInput.css";
 import { InputAdornment } from "@material-ui/core";
@@ -18,13 +19,23 @@ const styles = theme => ({
   width: {
     width: '33%'
   },
-  componentSearchInput: {
+    componentSearchInputComputer: {
     color: '#FFF',
     borderRadius: '4px',
     padding: '10px 8px',
     border: '1px solid #fff',
     width: '100%',
-    margin: '10px'
+    margin: '10px',
+    'font-size': '18px'
+  },
+  componentSearchInputMobile: {
+    color: '#FFF',
+    borderRadius: '4px',
+    padding: '10px 8px',
+    border: '1px solid #fff',
+    width: '100%',
+    margin: '10px',
+    'font-size': '11px'
   }
 })
 
@@ -42,6 +53,7 @@ class SearchInput extends Component {
       <Context.Consumer>
         {(context) => (
         <div className={classes.flex}>
+        <MediaQuery query="(max-width: 700px)">
           <InputBase
             variant="outlined"
             placeholder="Where to?"
@@ -49,9 +61,22 @@ class SearchInput extends Component {
             value={context.state.searchValue}
             onChange={this.handleChange}
             onClick={context.clearSearch}
-            className={classnames(classes.componentSearchInput, classes.width)}
+            className={classnames(classes.componentSearchInputMobile, classes.width)}
             endAdornment={<SearchIcon />}
           />
+          </MediaQuery>
+          <MediaQuery query="(min-width: 700px)">
+            <InputBase
+              variant="outlined"
+              placeholder="Where to?"
+              autoComplete={context.state.businessData}
+              value={context.state.searchValue}
+              onChange={this.handleChange}
+              onClick={context.clearSearch}
+              className={classnames(classes.componentSearchInputComputer, classes.width)}
+              endAdornment={<SearchIcon />}
+            />
+            </MediaQuery>
         </div>
       )}
       </Context.Consumer>

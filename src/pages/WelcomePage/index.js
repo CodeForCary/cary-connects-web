@@ -13,8 +13,8 @@ export default class WelcomePage extends React.Component {
         <Grid container justify="center">
           <Grid item>
             <Button variant="contained">
-              <Link url={PageDirectory.BUSINESS_DETAILS_PAGE.path}>
-                Business Details
+              <Link url={PageDirectory.PARKING_DETAILS_PAGE.path}>
+                Parking Details
               </Link>
             </Button>
           </Grid>

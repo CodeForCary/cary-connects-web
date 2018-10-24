@@ -19,12 +19,12 @@ const styles = theme => ({
 
 
 const CardData = props => {
-  const { classes } = props;
+  const { classes, data } = props;
   return(
     <Grid container item xs={12} md={4}>
-      Parking Data
+
     </Grid>
-    
+
   )
 }
 

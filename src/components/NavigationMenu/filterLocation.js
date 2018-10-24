@@ -4,7 +4,7 @@ export default function filterLocation(searchText, maxResults, data) {
   } else {
   return data
     .filter(location => {
-      if ((location.properties.name.toLowerCase().includes(searchText.toLowerCase()) || location.properties['marker-symbol'].toLowerCase().includes(searchText.toLowerCase()))) {
+      if ((location.properties.name.toLowerCase().includes(searchText.toLowerCase()))) {
         return true;
       }
       if (location.properties.name.includes(searchText)) {

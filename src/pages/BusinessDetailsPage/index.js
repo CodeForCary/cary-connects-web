@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import DefaultTemplate from "src/templates/DefaultTemplate";
 import Card from "src/components/Card";
 import PageDirectory from "src/pages/PageDirectory";
@@ -6,7 +6,9 @@ import Link from "src/elements/Link";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 
-const business = [
+import { Context } from "../../components/Provider";
+
+const businesses = [
   {
     name: "Enter Business Title Here",
     address: "123 Oakwood Dr",
@@ -21,31 +23,34 @@ const business = [
   }
 ];
 
-const generateCards = data => {
-  let arr = [];
-  data.forEach((val, i) => {
-    const item = <Card type="business" data={val} id={i} key={i} />;
-    arr.push(item);
+const generateCards = businesses => {
+  return businesses.map(business => {
+    return <Card type="business" data={business} key={business.name} />;
   });
-  return arr;
 };
 
-export default class BusinessDetailsPage extends React.Component {
+export default class BusinessDetailsPage extends Component {
   render() {
-    const cards = generateCards(business);
+    const cards = generateCards(businesses);
     return (
       <DefaultTemplate>
         Business Details Page for ID: {this.props.match.params.id}
-        <Grid container justify="center">
-          <Grid item>
-            <Button variant="contained">
-              <Link url={PageDirectory.PARKING_DETAILS_PAGE.path}>
-                Parking Details
-              </Link>
-            </Button>
-          </Grid>
-        </Grid>
-        {cards}
+        <Context.Consumer>
+          {context => (
+            <React.Fragment>
+              <Grid container justify="center">
+                <Grid item>
+                  <Button variant="contained">
+                    <Link url={PageDirectory.PARKING_DETAILS_PAGE.path}>
+                      Parking Details
+                    </Link>
+                  </Button>
+                </Grid>
+              </Grid>
+              {console.log(context.state.selectedMapItem)}
+            </React.Fragment>
+          )}
+        </Context.Consumer>
       </DefaultTemplate>
     );
   }

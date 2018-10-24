@@ -7,7 +7,7 @@ const pageDirectory = {
 
   WELCOME_PAGE: {
     path: '/',
-    component: WelcomePage
+    component: ParkingDetailsPage
   },
   FEEDBACK_PAGE: {
     path: '/feedback',

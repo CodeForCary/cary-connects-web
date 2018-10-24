@@ -6,49 +6,63 @@ import filterLocation from './filterLocation'
 import LocationResults from './LocationResults'
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import InputBase from '@material-ui/core/InputBase'
+import SearchIcon from '@material-ui/icons/Search'
+import Typography from '@material-ui/core/Typography'
+import CaryConnectsIcon from './../../assets/CaryConnectIcon.png'
+import Provider, { Context } from "../../components/Provider";
 
 import { withStyles } from '@material-ui/core/styles';
 
+const styles = theme => ({
+  root: {
+    width: '100%',
+    position: 'fixed'
+  },
+  grow: {
+    flexGrow: '1'
+  },
+  icon: {
+    height: '50px',
+    marginRight: '5px'
+  },
+  brandText: {
+    color: '#fff'
+  }
+})
+
 
 class NavigationMenu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      filteredLocation: filterLocation("", 0),
-    };
-  }
-
-  handleSearchChange = event => {
-    if (event.target.value == 0) {
-      this.setState({
-      filteredLocation: filterLocation(event.target.value, 0)
-    });
-  } else {
-    this.setState({
-      filteredLocation: filterLocation(event.target.value, 7, this.props.data)
-    });
-  }};
-
-  settleName(name) {
-      this.props.thirdNamePass(name);
-      this.setState({
-        filteredLocation: filterLocation("", 0)
-      });
-  }
 
   render () {
+    const { classes } = this.props;
+
     return (
-      <div>
+      <Context.Consumer>
+      {context => (
+      <div className={classes.root} >
+      <AppBar position="static">
+        <Toolbar>
+          <NavigationItem navigatesTo={PageDirectory.WELCOME_PAGE.path}>
+            <img className={classes.icon} src={CaryConnectsIcon} alt='cary connects icon' />
+          </NavigationItem>
 
-          <NavigationItem title='Home' navigatesTo={PageDirectory.WELCOME_PAGE.path} />
-          <NavigationItem title='Feedback' navigatesTo={PageDirectory.FEEDBACK_PAGE.path} />
+            <Typography variant="title" className={classes.brandText}>
+              Cary Connects
+            </Typography>
 
-
-        <SearchInput textChange={this.handleSearchChange} />
-        <LocationResults locationData={this.state.filteredLocation} secondPassName={this.settleName.bind(this)}/>
+          <div className={classes.grow} />
+          <SearchInput textChange={context.handleSearchChange} />
+        </Toolbar>
+      </AppBar>
+      <LocationResults className={classes.overlap} locationData={context.state.filteredLocation}/>
       </div>
+      )}
+      </Context.Consumer>
     )
   }
 }
 
-export default NavigationMenu;
+export default withStyles(styles)(NavigationMenu);

@@ -34,16 +34,6 @@ const styles = theme => ({
 class DefaultTemplate extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      businessData: null,
-      parkingData: null,
-      location: {
-        lat: 35.787317,
-        lng: -78.781226
-      },
-      zoom: 15
-    };
   }
 
   render() {

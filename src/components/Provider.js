@@ -55,17 +55,6 @@ class Provider extends Component {
       filteredLocation: filterLocation("", 0),
       searchValue: name.name
     });
-    fetch('http://caryparking-backend.herokuapp.com/business/post', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: feature.properties.name,
-        click: true
-      })
-    })
   }
 
   render() {

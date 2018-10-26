@@ -15,9 +15,11 @@ const bodyContainer = {
   height: '100%'
 };
 
+
 export default class ParkingDetailsPage extends React.Component {
   render() {
     const { classes, data } = this.props;
+    
 
     return (
       <DefaultTemplate style={bodyContainer}>

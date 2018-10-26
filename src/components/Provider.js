@@ -8,37 +8,37 @@ class Provider extends Component {
   constructor(props) {
     super(props);
 
-  this.state = {
-    selectedMapItem: null,
-    businessData: null,
-    parkingData: null,
-    location: {
-      lat: 35.787317,
-      lng: -78.781226
-    },
-    zoom: 15,
-    filteredLocation: filterLocation("", 0),
-    handleSearchChange: null,
-    searchValue: ""
-  };
-}
+    this.state = {
+      selectedMapItem: null,
+      businessData: null,
+      parkingData: null,
+      location: {
+        lat: 35.787317,
+        lng: -78.781226
+      },
+      zoom: 15,
+      filteredLocation: filterLocation("", 0),
+      handleSearchChange: null,
+      searchValue: ""
+    };
+  }
 
   componentDidMount() {
     return new Promise((resolve, reject) => {
       fetch(
         "https://raw.githubusercontent.com/CodeForCary/cary-connects-data/master/business.geojson"
       )
-        .then(response => response.json())
-        .then(rawJSON => rawJSON.features)
-        .then(data => resolve(this.setState({ businessData: data })))
-        .catch(err => reject(err));
+      .then(response => response.json())
+      .then(rawJSON => rawJSON.features)
+      .then(data => resolve(this.setState({ businessData: data })))
+      .catch(err => reject(err));
       fetch(
         "https://raw.githubusercontent.com/CodeForCary/cary-connects-data/master/parking.geojson"
       )
-        .then(response => response.json())
-        .then(rawJSON => flip.flip(rawJSON.features))
-        .then(data => resolve(this.setState({ parkingData: data })))
-        .catch(err => reject(err));
+      .then(response => response.json())
+      .then(rawJSON => flip.flip(rawJSON.features))
+      .then(data => resolve(this.setState({ parkingData: data })))
+      .catch(err => reject(err));
     });
   }
 
@@ -55,39 +55,50 @@ class Provider extends Component {
       filteredLocation: filterLocation("", 0),
       searchValue: name.name
     });
+    fetch('http://localhost:3000/business/post', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: feature.properties.name,
+        click: 1
+      })
+    })
   }
 
   render() {
     return (
       <Context.Provider
-        value={{
-          state: this.state,
-          clickPolygon: event => {
-            const name = event.target.options.name;
-            const parkingData = this.state.parkingData.filter(
-              polygon => polygon.properties.name === name
-            );
-            console.log(parkingData);
+      value={{
+        state: this.state,
+        clickPolygon: event => {
+          const name = event.target.options.name;
+          const parkingData = this.state.parkingData.filter(
+            polygon => polygon.properties.name === name
+          );
+          console.log(parkingData);
+          this.setState({
+            selectedMapItem: parkingData
+          });
+        },
+        moveMap: location => {
+          this.setState({
+            location: {
+              lat: location.latlng.lat,
+              lng: location.latlng.lng
+            },
+            zoom: location.zoom
+          });
+        },
+        closePopups: event => {
+
+        },
+        chooseBusiness: this.refocusLocation,
+        handleSearchChange: event => {
+          if (event.target.value == 0) {
             this.setState({
-              selectedMapItem: parkingData
-            });
-          },
-          moveMap: location => {
-            this.setState({
-              location: {
-                lat: location.latlng.lat,
-                lng: location.latlng.lng
-              },
-              zoom: location.zoom
-            });
-          },
-          closePopups: event => {
-            
-          },
-          chooseBusiness: this.refocusLocation,
-          handleSearchChange: event => {
-            if (event.target.value == 0) {
-              this.setState({
               filteredLocation: filterLocation(event.target.value, 0),
               searchValue: event.target.value
             });
@@ -107,12 +118,12 @@ class Provider extends Component {
               searchValue: ""
             })
           }
-      }}
-      >
+        }}
+        >
         {this.props.children}
-      </Context.Provider>
-    );
+        </Context.Provider>
+      );
+    }
   }
-}
 
-export default Provider;
+  export default Provider;

@@ -14,3 +14,21 @@
   padding: 10px 8px;
   width: 100%;
 }
+
+.component-location-results {
+  position: relative;
+  display: block;
+  z-index: 300;
+  background: white;
+}
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}

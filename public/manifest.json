@@ -1,5 +1,5 @@
 {
-  "short_name": "Cary Connects",
+  "short_name": "Connects",
   "name": "Cary Connects",
   "icons": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "src": "./images/icon.png",
-      "sizes": "144x144",
+      "sizes": "512x512 192x192 144x144",
       "type": "image/png"
     }
   ],

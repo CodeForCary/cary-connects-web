@@ -81,9 +81,6 @@ class Provider extends Component {
             zoom: location.zoom
           });
         },
-        closePopups: event => {
-
-        },
         chooseBusiness: this.refocusLocation,
         handleSearchChange: event => {
           if (event.target.value == 0) {

@@ -14,11 +14,8 @@ const styles = theme => ({
   card: {
     ...theme.mixins.gutters(),
     padding: theme.spacing.unit,
-    width: '250px'
   },
-  gridItem: {
-    'flex-basis': '0%'
-  }
+
 });
 
 const Contact = props => {
@@ -49,12 +46,7 @@ function Parking(props) {
       <Grid item xs={10} className={classes.gridItem}>
         <Paper className={classes.card}>
         <ParkingName />
-          <Parking hasSpaces={false}/>
-          {type === "business" ? (
-            <CardBusiness data={data[0]} />
-          ) : (
-            <CardParking data={data[0]} />
-          )}
+          <CardParking data={data[0].properties} />
         </Paper>
       </Grid>
     </Grid>

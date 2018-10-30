@@ -19,7 +19,7 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   root: {
     width: '100%',
-    position: 'fixed'
+    marginBottom: theme.spacing.unit * 3   
   },
   grow: {
     flexGrow: '1'
@@ -30,7 +30,8 @@ const styles = theme => ({
   },
   brandText: {
     color: '#fff'
-  }
+  },
+  toolbar: theme.mixins.toolbar
 })
 
 
@@ -58,6 +59,7 @@ class NavigationMenu extends Component {
         </Toolbar>
       </AppBar>
       <LocationResults className={classes.overlap} locationData={context.state.filteredLocation}/>
+      {/* <div className={classes.toolbar} /> */}
       </div>
       )}
       </Context.Consumer>

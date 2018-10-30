@@ -25,6 +25,7 @@ const ListItemEl = props => {
   }else if (props.icon === 'WebsiteIcon') {
     icon = <LinkIcon />;
   }
+  console.log(props.data)
 
   return (
     <React.Fragment>

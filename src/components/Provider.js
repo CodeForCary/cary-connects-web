@@ -8,20 +8,21 @@ class Provider extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      selectedMapItem: null,
-      businessData: null,
-      parkingData: null,
-      location: {
-        lat: 35.787317,
-        lng: -78.781226
-      },
-      zoom: 15,
-      filteredLocation: filterLocation("", 0),
-      handleSearchChange: null,
-      searchValue: ""
-    };
-  }
+  this.state = {
+    selectedMapItem: null,
+    businessData: null,
+    parkingData: null,
+    location: {
+      lat: 35.787317,
+      lng: -78.781226
+    },
+    zoom: 15,
+    filteredLocation: filterLocation("", 0),
+    handleSearchChange: null,
+    searchValue: "",
+    drawerOpen: false
+  };
+}
 
   componentDidMount() {
     return new Promise((resolve, reject) => {
@@ -84,6 +85,23 @@ class Provider extends Component {
         handleSearchChange: event => {
           if (event.target.value == 0) {
             this.setState({
+              selectedMapItem: parkingData
+            });
+            this.setState({drawerOpen: true})
+          }
+          moveMap: location => {
+            this.setState({
+              location: {
+                lat: location.latlng.lat,
+                lng: location.latlng.lng
+              },
+              zoom: location.zoom
+            });
+          }},
+          chooseBusiness: this.refocusLocation,
+          handleSearchChange: event => {
+            if (event.target.value == 0) {
+              this.setState({
               filteredLocation: filterLocation(event.target.value, 0),
               searchValue: event.target.value
             });
@@ -102,6 +120,9 @@ class Provider extends Component {
             this.setState({
               searchValue: ""
             })
+          },
+          handleDrawerClose: event => {
+            this.setState({drawerOpen: false})
           }
         }}
         >

@@ -12,10 +12,14 @@ import classnames from 'classnames'
 const drawerWidth = 240;
 
 const styles = theme => ({
+  root: {
+    position: 'relative',
+  },
   bodyContainer: {
     'height': '100%',
     'display': 'flex',
-    'alignItems': 'stretch'
+    'alignItems': 'stretch',
+    position: 'relative'
   },
   content: {
     flexgrow: 1,
@@ -50,8 +54,6 @@ class DefaultTemplate extends Component {
     super(props);
   }
 
-
-
   render() {
     const { classes } = this.props;
 
@@ -59,7 +61,7 @@ class DefaultTemplate extends Component {
       <Provider>
         <Context.Consumer>
           {context => (
-            <div id="default-template" onClick={context.clearResults}>
+            <div className={classes.root} id="default-template" onClick={context.clearResults}>
               <NavigationMenu />
 
               <div className={classes.bodyContainer}>

@@ -13,6 +13,7 @@ import SearchIcon from '@material-ui/icons/Search'
 import Typography from '@material-ui/core/Typography'
 import CaryConnectsIcon from './../../assets/CaryConnectIcon.png'
 import Provider, { Context } from "../../components/Provider";
+import Results from './results'
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -58,8 +59,10 @@ class NavigationMenu extends Component {
           <SearchInput textChange={context.handleSearchChange} />
         </Toolbar>
       </AppBar>
-      <LocationResults className={classes.overlap} locationData={context.state.filteredLocation}/>
+
+      {/* <LocationResults className={classes.overlap} locationData={context.state.filteredLocation}/> */}
       {/* <div className={classes.toolbar} /> */}
+      <Results locationData={context.state.filteredLocation} />
       </div>
       )}
       </Context.Consumer>

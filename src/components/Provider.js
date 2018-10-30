@@ -20,7 +20,8 @@ class Provider extends Component {
     filteredLocation: filterLocation("", 0),
     handleSearchChange: null,
     searchValue: "",
-    drawerOpen: false
+    drawerOpen: false,
+    searchResultsAnchorEl: null
   };
 }
 
@@ -45,7 +46,7 @@ class Provider extends Component {
 
   refocusLocation = name => {
     let feature = this.state.businessData.find(
-      feature => feature.properties.name === name.name
+      feature => feature.properties.name == name.properties.name
     );
     this.setState({
       location: {
@@ -87,12 +88,14 @@ class Provider extends Component {
             if (event.target.value == 0) {
               this.setState({
               filteredLocation: filterLocation(event.target.value, 0),
-              searchValue: event.target.value
+              searchValue: event.target.value,
+              searchResultsAnchorEl: event.target
             });
           } else {
             this.setState({
               filteredLocation: filterLocation(event.target.value, 7, this.state.businessData),
-              searchValue: event.target.value
+              searchValue: event.target.value,
+              searchResultsAnchorEl: event.target
             })
           }},
           clearResults: event => {
@@ -102,11 +105,18 @@ class Provider extends Component {
           },
           clearSearch: event => {
             this.setState({
-              searchValue: ""
+              searchValue: "",
+              searchResultsAnchorEl: null
             })
           },
           handleDrawerClose: event => {
             this.setState({drawerOpen: false})
+          },
+          handleSearchResultsClose: event => {
+            this.setState({searchResultsAnchorEl: null})
+          },
+          handleSearchResultsOpen: event => {
+            this.setState({searchResultsAnchorEl: event.target})
           }
         }}
         >

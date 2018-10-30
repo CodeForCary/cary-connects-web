@@ -19,7 +19,8 @@ class Provider extends Component {
     zoom: 15,
     filteredLocation: filterLocation("", 0),
     handleSearchChange: null,
-    searchValue: ""
+    searchValue: "",
+    drawerOpen: false
   };
 }
 
@@ -71,6 +72,7 @@ class Provider extends Component {
             this.setState({
               selectedMapItem: parkingData
             });
+            this.setState({drawerOpen: true})
           },
           moveMap: location => {
             this.setState({
@@ -106,6 +108,9 @@ class Provider extends Component {
             this.setState({
               searchValue: ""
             })
+          },
+          handleDrawerClose: event => {
+            this.setState({drawerOpen: false})
           }
       }}
       >

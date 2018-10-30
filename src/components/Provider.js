@@ -71,6 +71,7 @@ class Provider extends Component {
           this.setState({
             selectedMapItem: parkingData
           });
+          this.setState({drawerOpen: true})
         },
         moveMap: location => {
           this.setState({
@@ -81,23 +82,6 @@ class Provider extends Component {
             zoom: location.zoom
           });
         },
-        chooseBusiness: this.refocusLocation,
-        handleSearchChange: event => {
-          if (event.target.value == 0) {
-            this.setState({
-              selectedMapItem: parkingData
-            });
-            this.setState({drawerOpen: true})
-          }
-          moveMap: location => {
-            this.setState({
-              location: {
-                lat: location.latlng.lat,
-                lng: location.latlng.lng
-              },
-              zoom: location.zoom
-            });
-          }},
           chooseBusiness: this.refocusLocation,
           handleSearchChange: event => {
             if (event.target.value == 0) {

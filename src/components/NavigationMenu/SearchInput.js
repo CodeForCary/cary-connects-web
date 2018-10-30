@@ -61,7 +61,6 @@ class SearchInput extends Component {
                   tabIndex="1"
                   variant="outlined"
                   placeholder="Where to?"
-                  autoComplete={context.state.businessData}
                   value={context.state.searchValue}
                   onChange={this.handleChange}
                   onClick={context.clearSearch}

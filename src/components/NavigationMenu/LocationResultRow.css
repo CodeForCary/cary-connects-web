@@ -1,6 +1,6 @@
 .component-location-result-row {
-  border-bottom: 1px solid #ccc;
-  padding: 10px;
+  border-bottom: .33px solid #ccc;
+  padding: 5px;
   height: 32px;
   position: relative;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

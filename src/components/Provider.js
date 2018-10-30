@@ -67,7 +67,6 @@ class Provider extends Component {
           const parkingData = this.state.parkingData.filter(
             polygon => polygon.properties.name === name
           );
-          console.log(parkingData);
           this.setState({
             selectedMapItem: parkingData
           });

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import NavigationMenu from "src/components/NavigationMenu";
 import Map from "src/components/Map";
 import flip from "geojson-flip";
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from "@material-ui/core/styles";
 import Provider, { Context } from "../../components/Provider";
 import MediaQuery from 'react-responsive';
 import Grid from '@material-ui/core/Grid'
@@ -33,7 +33,7 @@ const styles = theme => ({
     }),
     marginLeft: 0
   }
-})
+});
 
 const MapContainer = props => (
   <React.Fragment>
@@ -48,19 +48,7 @@ const MapContainer = props => (
 class DefaultTemplate extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      businessData: null,
-      parkingData: null,
-      location: {
-        lat: 35.787317,
-        lng: -78.781226
-      },
-      zoom: 15
-    };
   }
-
-
 
   render() {
     const { classes } = this.props;
@@ -87,4 +75,4 @@ class DefaultTemplate extends Component {
   }
 }
 
-export default withStyles(styles)(DefaultTemplate)
+export default withStyles(styles)(DefaultTemplate);

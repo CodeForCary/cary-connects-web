@@ -42,7 +42,8 @@ class Map extends Component {
   state = {
     minZoom: 15,
     animate: true,
-    bounds: [[35.773958, -78.798776], [35.796304, -78.761682]]
+    bounds: [[35.773958, -78.798776], [35.796304, -78.761682]],
+    markers: [[1, 1]]
   };
 
   componentDidMount() {
@@ -74,6 +75,13 @@ class Map extends Component {
       );
     }
   }
+  chooseParkingLot = e => {
+    const {markers} = this.state
+    markers.pop()
+    markers.push(e.latlng)
+    console.log(markers)
+    this.setState({markers})
+  }
 
   render() {
     const pLoc01 = [35.78581, -78.778632]; // Methodist Church Lot Entrance Walker
@@ -95,49 +103,22 @@ class Map extends Component {
             center={context.state.location}
             minZoom={this.state.minZoom}
             zoom={context.state.zoom}
-            onClick={context.closePopups}
           >
             <TileLayer // attribution is required for OSM
               attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+            <Marker icon={pIcon} position={this.state.markers[0]}></Marker>
 
-            <Marker // Methodist Church entrance off Walker
-              position={pLoc01}
-              icon={pIcon}
-            >
-              <Popup>
-                <center>Entrance: Methodist Church Lot, Walker Street</center>
-                <Button>
-                  <directions onClick={this.toGoogleMaps.bind(this, pLoc01)}>
-                    Directions
-                  </directions>
-                </Button>
-              </Popup>
-            </Marker>
-            <Marker
-              onClick={this.handleClick} // Methodist Church entrance off Waldo - one-way street
-              position={pLoc01b}
-              icon={pIcon}
-            >
-              <Popup>
-                <center>Entrance: Methodist Church Lot, Waldo Street</center>
-                <Button>
-                  <directions onClick={this.toGoogleMaps.bind(this, pLoc01b)}>
-                    Directions
-                  </directions>
-                </Button>
-              </Popup>
-            </Marker>
             {this.props.polygonData.map(polygonData => (
               <Polygon
-                onClick={context.clickPolygon}
+                onClick={(event) => {this.chooseParkingLot(event); context.clickPolygon(event);}}
                 positions={polygonData.geometry.coordinates[0]}
                 color="red"
                 name={polygonData.properties.name}
                 key={polygonData.geometry.coordinates[0]}
               >
-                <Popup>
+                {/*<Popup>
                   <center>
                     <h3>{polygonData.properties.name}</h3>
                     <Button>
@@ -148,7 +129,7 @@ class Map extends Component {
                       </directions>
                     </Button>
                   </center>
-                </Popup>
+                </Popup>*/}
               </Polygon>
             ))}
           </LeafletMap>

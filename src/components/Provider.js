@@ -55,7 +55,8 @@ class Provider extends Component {
       },
       zoom: 17.33,
       filteredLocation: filterLocation("", 0),
-      searchValue: name.name
+      searchValue: name.properties.name,
+      searchResultsAnchorEl: false
     });
   }
 
@@ -111,9 +112,6 @@ class Provider extends Component {
           },
           handleDrawerClose: event => {
             this.setState({drawerOpen: false})
-          },
-          handleSearchResultsClose: event => {
-            this.setState({searchResultsAnchorEl: null})
           },
           handleSearchResultsOpen: event => {
             this.setState({searchResultsAnchorEl: event.target})

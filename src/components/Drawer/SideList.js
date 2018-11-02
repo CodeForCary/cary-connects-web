@@ -9,7 +9,7 @@ import ParkingIcon from '@material-ui/icons/LocalParking'
 import RestrictionsIcon from '@material-ui/icons/NotInterested'
 import Typography from '@material-ui/core/Typography'
 import CommuteIcon from '@material-ui/icons/Commute'
-import PolygonCenter from 'geojson-polygon-center'
+import Button from '@material-ui/core/Button'
 
 const styles = theme => ({
 
@@ -79,17 +79,6 @@ const generateList = props => {
     arr.push(item);
   }
 
-  const openGoogleMaps = props => {
-    console.log(props)
-    const center = PolygonCenter(props)
-    window.open(
-      "https://www.google.com/maps/dir/?api=1&destination=" +
-        center.coordinates[0] +
-        "," +
-        center.coordinates[1]
-    )
-  }
-
   for(let key in props.data[0]) {
     let item;
     let coords;
@@ -100,12 +89,12 @@ const generateList = props => {
     }
     switch (key) {
       case 'geometry':
-
-        item = <ListItemEl
-          icon='directions'
-          text={'Directions'}
-          onClick={openGoogleMaps(coords)}
-        />
+        item = <div onClick={() => props.openGoogleMaps(coords)}>
+                <ListItemEl
+                  icon='directions'
+                  text={<Button>Directions</Button>}
+                />
+              </div>
     }
   arr.push(item)
   }

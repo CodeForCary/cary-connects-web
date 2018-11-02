@@ -34,7 +34,15 @@ const styles = theme => ({
 
 class index extends Component {
 
-
+  openGoogleMaps(coords) {
+    const center = PolygonCenter(coords)
+    window.open(
+      "https://www.google.com/maps/dir/?api=1&destination=" +
+        center.coordinates[0] +
+        "," +
+        center.coordinates[1]
+    )
+  }
 
   render() {
     const { classes } = this.props;
@@ -65,7 +73,7 @@ class index extends Component {
                   </Grid>
                 </div>
 
-              {context.state.drawerOpen ? <SideList data={this.props.data} directions={context.openGoogleMaps}/> : null}
+              {context.state.drawerOpen ? <SideList data={this.props.data} openGoogleMaps={this.openGoogleMaps}/> : null}
 
             </Drawer>
           )}

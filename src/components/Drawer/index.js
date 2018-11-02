@@ -32,6 +32,10 @@ const styles = theme => ({
   }
 });
 
+const cursor = {
+  cursor: 'pointer'
+};
+
 class index extends Component {
 
   openGoogleMaps(coords) {
@@ -69,7 +73,7 @@ class index extends Component {
                       </Typography>
                     </Grid>
                     <Grid item>
-                      <ChevronLeftIcon className={classes.icon}/>
+                      <ChevronLeftIcon className={classes.icon} style={cursor}/>
                     </Grid>
                   </Grid>
                 </div>

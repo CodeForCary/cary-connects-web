@@ -65,7 +65,7 @@ class DefaultTemplate extends Component {
             <div className={classes.root} id="default-template" onClick={context.clearResults}>
               <NavigationMenu />
 
-              <div className={classes.bodyContainer}>
+              <div className={classes.bodyContainer} >
                   <Drawer data={context.state.selectedMapItem ? context.state.selectedMapItem : null} />
                 <MapContainer
                   classes={classnames(classes.content, {[classes.contentShift]: context.state.drawerOpen})}

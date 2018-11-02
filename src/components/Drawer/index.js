@@ -6,6 +6,8 @@ import { Context } from "src/components/Provider";
 import SideList from './SideList'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
+import PolygonCenter from 'geojson-polygon-center'
+
 
 const drawerWidth = 240
 
@@ -61,11 +63,11 @@ class index extends Component {
                   </Grid>
                 </div>
 
-              {context.state.drawerOpen ? <SideList data={this.props.data} /> : null}
+              {context.state.drawerOpen ? <SideList data={this.props.data} openGoogleMaps={this.openGoogleMaps}/> : null}
 
             </Drawer>
           )}
-          
+
         </Context.Consumer>
       </div>
     )

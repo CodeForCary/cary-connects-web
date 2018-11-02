@@ -58,28 +58,10 @@ class Map extends Component {
     // this.handleClick = this.handleClick.bind(this);
   }
 
-  toGoogleMaps(locationData, e) {
-    if (locationData.geometry == null) {
-      window.open(
-        "https://www.google.com/maps/dir/?api=1&destination=" +
-          locationData[0] +
-          "," +
-          locationData[1]
-      );
-    } else {
-      window.open(
-        "https://www.google.com/maps/dir/?api=1&destination=" +
-          locationData.geometry.coordinates[0][0][0] +
-          "," +
-          locationData.geometry.coordinates[0][0][1]
-      );
-    }
-  }
-  chooseParkingLot = e => {
+  createLotMarker = e => {
     const {markers} = this.state
     markers.pop()
     markers.push(e.latlng)
-    console.log(markers)
     this.setState({markers})
   }
 
@@ -112,7 +94,7 @@ class Map extends Component {
 
             {this.props.polygonData.map(polygonData => (
               <Polygon
-                onClick={(event) => {this.chooseParkingLot(event); context.clickPolygon(event);}}
+                onClick={(event) => {this.createLotMarker(event); context.clickPolygon(event);}}
                 positions={polygonData.geometry.coordinates[0]}
                 color="red"
                 name={polygonData.properties.name}

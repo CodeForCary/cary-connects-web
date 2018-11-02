@@ -52,6 +52,8 @@ const MapContainer = props => (
 class DefaultTemplate extends Component {
   constructor(props) {
     super(props);
+
+
   }
 
   render() {

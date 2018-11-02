@@ -21,6 +21,7 @@ class index extends Component {
               open={open}
               anchorEl={anchorEl}
               onClose={context.clearSearch}
+              disableAutoFocus={true}
               anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'left'
@@ -30,7 +31,7 @@ class index extends Component {
                 horizontal: 'center'
               }}
             >
-              <ResultsList data={this.props.locationData} />
+              <ResultsList data={context.state.filteredLocation} />
             </Popover>
           )
         }}

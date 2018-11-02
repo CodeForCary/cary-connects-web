@@ -68,7 +68,7 @@ class Provider extends Component {
         clickPolygon: event => {
           const name = event.target.options.name;
           const parkingData = this.state.parkingData.filter(
-            polygon => polygon.properties.name === name
+            selectedPolygon => selectedPolygon.properties.name === name
           );
           this.setState({
             selectedMapItem: parkingData

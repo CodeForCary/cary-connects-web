@@ -8,12 +8,13 @@ import MediaQuery from 'react-responsive';
 import Grid from '@material-ui/core/Grid'
 import Drawer from 'src/components/Drawer'
 import classnames from 'classnames'
+import './index.css';
 
 const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
-    position: 'relative',
+    position: 'relative'
   },
   bodyContainer: {
     'height': '100%',
@@ -52,8 +53,6 @@ const MapContainer = props => (
 class DefaultTemplate extends Component {
   constructor(props) {
     super(props);
-
-
   }
 
   render() {

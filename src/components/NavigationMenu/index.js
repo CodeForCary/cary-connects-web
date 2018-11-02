@@ -59,9 +59,6 @@ class NavigationMenu extends Component {
           <SearchInput textChange={context.handleSearchChange} />
         </Toolbar>
       </AppBar>
-
-      {/* <LocationResults className={classes.overlap} locationData={context.state.filteredLocation}/> */}
-      {/* <div className={classes.toolbar} /> */}
       <Results locationData={context.state.filteredLocation} />
       </div>
       )}

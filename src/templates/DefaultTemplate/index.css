@@ -1,0 +1,6 @@
+@media (prefers-dark-interface) {
+  #default-template {
+    color: white;
+    background: black;
+  }
+}

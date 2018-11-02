@@ -44,8 +44,7 @@ class Map extends Component {
   state = {
     minZoom: 15,
     animate: true,
-    bounds: [[35.773958, -78.798776], [35.796304, -78.761682]],
-    markers: [[1, 1]]
+    bounds: [[35.773958, -78.798776], [35.796304, -78.761682]]
   };
 
   componentDidMount() {
@@ -58,13 +57,6 @@ class Map extends Component {
       });
     });
     // this.handleClick = this.handleClick.bind(this);
-  }
-
-  createLotMarker = e => {
-    const {markers} = this.state
-    markers.pop()
-    markers.push(PolygonCenter(e.geometry).coordinates)
-    this.setState({markers})
   }
 
   render() {
@@ -87,16 +79,17 @@ class Map extends Component {
             center={context.state.location}
             minZoom={this.state.minZoom}
             zoom={context.state.zoom}
+            markers={context.state.markers}
           >
             <TileLayer // attribution is required for OSM
               attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker icon={pIcon} position={this.state.markers[0]}></Marker>
+            <Marker icon={pIcon} position={context.state.markers[0]}></Marker>
 
             {this.props.polygonData.map(polygonData => (
               <Polygon
-                onClick={(event) => {this.createLotMarker(polygonData); context.clickPolygon(event);}}
+                onClick={(event) => {context.createLotMarker(polygonData); context.clickPolygon(event);}}
                 positions={polygonData.geometry.coordinates[0]}
                 color="red"
                 name={polygonData.properties.name}

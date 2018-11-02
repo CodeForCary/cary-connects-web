@@ -17,7 +17,7 @@ const styles = theme => ({
     justifyContent: "flex-end"
   },
   width: {
-    width: "33%"
+    width: "40%"
   },
   componentSearchInputComputer: {
     color: "#FFF",
@@ -82,7 +82,6 @@ class SearchInput extends Component {
                   placeholder="Where to?"
                   value={context.state.searchValue}
                   autoFocus={true}
-
                   onChange={context.handleSearchChange}
                   onClick={context.clearSearch}
                   className={classnames(

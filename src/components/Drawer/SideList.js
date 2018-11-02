@@ -66,7 +66,7 @@ const generateList = props => {
       case 'stdParking':
         item = <ListItemEl
           icon='parking'
-          text={`Standard: ${text}`}
+          text={`Standard Spaces: ${text}`}
           id={id}
         />
         break;

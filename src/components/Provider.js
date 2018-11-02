@@ -22,7 +22,8 @@ class Provider extends Component {
     handleSearchChange: null,
     searchValue: "",
     drawerOpen: false,
-    searchResultsAnchorEl: null
+    searchResultsAnchorEl: null,
+    markers: [[1, 1]]
   };
 }
 
@@ -100,6 +101,12 @@ class Provider extends Component {
               searchResultsAnchorEl: event.target
             })
           }},
+          createLotMarker: e => {
+            const {markers} = this.state
+            markers.pop()
+            markers.push(PolygonCenter(e.geometry).coordinates)
+            this.setState({markers})
+          },
           clearResults: event => {
             this.setState({
               filteredLocation: filterLocation("", 0),
@@ -118,7 +125,8 @@ class Provider extends Component {
           clearSearch: event => {
             this.setState({
               searchValue: "",
-              searchResultsAnchorEl: null
+              searchResultsAnchorEl: null,
+              markers: [[1, 1]]
             })
           },
           handleDrawerClose: event => {

@@ -9,10 +9,12 @@ import {
 } from "react-leaflet";
 import PropTypes from "prop-types";
 import parkingIcon from "../../assets/parkingIcon.png";
+import PolygonCenter from 'geojson-polygon-center';
 import userIcon from "../../assets/userIcon.svg";
 import Button from "@material-ui/core/Button";
 import { Context } from "../../components/Provider";
 import "./styles.css";
+
 
 // Due to a bug in react-leaflet Marker isn't working.
 // Using Leaflet to create an image
@@ -61,7 +63,7 @@ class Map extends Component {
   createLotMarker = e => {
     const {markers} = this.state
     markers.pop()
-    markers.push(e.latlng)
+    markers.push(PolygonCenter(e.geometry).coordinates)
     this.setState({markers})
   }
 
@@ -94,7 +96,7 @@ class Map extends Component {
 
             {this.props.polygonData.map(polygonData => (
               <Polygon
-                onClick={(event) => {this.createLotMarker(event); context.clickPolygon(event);}}
+                onClick={(event) => {this.createLotMarker(polygonData); context.clickPolygon(event);}}
                 positions={polygonData.geometry.coordinates[0]}
                 color="red"
                 name={polygonData.properties.name}

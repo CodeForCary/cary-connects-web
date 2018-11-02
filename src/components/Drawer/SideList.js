@@ -7,7 +7,6 @@ import ListItemText from '@material-ui/core/ListItemText'
 import AccessibleIcon from '@material-ui/icons/Accessible'
 import ParkingIcon from '@material-ui/icons/LocalParking'
 import RestrictionsIcon from '@material-ui/icons/NotInterested'
-import Typography from '@material-ui/core/Typography'
 import CommuteIcon from '@material-ui/icons/Commute'
 import Button from '@material-ui/core/Button'
 
@@ -29,6 +28,9 @@ const ListItemEl = props => {
       break;
     case 'directions':
       icon = <CommuteIcon />
+      break;
+    default:
+      icon = <ParkingIcon />
   }
 
   return (
@@ -75,6 +77,12 @@ const generateList = props => {
           icon= 'restrictions'
           text={`Restrictions: ${text}`}
         />
+        break;
+      default:
+        item = <ListItemEl
+          icon='parking'
+          text={text}
+        />
     }
     arr.push(item);
   }
@@ -95,6 +103,9 @@ const generateList = props => {
                   text={<Button>Directions</Button>}
                 />
               </div>
+        break;
+      default:
+        item = <div></div>
     }
   arr.push(item)
   }

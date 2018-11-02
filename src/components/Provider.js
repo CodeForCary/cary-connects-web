@@ -48,7 +48,7 @@ class Provider extends Component {
 
   refocusLocation = name => {
     let feature = this.state.businessData.find(
-      feature => feature.properties.name == name.properties.name
+      feature => feature.properties.name === name.properties.name
     );
     this.setState({
       location: {
@@ -88,7 +88,7 @@ class Provider extends Component {
         },
           chooseBusiness: this.refocusLocation,
           handleSearchChange: event => {
-            if (event.target.value == 0) {
+            if (event.target.value === 0) {
               this.setState({
               filteredLocation: filterLocation(event.target.value, 0),
               searchValue: event.target.value,

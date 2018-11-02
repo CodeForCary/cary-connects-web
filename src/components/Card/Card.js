@@ -34,7 +34,6 @@ function ParkingName(props) {
 }
 
 function Parking(props) {
-  const hasSpaces = props.hasSpaces;
   if (data[0].properties.stdParking > 0) {
     return <Typography variant="body1">Parking Spots: {data[0].properties.stdParking + data[0].properties.hcParking + data[0].properties.elecParking}</Typography>
   }

@@ -2,17 +2,11 @@ import React, { Component } from 'react'
 import NavigationItem from './NavigationItem'
 import PageDirectory from 'src/pages/PageDirectory'
 import SearchInput from './SearchInput'
-import filterLocation from './filterLocation'
-import LocationResults from './LocationResults'
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import InputBase from '@material-ui/core/InputBase'
-import SearchIcon from '@material-ui/icons/Search'
 import Typography from '@material-ui/core/Typography'
 import CaryConnectsIcon from './../../assets/CaryConnectIcon.png'
-import Provider, { Context } from "../../components/Provider";
+import { Context } from "../../components/Provider";
 import Results from './results'
 
 import { withStyles } from '@material-ui/core/styles';

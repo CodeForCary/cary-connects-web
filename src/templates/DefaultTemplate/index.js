@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import NavigationMenu from "src/components/NavigationMenu";
 import Map from "src/components/Map";
-import flip from "geojson-flip";
 import { withStyles } from "@material-ui/core/styles";
 import Provider, { Context } from "../../components/Provider";
-import MediaQuery from 'react-responsive';
 import Grid from '@material-ui/core/Grid'
 import Drawer from 'src/components/Drawer'
 import classnames from 'classnames'
@@ -51,10 +49,6 @@ const MapContainer = props => (
 )
 
 class DefaultTemplate extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { classes } = this.props;
 

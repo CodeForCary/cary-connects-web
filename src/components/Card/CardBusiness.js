@@ -58,7 +58,7 @@ const generateList = data => {
 }
 
 const CardData = props => {
-  const { classes, data } = props;
+  const { data } = props;
   const list = generateList(data);
 
   return(

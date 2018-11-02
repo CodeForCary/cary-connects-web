@@ -2,9 +2,7 @@ import React from "react";
 import DefaultTemplate from "src/templates/DefaultTemplate";
 import { withStyles } from '@material-ui/core/styles'
 import { Context } from "src/components/Provider";
-import Drawer from "src/components/Drawer";
 
-const drawerWidth = 240
 const styles = theme => ({
   // bodyContainer : {
   //   height: '100%',
@@ -30,7 +28,7 @@ const styles = theme => ({
 
 class ParkingDetailsPage extends React.Component {
   render() {
-    const { classes, data } = this.props;
+    const { classes } = this.props;
     
 
     return (

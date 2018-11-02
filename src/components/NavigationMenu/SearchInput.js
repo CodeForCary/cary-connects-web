@@ -8,7 +8,6 @@ import { Context } from "../Provider";
 import MediaQuery from "react-responsive";
 
 import "./SearchInput.css";
-import { InputAdornment } from "@material-ui/core";
 
 const styles = theme => ({
   flex: {

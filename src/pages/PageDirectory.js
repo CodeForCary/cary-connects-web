@@ -1,4 +1,3 @@
-import WelcomePage from './WelcomePage'
 import FeedbackPage from './FeedbackPage'
 import BusinessDetailsPage from './BusinessDetailsPage'
 import ParkingDetailsPage from './ParkingDetailsPage'

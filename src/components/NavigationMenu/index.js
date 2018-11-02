@@ -20,7 +20,7 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   root: {
     width: '100%',
-    marginBottom: theme.spacing.unit * 3   
+    marginBottom: theme.spacing.unit * 3
   },
   grow: {
     flexGrow: '1'
@@ -45,7 +45,7 @@ class NavigationMenu extends Component {
       <Context.Consumer>
       {context => (
       <div className={classes.root} >
-      <AppBar position="static">
+      <AppBar position="static" onClick={context.handleDrawerClose}>
         <Toolbar>
           <NavigationItem navigatesTo={PageDirectory.WELCOME_PAGE.path}>
             <img className={classes.icon} src={CaryConnectsIcon} alt='cary connects icon' />

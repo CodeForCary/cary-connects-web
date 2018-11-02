@@ -102,7 +102,7 @@ class Provider extends Component {
           }},
           clearResults: event => {
             this.setState({
-              filteredLocation: filterLocation("", 0)
+              filteredLocation: filterLocation("", 0),
             })
           },
           openGoogleMaps: event => {

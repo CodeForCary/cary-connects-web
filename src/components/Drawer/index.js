@@ -64,7 +64,7 @@ class index extends Component {
                   <Grid container justify='space-between'>
                     <Grid item>
                       <Typography variant='title'>
-                        <strong>Lot </strong>
+                        <strong>Parking Lot </strong>
                         {context.state.drawerOpen ? '-> ' + context.state.selectedMapItem[0].properties.name: null}
                       </Typography>
                     </Grid>

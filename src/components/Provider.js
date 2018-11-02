@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import flip from "geojson-flip";
 import filterLocation from './NavigationMenu/filterLocation'
+import PolygonCenter from 'geojson-polygon-center'
 
 export const Context = React.createContext();
 
@@ -103,6 +104,16 @@ class Provider extends Component {
             this.setState({
               filteredLocation: filterLocation("", 0)
             })
+          },
+          openGoogleMaps: event => {
+            console.log(event.target.value)
+            const center = PolygonCenter(event.target.value)
+            window.open(
+              "https://www.google.com/maps/dir/?api=1&destination=" +
+                center.coordinates[0] +
+                "," +
+                center.coordinates[1]
+            )
           },
           clearSearch: event => {
             this.setState({

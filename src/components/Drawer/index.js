@@ -34,6 +34,8 @@ const styles = theme => ({
 
 class index extends Component {
 
+
+
   render() {
     const { classes } = this.props;
 
@@ -63,7 +65,7 @@ class index extends Component {
                   </Grid>
                 </div>
 
-              {context.state.drawerOpen ? <SideList data={this.props.data} openGoogleMaps={this.openGoogleMaps}/> : null}
+              {context.state.drawerOpen ? <SideList data={this.props.data} directions={context.openGoogleMaps}/> : null}
 
             </Drawer>
           )}

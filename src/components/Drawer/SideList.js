@@ -15,7 +15,6 @@ const styles = theme => ({
 
 });
 
-
 const ListItemEl = props => {
   let icon;
   switch (props.icon) {
@@ -80,6 +79,17 @@ const generateList = props => {
     arr.push(item);
   }
 
+  const openGoogleMaps = props => {
+    console.log(props)
+    const center = PolygonCenter(props)
+    window.open(
+      "https://www.google.com/maps/dir/?api=1&destination=" +
+        center.coordinates[0] +
+        "," +
+        center.coordinates[1]
+    )
+  }
+
   for(let key in props.data[0]) {
     let item;
     let coords;
@@ -90,15 +100,7 @@ const generateList = props => {
     }
     switch (key) {
       case 'geometry':
-        const openGoogleMaps = (coords) => {
-          const center = PolygonCenter(coords)
-          window.open(
-            "https://www.google.com/maps/dir/?api=1&destination=" +
-              center.coordinates[0] +
-              "," +
-              center.coordinates[1]
-          )
-        }
+
         item = <ListItemEl
           icon='directions'
           text={'Directions'}

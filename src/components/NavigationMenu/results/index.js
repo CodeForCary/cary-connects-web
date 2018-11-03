@@ -13,7 +13,7 @@ class index extends Component {
     return (
       <Context.Consumer>
         {context => {
-          const anchorEl = context.state.searchResultsAnchorEl
+          const anchorEl = context.state.searchResultsAnchorEl;
           const open = Boolean(anchorEl);
 
           return (

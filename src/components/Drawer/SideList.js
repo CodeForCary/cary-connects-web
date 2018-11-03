@@ -30,7 +30,7 @@ const ListItemEl = props => {
       icon = <CommuteIcon />
       break;
     default:
-      icon = <ParkingIcon />
+      break;
   }
 
   return (
@@ -62,21 +62,23 @@ const generateList = props => {
         item = <ListItemEl
           icon='accessible'
           text={`Accessible: ${text}`}
-          key={id}
+          key="accessible"
         />
         break;
       case 'stdParking':
         item = <ListItemEl
           icon='parking'
           text={`Standard Spaces: ${text}`}
-          key={id}
+          key="parking"
+          id={id}
         />
         break;
       case 'restrictions':
         item = <ListItemEl
           icon= 'restrictions'
           text={`Restrictions: ${text}`}
-          key={id}
+          key="restrictions"
+          id={id}
         />
         break;
       default:
@@ -95,7 +97,7 @@ const generateList = props => {
     }
     switch (key) {
       case 'geometry':
-        item = <div onClick={() => props.openGoogleMaps(coords)}>
+        item = <div key="geometry" onClick={() => props.openGoogleMaps(coords)}>
                 <ListItemEl
                   icon='directions'
                   text={<Button>Directions</Button>}

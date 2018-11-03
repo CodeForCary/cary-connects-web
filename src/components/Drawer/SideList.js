@@ -69,20 +69,18 @@ const generateList = props => {
         item = <ListItemEl
           icon='parking'
           text={`Standard Spaces: ${text}`}
-          id={id}
+          key={id}
         />
         break;
       case 'restrictions':
         item = <ListItemEl
           icon= 'restrictions'
           text={`Restrictions: ${text}`}
+          key={id}
         />
         break;
       default:
-        item = <ListItemEl
-          icon='parking'
-          text={text}
-        />
+        break;
     }
     arr.push(item);
   }
@@ -105,7 +103,7 @@ const generateList = props => {
               </div>
         break;
       default:
-        item = <div></div>
+        break;
     }
   arr.push(item)
   }

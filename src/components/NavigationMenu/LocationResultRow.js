@@ -4,17 +4,19 @@ import { Context } from "../Provider";
 import "./LocationResultRow.css";
 
 class LocationResultsRow extends Component {
-
   render() {
     return (
       <Context.Consumer>
-        {(context) => (
+        {context => (
           <div
             className="component-location-result-row"
             onClick={context.chooseBusiness.bind(this, this.props)}
           >
             <span className="name">{this.props.name}</span>
-            <span className="amenity"> <strong> {this.props["marker-symbol"]}</strong></span>
+            <span className="amenity">
+              {" "}
+              <strong> {this.props["marker-symbol"]}</strong>
+            </span>
           </div>
         )}
       </Context.Consumer>
@@ -22,6 +24,6 @@ class LocationResultsRow extends Component {
   }
 }
 LocationResultsRow.propTypes = {
-  name: PropTypes.string,
+  name: PropTypes.string
 };
 export default LocationResultsRow;

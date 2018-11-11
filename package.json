@@ -1,0 +1,25 @@
+{
+  "name": "cary-connects-web",
+  "version": "1.0.0",
+  "description": "A Web page for Downtown Cary Parking",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\"",
+    "heroku-postbuild": "concurrently \"cd client && npm install\" \"cd backend && npm install\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeForCary/cary-connects-web.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodeForCary/cary-connects-web/issues"
+  },
+  "homepage": "https://github.com/CodeForCary/cary-connects-web#readme",
+  "dependencies": {
+    "concurrently": "^4.0.1",
+    "read-pkg-up": "^4.0.0"
+  }
+}

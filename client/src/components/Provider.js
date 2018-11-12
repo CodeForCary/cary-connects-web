@@ -77,7 +77,6 @@ class Provider extends Component {
             });
           },
           chooseBusiness: name => {
-            console.log(this.state);
             let feature = this.state.businessData.find(
               feature => feature.properties.name === name.properties.name
             );

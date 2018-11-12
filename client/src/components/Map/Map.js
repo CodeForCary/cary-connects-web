@@ -6,20 +6,16 @@ import {
   Marker,
   Polygon
 } from "react-leaflet";
-import parkingIcon from "../../assets/parkingIcon.png";
+import icon from "../../assets/map-marker-2.svg";
 import { Context } from "../../components/Provider";
 import "./styles.css";
 
-
-// Due to a bug in react-leaflet Marker isn't working.
-// Using Leaflet to create an image
-
-var pIcon = L.icon({
-  iconUrl: parkingIcon,
-  iconSize: [38, 38],
-  iconAnchor: [24, 48],
-  popupAnchor: [0, -48]
-});
+const pIcon = L.icon({
+  iconUrl: icon,
+  iconSize: [32, 32],
+  shadowSize: [50, 64],
+  iconAnchor: [15, 31]
+})
 
 class Map extends Component {
   state = {
@@ -37,7 +33,6 @@ class Map extends Component {
         }
       });
     });
-    // this.handleClick = this.handleClick.bind(this);
   }
 
   render() {
@@ -72,18 +67,6 @@ class Map extends Component {
                 name={polygonData.properties.name}
                 key={polygonData.geometry.coordinates[0]}
               >
-                {/*<Popup>
-                  <center>
-                    <h3>{polygonData.properties.name}</h3>
-                    <Button>
-                      <directions
-                        onClick={this.toGoogleMaps.bind(this, polygonData)}
-                      >
-                        Directions
-                      </directions>
-                    </Button>
-                  </center>
-                </Popup>*/}
               </Polygon>
             ))}
           </LeafletMap>

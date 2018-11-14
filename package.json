@@ -20,6 +20,7 @@
   "homepage": "https://github.com/CodeForCary/cary-connects-web#readme",
   "dependencies": {
     "concurrently": "^4.0.1",
+    "cookies": "^0.7.3",
     "read-pkg-up": "^4.0.0"
   }
 }

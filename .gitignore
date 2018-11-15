@@ -1,6 +1,12 @@
 # dependencies
 /node_modules
+<<<<<<< HEAD
 
+=======
+/backend/node_modules
+/client/node_modules
+/client/build
+>>>>>>> d9d4ee6e928e5942b9db2248196dae763c44bb2c
 # testing
 /coverage
 

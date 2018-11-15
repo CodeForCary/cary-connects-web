@@ -4,6 +4,7 @@
 
 /backend/node_modules
 /backend/package-lock.json
+/backend/config.js
 
 /client/node_modules
 /client/build

@@ -1,29 +1,27 @@
 {
-  "name": "client",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^3.1.2",
-    "@material-ui/icons": "^3.0.1",
-    "ajv": "^6.5.4",
-    "classnames": "^2.2.6",
-    "clipboard": "^2.0.1",
-    "geojson-flip": "^1.0.0",
-    "leaflet": "1.3.4",
-    "material-ui-icons": "^1.0.0-beta.36",
-    "material-ui-search-bar": "^0.4.2",
-    "react": "16.5.2",
-    "react-dom": "16.5.2",
-    "react-leaflet": "2.0.1",
-    "react-responsive": "^5.0.0",
-    "react-router-dom": "4.3.1",
-    "react-scripts": "1.1.5"
-  },
+  "name": "cary-connects-web",
+  "version": "1.0.0",
+  "description": "A Web page for Downtown Cary Parking",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\"",
+    "install": "concurrently \"cd backend && npm install\" \"cd client && npm install\"",
+    "heroku-postbuild": "concurrently \"cd client && npm install\" \"cd backend && npm install\""
   },
-  "devDependencies": {}
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeForCary/cary-connects-web.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodeForCary/cary-connects-web/issues"
+  },
+  "homepage": "https://github.com/CodeForCary/cary-connects-web#readme",
+  "dependencies": {
+    "concurrently": "^4.0.1",
+    "cookies": "^0.7.3",
+    "read-pkg-up": "^4.0.0"
+  }
 }

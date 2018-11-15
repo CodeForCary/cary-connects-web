@@ -1,12 +1,14 @@
 # dependencies
 /node_modules
-<<<<<<< HEAD
+/package-lock.json
 
-=======
 /backend/node_modules
+/backend/package-lock.json
+
 /client/node_modules
 /client/build
->>>>>>> d9d4ee6e928e5942b9db2248196dae763c44bb2c
+/client/package-lock.json
+
 # testing
 /coverage
 

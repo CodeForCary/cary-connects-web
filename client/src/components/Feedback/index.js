@@ -85,7 +85,7 @@ class Feedback extends React.Component {
         <Modal open={this.state.open} onClose={this.handleClose}>
           <div className={classes.paperMobile}>
             <TextField id="message" placeholder="Feedback" onChange={this.handleChange('message')} multiline="multiline" rows="5" variant="outlined"/>
-            <Button className={classes.button} onClick={this.handleClose.bind(this)}>Submit</Button>
+            <Button className={classes.button} onClick={(event) => { this.handleSubmit(); this.handleClose()}}>Submit</Button>
           </div>
         </Modal>
       </MediaQuery>

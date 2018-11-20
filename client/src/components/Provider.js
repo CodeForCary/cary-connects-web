@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import flip from "geojson-flip";
+import axios from 'axios';
 import filterLocation from "./NavigationMenu/filterLocation";
 import PolygonCenter from "geojson-polygon-center";
 
@@ -29,12 +30,9 @@ class Provider extends Component {
 
   componentDidMount() {
     return new Promise((resolve, reject) => {
-      fetch(
-        "https://raw.githubusercontent.com/CodeForCary/cary-connects-data/master/business.geojson"
-      )
-        .then(response => response.json())
-        .then(rawJSON => rawJSON.features)
-        .then(data => resolve(this.setState({ businessData: data })))
+      axios.get("api/getData")
+        .then((response) => {
+          resolve(this.setState({ businessData: response.data.data }))})
         .catch(err => reject(err));
       fetch(
         "https://raw.githubusercontent.com/CodeForCary/cary-connects-data/master/parking.geojson"

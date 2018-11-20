@@ -9,7 +9,6 @@ import capitalize from "capitalize";
 export default class ResultsList extends Component {
 
   handleSubmit(name) {
-    console.log(name)
     axios.post("/api/updateData", {name: name})
   };
 

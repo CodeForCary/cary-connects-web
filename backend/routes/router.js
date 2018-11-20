@@ -2,9 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Business = require("../models/business");
 const Feedback = require("../models/feedback");
-const coreData = require("../business.json");
-
-
 // Business.findOne({_id: '5bf351b451114a830d721d0b'}, function(err, business) {
 //     if (err) {return err};
 //

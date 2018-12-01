@@ -5,12 +5,16 @@ import PolygonCenter from "geojson-polygon-center";
 
 export const Context = React.createContext();
 
+const businessData = null;
+const parkingData = null;
+
 class Provider extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      selectedMapItem: null,
+      dataType: null,
+      selectedItem: null,
       businessData: null,
       parkingData: null,
       location: {
@@ -34,7 +38,7 @@ class Provider extends Component {
       )
         .then(response => response.json())
         .then(rawJSON => rawJSON.features)
-        .then(data => resolve(this.setState({ businessData: data })))
+        .then(data => resolve(this.setState({businessData: data})))
         .catch(err => reject(err));
       fetch(
         "https://raw.githubusercontent.com/CodeForCary/cary-connects-data/master/parking.geojson"
@@ -63,9 +67,13 @@ class Provider extends Component {
               selectedPolygon => selectedPolygon.properties.name === name
             );
             this.setState({
-              selectedMapItem: parkingData
+              selectedItem: parkingData,
+              drawerOpen: true,
+              dataType: 'parking',
             });
-            this.setState({ drawerOpen: true });
+          },
+          getBusinessData: () => {
+            return businessData;
           },
           moveMap: location => {
             this.setState({
@@ -80,6 +88,7 @@ class Provider extends Component {
             let feature = this.state.businessData.find(
               feature => feature.properties.name === name.properties.name
             );
+            
             this.setState({
               location: {
                 lat: feature.geometry.coordinates[1],
@@ -88,7 +97,10 @@ class Provider extends Component {
               zoom: 17.33,
               filteredLocation: filterLocation("", 0),
               searchValue: name.properties.name,
-              searchResultsAnchorEl: false
+              searchResultsAnchorEl: false,
+              selectedItem: feature,
+              drawerOpen: true,
+              dataType: 'business',
             });
             this.createBusinessMarker(
               feature.geometry.coordinates[1],

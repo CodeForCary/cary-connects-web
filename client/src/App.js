@@ -27,7 +27,7 @@ class App extends React.Component {
           <div className={classes.root} onClick={context.clearResults}>
             <NavigationMenu />
             <Container>
-              <Drawer data={context.state.selectedMapItem ? context.state.selectedMapItem : null} />
+              <Drawer type={context.state.dataType} data={context.state.selectedItem ? context.state.selectedItem : null} />
               <Map />
             </Container>
             <Feedback />

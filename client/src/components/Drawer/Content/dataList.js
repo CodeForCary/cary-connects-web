@@ -1,18 +1,37 @@
-import React from 'react'
-import { withStyles } from '@material-ui/core'
-import List from '@material-ui/core/List'
+import React from 'react';
+
+//Material-UI
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
+import Button from '@material-ui/core/Button';
+
+//Material icons
 import AccessibleIcon from '@material-ui/icons/Accessible'
 import ParkingIcon from '@material-ui/icons/LocalParking'
 import RestrictionsIcon from '@material-ui/icons/NotInterested'
 import CommuteIcon from '@material-ui/icons/Commute'
-import Button from '@material-ui/core/Button'
+import PhoneIcon from '@material-ui/icons/Phone'
+import AddressIcon from '@material-ui/icons/Place'
+import WebsiteIcon from '@material-ui/icons/Launch'
 
-const styles = theme => ({
 
-});
+/**
+ * 
+{active: "TRUE"
+address: "220 W. Chatham Street, Cary, NC 27511"
+hocamember: "TRUE"
+marker-color: "#0433ff"
+marker-size: "medium"
+marker-symbol: "bakery"
+name: "La Farm Bakery"
+note: "Bakery & Cafe"
+phone: "919-650-3117"
+website: "www.lafarmbakery.com"} theme 
+ */
+
+
+
 
 const ListItemEl = props => {
   let icon;
@@ -29,6 +48,14 @@ const ListItemEl = props => {
     case 'directions':
       icon = <CommuteIcon />
       break;
+    case 'website':
+      icon = <WebsiteIcon />
+      break;
+    case 'address':
+      icon = <AddressIcon />
+      break;
+    case 'phone':
+      icon = <PhoneIcon />
     default:
       break;
   }
@@ -45,18 +72,20 @@ const ListItemEl = props => {
   )
 }
 
-const generateList = props => {
+export const dataList = data => {
   const arr = [];
-  let id = 0;
+  let id=0;
 
-  for(let key in props.data[0].properties) {
+  for(let key in data) {
     let item;
     let text;
-    if(props.data[0].properties[key] === -1) {
+    //replace -1 values with 'none'
+    if(data[key] === -1) {
       text = 'None'
     } else {
-      text= props.data[0].properties[key]
+      text = data[key];
     }
+
     switch (key) {
       case 'hcParking':
         item = <ListItemEl
@@ -64,6 +93,8 @@ const generateList = props => {
           text={`Accessible: ${text}`}
           key="accessible"
         />
+        arr.push(item);
+        id++
         break;
       case 'stdParking':
         item = <ListItemEl
@@ -72,6 +103,8 @@ const generateList = props => {
           key="parking"
           id={id}
         />
+        arr.push(item);
+        id++
         break;
       case 'restrictions':
         item = <ListItemEl
@@ -80,50 +113,43 @@ const generateList = props => {
           key="restrictions"
           id={id}
         />
+        arr.push(item);
+        id++
+        break;
+      case 'address':
+        item = <ListItemEl
+            icon= 'address'
+            text={`Address: ${text}`}
+            key="Address"
+            id={id}
+          />
+          arr.push(item);
+          id++
+        break;
+      case 'phone':
+        item = <ListItemEl
+            icon= 'phone'
+            text={`Phone: ${text}`}
+            key="Phone"
+            id={id}
+          />
+          arr.push(item);
+          id++
+        break;
+      case 'website':
+        item = <ListItemEl
+          icon= 'website'
+          text={`Website: ${text}`}
+          key="Website"
+          id={id}
+        />
+        arr.push(item);
+        id++
         break;
       default:
         break;
     }
-    arr.push(item);
+    
   }
-
-  for(let key in props.data[0]) {
-    let item;
-    let coords;
-    if(props.data[0][key] === -1) {
-      coords = ''
-    } else {
-      coords= props.data[0][key]
-    }
-    switch (key) {
-      case 'geometry':
-        item = <div key="geometry" onClick={() => props.openGoogleMaps(coords)}>
-                <ListItemEl
-                  icon='directions'
-                  text={<Button>Directions</Button>}
-                />
-              </div>
-        break;
-      default:
-        break;
-    }
-  arr.push(item)
-  }
-
-  id++;
   return arr;
 }
-
-
-const SideList = props => {
-  const listItems = generateList(props)
-
-  return (
-    <List>
-      {listItems}
-    </List>
-  )
-}
-
-
-export default withStyles(styles)(SideList)

@@ -32,7 +32,8 @@ class Provider extends Component {
     return new Promise((resolve, reject) => {
       axios.get("api/getData")
         .then((response) => {
-          resolve(this.setState({ businessData: response.data.data }))})
+          resolve(this.setState({ businessData: response.data.data }))
+        })
         .catch(err => reject(err));
       fetch(
         "https://raw.githubusercontent.com/CodeForCary/cary-connects-data/master/parking.geojson"

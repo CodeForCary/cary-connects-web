@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import { withStyles } from '@material-ui/core/styles'
-import Drawer from '@material-ui/core/Drawer'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import { Context } from "src/components/Provider";
-import SideList from './SideList'
-import Typography from '@material-ui/core/Typography'
-import Grid from '@material-ui/core/Grid'
-import PolygonCenter from 'geojson-polygon-center'
 
 
-const drawerWidth = 240
+import { withStyles } from '@material-ui/core/styles'
+
+import Drawer from '@material-ui/core/Drawer'
+
+import { Business, Parking } from './Content';
+
+
+const drawerWidth = 340;
 
 const styles = theme => ({
   root: {
@@ -36,20 +36,18 @@ const cursor = {
   cursor: 'pointer'
 };
 
+const getContent = (type, data) => {
+  if(type === 'parking') {
+    return <Parking data={data[0].properties} coords={data[0].properties.entrance1.split(" ")} />
+  }else if(type === 'business') {
+    return <Business data={data.properties} coords={data.geometry.coordinates} />
+  }
+}
+
 class index extends Component {
 
-  openGoogleMaps(coords) {
-    const center = PolygonCenter(coords)
-    window.open(
-      "https://www.google.com/maps/dir/?api=1&destination=" +
-        center.coordinates[0] +
-        "," +
-        center.coordinates[1]
-    )
-  }
-
   render() {
-    const { classes } = this.props;
+    const { classes, data, type } = this.props;
 
     return (
       <div>
@@ -64,22 +62,7 @@ class index extends Component {
                 paper: classes.drawerPaper
               }}
             >
-                <div className={classes.header} onClick={context.handleDrawerClose}>
-                  <Grid container justify='space-between'>
-                    <Grid item>
-                      <Typography variant='title'>
-                        <strong>Parking Lot </strong>
-                        {context.state.drawerOpen ? '-> ' + context.state.selectedMapItem[0].properties.name: null}
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <ChevronLeftIcon className={classes.icon} style={cursor}/>
-                    </Grid>
-                  </Grid>
-                </div>
-
-              {context.state.drawerOpen ? <SideList data={this.props.data} openGoogleMaps={this.openGoogleMaps}/> : null}
-
+              {context.state.drawerOpen ? getContent(type, data) : null}
             </Drawer>
           )}
 

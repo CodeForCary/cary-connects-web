@@ -130,7 +130,7 @@ export const dataList = data => {
       case 'phone':
         item = <ListItemEl
             icon= 'phone'
-            text={<a href={'tel:'+ text}>Phone: {text}</a>}
+            text={<div>Phone: <a href={'tel:'+ text}>{text}</a></div>}
             key="Phone"
             id={id}
           />

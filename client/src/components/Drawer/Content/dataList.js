@@ -15,6 +15,7 @@ import CommuteIcon from '@material-ui/icons/Commute'
 import PhoneIcon from '@material-ui/icons/Phone'
 import AddressIcon from '@material-ui/icons/Place'
 import WebsiteIcon from '@material-ui/icons/Launch'
+import NoteIcon from '@material-ui/icons/Note'
 
 
 /**
@@ -31,7 +32,14 @@ phone: "919-650-3117"
 website: "www.lafarmbakery.com"} theme
  */
 
-
+function pullOutLink(info) {
+  if (info.includes('http')) {
+    const linkStart = info.search('http')
+    return <a target='_blank' href={info.substr(linkStart,info.length)}><strong>{info.substr(0,linkStart)}</strong></a>
+  } else {
+    return info;
+  }
+}
 
 
 const ListItemEl = props => {
@@ -57,6 +65,10 @@ const ListItemEl = props => {
       break;
     case 'phone':
       icon = <PhoneIcon />
+      break;
+    case 'note':
+      icon = <NoteIcon />
+      break;
     default:
       break;
   }
@@ -142,6 +154,16 @@ export const dataList = data => {
           icon= 'website'
           text={<a target='blank' href={'http://' + text}><strong>Website</strong></a>}
           key="Website"
+          id={id}
+          />
+        arr.push(item);
+        id++
+        break;
+      case 'note':
+        item=<ListItemEl
+          icon='note'
+          text={pullOutLink(text)}
+          key='Note'
           id={id}
           />
         arr.push(item);

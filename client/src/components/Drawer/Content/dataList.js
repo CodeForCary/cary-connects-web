@@ -140,7 +140,7 @@ export const dataList = data => {
       case 'website':
         item = <ListItemEl
           icon= 'website'
-          text={<div>Website: <a target='blank' href={'http://' + text}>{text}</a></div>}
+          text={<a target='blank' href={'http://' + text}><strong>Website</strong></a>}
           key="Website"
           id={id}
           />

@@ -22,6 +22,7 @@ const styles = theme => ({
   },
   drawerPaper: {
     position: 'relative',
+    paddingLeft: theme.spacing.unit * 2, 
     width: drawerWidth,
     backgroundColor: theme.palette.background.paper,
     height: '100%',

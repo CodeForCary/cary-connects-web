@@ -35,7 +35,11 @@ website: "www.lafarmbakery.com"} theme
 function pullOutLink(info) {
   if (info.includes('http')) {
     const linkStart = info.search('http')
-    return <a target='_blank' href={info.substr(linkStart,info.length)}><strong>{info.substr(0,linkStart)}</strong></a>
+    var restOfText = info.substr(0,linkStart)
+    if (restOfText[restOfText.length-1] == ":" || restOfText[restOfText.length-2] == ':') {
+      restOfText = restOfText.substr(0,restOfText.length -2)
+    }
+    return <a target='_blank' href={info.substr(linkStart,info.length)}><strong>{restOfText}</strong></a>
   } else {
     return info;
   }

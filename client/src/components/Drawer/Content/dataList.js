@@ -5,6 +5,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom'
 
 //Material icons
 import AccessibleIcon from '@material-ui/icons/Accessible'
@@ -17,7 +18,7 @@ import WebsiteIcon from '@material-ui/icons/Launch'
 
 
 /**
- * 
+ *
 {active: "TRUE"
 address: "220 W. Chatham Street, Cary, NC 27511"
 hocamember: "TRUE"
@@ -27,7 +28,7 @@ marker-symbol: "bakery"
 name: "La Farm Bakery"
 note: "Bakery & Cafe"
 phone: "919-650-3117"
-website: "www.lafarmbakery.com"} theme 
+website: "www.lafarmbakery.com"} theme
  */
 
 
@@ -139,17 +140,17 @@ export const dataList = data => {
       case 'website':
         item = <ListItemEl
           icon= 'website'
-          text={`Website: ${text}`}
+          text={<a target='blank' href={'http://' + text}>{text}</a>}
           key="Website"
           id={id}
-        />
+          />
         arr.push(item);
         id++
         break;
       default:
         break;
     }
-    
+
   }
   return arr;
 }

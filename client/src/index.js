@@ -5,7 +5,7 @@ import './components/Home/Map/styles.css'
 import Theme from './Theme';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import App from './App';
-import Provider from './components/Home/Provider';
+import Provider from './components/Provider';
 
 ReactDOM.render(
   <Provider>

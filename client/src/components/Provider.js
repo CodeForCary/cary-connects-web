@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import flip from "geojson-flip";
 import axios from 'axios';
-import filterLocation from "./NavigationMenu/filterLocation";
+import filterLocation from "./Home/NavigationMenu/filterLocation";
 import PolygonCenter from "geojson-polygon-center";
 
 export const Context = React.createContext();

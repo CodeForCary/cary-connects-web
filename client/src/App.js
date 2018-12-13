@@ -1,39 +1,29 @@
 import React from 'react';
-import { Context } from './components/Provider';
-import classnames from 'classnames';
-import Feedback from './components/Feedback';
-//material-ui
+import Routes from './Routes/Routes';
 import { withStyles } from '@material-ui/core/styles';
-//components
-import Drawer from 'src/components/Drawer';
-import Map from 'src/components/Map';
-import NavigationMenu from './components/NavigationMenu';
-import Container from './components/Container';
 
 const styles = theme => ({
-  root: {
-    position: 'relative'
+  footer: {
+    position: 'fixed',
+    'bottom': 0,
+    right: 1,
+    fontFamily: 'sans-serif',
+    fontSize: '10px',
+    fontWeight: '50'
   }
-});
+})
 
 class App extends React.Component {
   render () {
     const { classes } = this.props;
 
-
     return (
-      <Context.Consumer>
-        {context => (
-          <div className={classes.root} onClick={context.clearResultsAndCloseDrawer}>
-            <NavigationMenu />
-            <Container>
-              <Drawer type={context.state.dataType} data={context.state.selectedItem ? context.state.selectedItem : null} />
-              <Map />
-            </Container>
-            <Feedback />
+          <div >
+            <Routes />
+            <div className={classes.footer}>
+              &#169; 2018 Cary Connects v1.0
+            </div>
           </div>
-        )}
-      </Context.Consumer>
     )
   }
 }

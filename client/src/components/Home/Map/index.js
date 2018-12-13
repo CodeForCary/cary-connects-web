@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
-import { Context } from './../Provider';
+import { Context } from 'src/components/Provider';
+import Feedback from '../Feedback';
 
 //material-ui
 import { withStyles } from '@material-ui/core/styles';
@@ -13,6 +14,7 @@ const drawerWidth = 240;
 
 const styles = theme => ({
   content: {
+    fontFamily: 'sans-serif',
     flexgrow: 1,
     paddingTop: theme.spacing.unit * 3,
     'padding-bottom': '1px',
@@ -41,6 +43,7 @@ class MapComponent extends React.Component {
             <Grid container className={classnames(classes.content, {[classes.contentShift]: context.state.drawerOpen})} justify="center" alignItems="center">
               <Grid item xs={10}>
                 <Map polygonData={context.state.parkingData} />
+                <Feedback />
               </Grid>
             </Grid>
           )}

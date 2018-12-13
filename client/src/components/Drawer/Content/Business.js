@@ -14,12 +14,12 @@ const styles = theme => ({
 });
 
 const openGoogleMaps = (coords) => {
-  const center = PolygonCenter(coords)
+  console.log(coords)
   window.open(
     "https://www.google.com/maps/dir/?api=1&destination=" +
-      center.coordinates[0] +
+      coords[1] +
       "," +
-      center.coordinates[1]
+      coords[0]
   )
 }
 
@@ -27,7 +27,6 @@ class Business extends Component {
   render() {
     const business = this.props.data;
     const list = dataList(business);
-    console.log(business)
     return (
       <div>
         <Typography variant="title">

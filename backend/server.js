@@ -2,24 +2,25 @@ const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
-var cookieParser = require('cookie-parser');
+const businessModel = require('./models/business')
+const cookieParser = require('cookie-parser');
 const API_PORT = 3001;
+const config = require('./config')
 const app = express();
 require('dotenv').config()
 // this is our MongoDB database
 if (process.env.NODE_ENV == 'production') {
-  dbRoute = "mongodb://mccauleypeeler:nuphaw-Homqy6-hajnut@ds235431.mlab.com:35431/mccauleyp";
+  dbRoute = `mongodb://${config.username}:${config.password}@ds235431.mlab.com:35431/mccauleyp`;
 } else if (process.env.NODE_ENV == 'test') {
-  dbRoute = "mongodb://mccauleypeeler:nuphaw-Homqy6-hajnut@ds031271.mlab.com:31271/carry_connects_test"
-} else {
-  dbRoute = "mongodb://mccauleypeeler:nuphaw-Homqy6-hajnut@ds159661.mlab.com:59661/cary_connects_dev"
+  dbRoute = `mongodb://${config.username}:${config.password}@ds031271.mlab.com:31271/carry_connects_test`
+} else if (process.env.NODE_ENV == 'development') {
+  dbRoute = `mongodb://${config.username}:${config.password}@ds159661.mlab.com:59661/cary_connects_dev`
 }
 // connects our back end code with the database
 mongoose.connect(
   dbRoute,
   { useNewUrlParser: true }
 );
- 
 let db = mongoose.connection;
 
 db.once("open", () => console.log("connected to the database"));

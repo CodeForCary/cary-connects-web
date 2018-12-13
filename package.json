@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\"",
+    "dev": "concurrently \"cd backend && nodemon server.js\" \"cd client && npm start\"",
     "install": "concurrently \"cd backend && npm install\" \"cd client && npm install\"",
     "heroku-postbuild": "concurrently \"cd client && npm install\" \"cd backend && npm install\""
   },
@@ -22,6 +23,7 @@
   "dependencies": {
     "concurrently": "^4.0.1",
     "cookies": "^0.7.3",
+    "mongoose-seed": "^0.5.1",
     "read-pkg-up": "^4.0.0"
   }
 }

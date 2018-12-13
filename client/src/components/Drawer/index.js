@@ -22,6 +22,7 @@ const styles = theme => ({
   },
   drawerPaper: {
     position: 'relative',
+    paddingLeft: theme.spacing.unit * 2, 
     width: drawerWidth,
     backgroundColor: theme.palette.background.paper,
     height: '100%',
@@ -37,9 +38,8 @@ const cursor = {
 };
 
 const getContent = (type, data) => {
-  console.log(data)
   if(type === 'parking') {
-    return <Parking data={data[0].properties} coords={data[0].geometry.coordinates} />
+    return <Parking data={data[0].properties} coords={data[0].properties.entrance1.split(" ")} />
   }else if(type === 'business') {
     return <Business data={data.properties} coords={data.geometry.coordinates} />
   }

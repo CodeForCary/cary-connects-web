@@ -15,12 +15,12 @@ const styles = theme => ({
 });
 
 const openGoogleMaps = (coords) => {
-  const center = PolygonCenter(coords)
+  console.log(coords)
   window.open(
     "https://www.google.com/maps/dir/?api=1&destination=" +
-      center.coordinates[0] +
+      coords[1] +
       "," +
-      center.coordinates[1]
+      coords[0].substring(0, coords[0].length - 1)
   )
 }
 
@@ -30,7 +30,6 @@ class Parking extends Component {
   render() {
     const lot = this.props.data;
     const list = dataList(lot);
-    console.log(list)
     return (
       <div>
         <Typography variant="title">
@@ -53,5 +52,3 @@ class Parking extends Component {
 }
 
 export default withStyles(styles)(Parking);
-
-

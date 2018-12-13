@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import flip from "geojson-flip";
+import axios from 'axios';
 import filterLocation from "./NavigationMenu/filterLocation";
 import PolygonCenter from "geojson-polygon-center";
 
@@ -88,7 +89,7 @@ class Provider extends Component {
             let feature = this.state.businessData.find(
               feature => feature.properties.name === name.properties.name
             );
-            
+
             this.setState({
               location: {
                 lat: feature.geometry.coordinates[1],
@@ -133,20 +134,14 @@ class Provider extends Component {
             markers.push(PolygonCenter(e.geometry).coordinates);
             this.setState({ markers });
           },
-          clearResults: event => {
+          clearResultsAndCloseDrawer: event => {
             this.setState({
-              filteredLocation: filterLocation("", 0)
+              filteredLocation: filterLocation("", 0),
             });
-          },
-          openGoogleMaps: event => {
-            console.log(event.target.value);
-            const center = PolygonCenter(event.target.value);
-            window.open(
-              "https://www.google.com/maps/dir/?api=1&destination=" +
-                center.coordinates[0] +
-                "," +
-                center.coordinates[1]
-            );
+            if (event.target.className == 'MuiGrid-container-124 MuiGrid-align-items-xs-center-132 MuiGrid-justify-xs-center-141 MapComponent-content-122 MapComponent-contentShift-123') {
+              this.setState({ drawerOpen: false });
+              console.log('test')
+            };
           },
           clearSearch: event => {
             this.setState({

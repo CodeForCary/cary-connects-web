@@ -5,6 +5,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom'
 
 //Material icons
 import AccessibleIcon from '@material-ui/icons/Accessible'
@@ -14,10 +15,11 @@ import CommuteIcon from '@material-ui/icons/Commute'
 import PhoneIcon from '@material-ui/icons/Phone'
 import AddressIcon from '@material-ui/icons/Place'
 import WebsiteIcon from '@material-ui/icons/Launch'
+import NoteIcon from '@material-ui/icons/Note'
 
 
 /**
- * 
+ *
 {active: "TRUE"
 address: "220 W. Chatham Street, Cary, NC 27511"
 hocamember: "TRUE"
@@ -27,10 +29,21 @@ marker-symbol: "bakery"
 name: "La Farm Bakery"
 note: "Bakery & Cafe"
 phone: "919-650-3117"
-website: "www.lafarmbakery.com"} theme 
+website: "www.lafarmbakery.com"} theme
  */
 
-
+function pullOutLink(info) {
+  if (info.includes('http')) {
+    const linkStart = info.search('http')
+    var restOfText = info.substr(0,linkStart)
+    if (restOfText[restOfText.length-1] == ":" || restOfText[restOfText.length-2] == ':') {
+      restOfText = restOfText.substr(0,restOfText.length -2)
+    }
+    return <a target='_blank' href={info.substr(linkStart,info.length)}><strong>{restOfText}</strong></a>
+  } else {
+    return info;
+  }
+}
 
 
 const ListItemEl = props => {
@@ -56,6 +69,10 @@ const ListItemEl = props => {
       break;
     case 'phone':
       icon = <PhoneIcon />
+      break;
+    case 'note':
+      icon = <NoteIcon />
+      break;
     default:
       break;
   }
@@ -129,7 +146,7 @@ export const dataList = data => {
       case 'phone':
         item = <ListItemEl
             icon= 'phone'
-            text={`Phone: ${text}`}
+            text={<div>Phone: <a href={'tel:'+ text}>{text}</a></div>}
             key="Phone"
             id={id}
           />
@@ -139,17 +156,27 @@ export const dataList = data => {
       case 'website':
         item = <ListItemEl
           icon= 'website'
-          text={`Website: ${text}`}
+          text={<a target='blank' href={'http://' + text}><strong>Website</strong></a>}
           key="Website"
           id={id}
-        />
+          />
+        arr.push(item);
+        id++
+        break;
+      case 'note':
+        item=<ListItemEl
+          icon='note'
+          text={pullOutLink(text)}
+          key='Note'
+          id={id}
+          />
         arr.push(item);
         id++
         break;
       default:
         break;
     }
-    
+
   }
   return arr;
 }

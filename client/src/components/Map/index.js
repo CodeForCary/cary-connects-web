@@ -14,13 +14,13 @@ const drawerWidth = 240;
 const styles = theme => ({
   content: {
     flexgrow: 1,
-    padding: theme.spacing.unit * 3,
+    paddingTop: theme.spacing.unit * 3,
     'padding-bottom': '1px',
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
-    marginLeft: -drawerWidth
+    marginLeft: -drawerWidth - 100
   },
   contentShift: {
     transition: theme.transitions.create('margin', {

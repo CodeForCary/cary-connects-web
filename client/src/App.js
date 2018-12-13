@@ -20,11 +20,11 @@ class App extends React.Component {
   render () {
     const { classes } = this.props;
 
-    
+
     return (
       <Context.Consumer>
         {context => (
-          <div className={classes.root} onClick={context.clearResults}>
+          <div className={classes.root} onClick={context.clearResultsAndCloseDrawer}>
             <NavigationMenu />
             <Container>
               <Drawer type={context.state.dataType} data={context.state.selectedItem ? context.state.selectedItem : null} />

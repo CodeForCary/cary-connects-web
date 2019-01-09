@@ -1,57 +1,55 @@
-import React, { Component } from 'react'
-import { Redirect } from 'react-router';
-import { withStyles } from '@material-ui/core/styles';
-import FadeIn from 'react-fade-in'
+import React, { Component } from "react";
+import { Redirect } from "react-router";
+import { withStyles } from "@material-ui/core/styles";
+import FadeIn from "react-fade-in";
 
 const styles = theme => ({
   root: {
-    textAlign: 'center',
-    backgroundColor: '#0190BE',
-    height: '100%',
-    width: '100%',
-    position: 'absolute'
+    textAlign: "center",
+    backgroundColor: "#0190BE",
+    height: "100%",
+    width: "100%",
+    position: "absolute"
   },
   title: {
-    paddingTop: '23%',
-    fontFamily: 'sans-serif',
-    fontWeight: '100',
-    fontSize: '72px',
-    color: 'white'
+    paddingTop: "23%",
+    fontFamily: "sans-serif",
+    fontWeight: "100",
+    fontSize: "72px",
+    color: "white"
   }
-})
-
+});
 
 class Welcome extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.state ={
+    this.state = {
       redirect: false
-    }
+    };
   }
 
   _handleClick = () => {
-    this.setState({redirect: true});
-  }
+    this.setState({ redirect: true });
+  };
 
   componentDidMount() {
-	window.addEventListener("click", this._handleClick);
-}
+    window.addEventListener("click", this._handleClick);
+  }
 
-  render () {
+  render() {
     const { classes } = this.props;
 
     if (this.state.redirect) {
-      return <Redirect push to="/home" />
+      return <Redirect push to='/home' />;
     }
     return (
-      <div className={classes.root} >
-        <FadeIn transitionDuration={5000}>
+      <div className={classes.root}>
+        <FadeIn transitionDuration={400}>
           <h1 className={classes.title}>Welcome to Cary Connects!</h1>
         </FadeIn>
       </div>
-    )
+    );
   }
 }
 

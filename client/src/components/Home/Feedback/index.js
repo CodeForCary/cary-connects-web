@@ -1,55 +1,55 @@
-import React from 'react';
-import Modal from '@material-ui/core/Modal';
-import axios from 'axios';
-import PropTypes from 'prop-types';
+import React from "react";
+import Modal from "@material-ui/core/Modal";
+import axios from "axios";
+import PropTypes from "prop-types";
 import { Context } from "src/components/Provider";
-import {withStyles} from '@material-ui/core/styles';
-import FeedbackIcon from '@material-ui/icons/Feedback'
+import { withStyles } from "@material-ui/core/styles";
+import FeedbackIcon from "@material-ui/icons/Feedback";
 import MediaQuery from "react-responsive";
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
   paperMobile: {
-    position: 'absolute',
-    width: '75%',
+    position: "absolute",
+    width: "75%",
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 1.5,
     transform: `translate(-50%, -50%)`,
-    borderRadius: '7px',
-    top: '50%',
-    left: '50%',
-    display: 'flex',
-    flexDirection: 'column'
+    borderRadius: "7px",
+    top: "50%",
+    left: "50%",
+    display: "flex",
+    flexDirection: "column"
   },
   paperWeb: {
-    position: 'absolute',
+    position: "absolute",
     width: theme.spacing.unit * 50,
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 1.5,
     transform: `translate(-50%, -50%)`,
-    borderRadius: '7px',
-    top: '50%',
-    left: '50%',
-    display: 'flex',
-    flexDirection: 'column'
+    borderRadius: "7px",
+    top: "50%",
+    left: "50%",
+    display: "flex",
+    flexDirection: "column"
   },
   button: {
-    marginTop: '6px'
+    marginTop: "6px"
   },
   feedbackButtonContainer: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    cursor: 'pointer',
+    display: "flex",
+    justifyContent: "flex-end",
+    cursor: "pointer"
   },
   feedbackText: {
-    paddingTop: '4px',
-    fontWeight: '300',
-    fontSize: '14px'
+    paddingTop: "4px",
+    fontWeight: "300",
+    fontSize: "14px"
   }
 });
 
@@ -60,65 +60,90 @@ class Feedback extends React.Component {
   };
 
   handleChange = message => event => {
-    this.setState({[message]: event.target.value});
+    this.setState({ [message]: event.target.value });
   };
 
   handleSubmit(e) {
-    axios.post("/api/send", {message: this.state.message})
-    this.setState({message: null});
-  };
-
-  openModal = () => {
-    this.setState({open: true})
+    axios.post("/api/send", { message: this.state.message });
+    this.setState({ message: null });
   }
 
+  openModal = () => {
+    this.setState({ open: true });
+  };
+
   handleClose = () => {
-    this.setState({open: false});
+    this.setState({ open: false });
   };
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
 
     return (
       <Context.Consumer>
-      {context => (
-      <div>
-      <div className={classes.feedbackButtonContainer} onClick={(event) => {this.openModal(); context.handleDrawerClose()}}>
-        <FeedbackIcon />
-        <div className={classes.feedbackText}>
-          Feedback
-        </div>
-      </div>
-      <MediaQuery query="(max-width: 700px)">
-        <Modal open={this.state.open} onClose={this.handleClose}>
-          <div className={classes.paperMobile}>
-            <TextField id="message" placeholder="Enter Message" onChange={this.handleChange('message')} multiline="multiline" rows="5" variant="outlined"/>
-            <Button className={classes.button} onClick={(event) => { this.handleSubmit(); this.handleClose()}}>Send</Button>
+        {context => (
+          <div>
+            <div
+              className={classes.feedbackButtonContainer}
+              onClick={event => {
+                this.openModal();
+                context.handleDrawerClose();
+              }}
+            >
+              <FeedbackIcon />
+              <div className={classes.feedbackText}>Feedback</div>
+            </div>
+            <MediaQuery query='(max-width: 700px)'>
+              <Modal open={this.state.open} onClose={this.handleClose}>
+                <div className={classes.paperMobile}>
+                  <TextField
+                    id='message'
+                    placeholder='Enter Message'
+                    onChange={this.handleChange("message")}
+                    multiline
+                    rows='5'
+                    variant='outlined'
+                  />
+                  <Button
+                    className={classes.button}
+                    onClick={event => {
+                      this.handleSubmit();
+                      this.handleClose();
+                    }}
+                  >
+                    Send
+                  </Button>
+                </div>
+              </Modal>
+            </MediaQuery>
+            <MediaQuery query='(min-width: 700px)'>
+              <Modal open={this.state.open} onClose={this.handleClose}>
+                <div className={classes.paperWeb}>
+                  <TextField
+                    id='outlined-multiline-static'
+                    placeholder='Enter Message'
+                    multiline
+                    rows='5'
+                    variant='outlined'
+                    value={this.state.message}
+                    onChange={this.handleChange("message")}
+                  />
+                  <Button
+                    className={classes.button}
+                    onClick={event => {
+                      this.handleSubmit();
+                      this.handleClose();
+                    }}
+                  >
+                    Send
+                  </Button>
+                </div>
+              </Modal>
+            </MediaQuery>
           </div>
-        </Modal>
-      </MediaQuery>
-      <MediaQuery query="(min-width: 700px)">
-        <Modal open={this.state.open} onClose={this.handleClose}>
-          <div className={classes.paperWeb}>
-            <TextField id="outlined-multiline-static"
-            placeholder="Enter Message"
-            multiline="multiline"
-            rows="5"
-            variant="outlined"
-            value={this.state.message}
-            onChange={this.handleChange('message')}
-            />
-            <Button className={classes.button} onClick={(event) => {
-                this.handleSubmit();
-                this.handleClose()
-              }}>Send</Button>
-          </div>
-        </Modal>
-      </MediaQuery>
-    </div>
-  )}
-  </Context.Consumer>
-)
+        )}
+      </Context.Consumer>
+    );
   }
 }
 

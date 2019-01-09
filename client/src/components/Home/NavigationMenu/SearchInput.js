@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import classnames from "classnames";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
-import { Context } from "../Provider";
+import { Context } from "src/components/Provider";
 import MediaQuery from "react-responsive";
 
 import "./SearchInput.css";

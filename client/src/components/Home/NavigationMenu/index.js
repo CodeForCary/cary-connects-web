@@ -3,8 +3,8 @@ import SearchInput from './SearchInput'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import CaryConnectsIcon from './../../assets/CaryConnectIcon.png'
-import { Context } from "../../components/Provider";
+import CaryConnectsIcon from 'src/assets/CaryConnectIcon.png'
+import { Context } from "src/components/Provider";
 import Results from './results'
 
 import { withStyles } from '@material-ui/core/styles';

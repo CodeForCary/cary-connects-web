@@ -34,7 +34,7 @@ router.get("/getData", (req, res) => {
 // this method overwrites existing data in our database
 router.post("/updateData", (req, res) => {
   const { name } = req.body;
-  Business.findOneAndUpdate({'properties.name': name}, {$inc: {clicks: 1}}, err => {
+  Business.findOneAndUpdate({'properties.name': name}, {$inc: {clicks: 1}}, {upsert: true}, err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
   });

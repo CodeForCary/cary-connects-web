@@ -2,8 +2,9 @@ import React from 'react';
 import Modal from '@material-ui/core/Modal';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { Context } from "src/components/Provider";
 import {withStyles} from '@material-ui/core/styles';
-import InfoIcon from '@material-ui/icons/InfoOutlined'
+import FeedbackIcon from '@material-ui/icons/Feedback'
 import MediaQuery from "react-responsive";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -40,14 +41,15 @@ const styles = theme => ({
   button: {
     marginTop: '6px'
   },
-  modalContainer: {
+  feedbackButtonContainer: {
     display: 'flex',
-    'flex-direction': 'row',
-    'justify-content': 'flex-end',
-    'padding-right': '12%'
+    justifyContent: 'flex-end',
+    cursor: 'pointer',
   },
-  icon: {
-    cursor: 'pointer'
+  feedbackText: {
+    paddingTop: '4px',
+    fontWeight: '300',
+    fontSize: '14px'
   }
 });
 
@@ -77,15 +79,21 @@ class Feedback extends React.Component {
   render() {
     const {classes} = this.props;
 
-    return (<div>
-      <div className={classes.modalContainer}>
-        <InfoIcon onClick={this.openModal} className={classes.icon}/>
+    return (
+      <Context.Consumer>
+      {context => (
+      <div>
+      <div className={classes.feedbackButtonContainer} onClick={(event) => {this.openModal(); context.handleDrawerClose()}}>
+        <FeedbackIcon />
+        <div className={classes.feedbackText}>
+          Feedback
+        </div>
       </div>
       <MediaQuery query="(max-width: 700px)">
         <Modal open={this.state.open} onClose={this.handleClose}>
           <div className={classes.paperMobile}>
-            <TextField id="message" placeholder="Feedback" onChange={this.handleChange('message')} multiline="multiline" rows="5" variant="outlined"/>
-            <Button className={classes.button} onClick={(event) => { this.handleSubmit(); this.handleClose()}}>Submit</Button>
+            <TextField id="message" placeholder="Enter Message" onChange={this.handleChange('message')} multiline="multiline" rows="5" variant="outlined"/>
+            <Button className={classes.button} onClick={(event) => { this.handleSubmit(); this.handleClose()}}>Send</Button>
           </div>
         </Modal>
       </MediaQuery>
@@ -93,7 +101,7 @@ class Feedback extends React.Component {
         <Modal open={this.state.open} onClose={this.handleClose}>
           <div className={classes.paperWeb}>
             <TextField id="outlined-multiline-static"
-            placeholder="Feedback"
+            placeholder="Enter Message"
             multiline="multiline"
             rows="5"
             variant="outlined"
@@ -103,11 +111,14 @@ class Feedback extends React.Component {
             <Button className={classes.button} onClick={(event) => {
                 this.handleSubmit();
                 this.handleClose()
-              }}>Submit</Button>
+              }}>Send</Button>
           </div>
         </Modal>
       </MediaQuery>
-    </div>)
+    </div>
+  )}
+  </Context.Consumer>
+)
   }
 }
 

@@ -6,8 +6,8 @@ import {
   Marker,
   Polygon
 } from "react-leaflet";
-import icon from "../../assets/map-marker-2.svg";
-import { Context } from "../../components/Provider";
+import icon from "src/assets/map-marker-2.svg";
+import { Context } from "src/components/Provider";
 import "./styles.css";
 
 const pIcon = L.icon({

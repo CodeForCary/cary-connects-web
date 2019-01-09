@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import 'leaflet/dist/leaflet.css'
-import './components/Map/styles.css'
+import './components/Home/Map/styles.css'
 import Theme from './Theme';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import App from './App';

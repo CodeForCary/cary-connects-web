@@ -3,7 +3,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import axios from 'axios';
 import ListItemText from "@material-ui/core/ListItemText";
-import { Context } from "../../Provider";
+import { Context } from "src/components/Provider";
 import capitalize from "capitalize";
 
 export default class ResultsList extends Component {

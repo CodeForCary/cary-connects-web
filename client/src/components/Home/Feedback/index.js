@@ -10,23 +10,12 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
-  paperMobile: {
-    position: "absolute",
+  paper: {
     width: "75%",
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 1.5,
-    transform: `translate(-50%, -50%)`,
-    borderRadius: "7px",
-    top: "50%",
-    left: "50%",
-    display: "flex",
-    flexDirection: "column"
-  },
-  paperWeb: {
+    [theme.breakpoints.up("sm")]: {
+      width: theme.spacing.unit * 50
+    },
     position: "absolute",
-    width: theme.spacing.unit * 50,
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 2,
@@ -95,55 +84,30 @@ class Feedback extends React.Component {
               <FeedbackIcon />
               <div className={classes.feedbackText}>Feedback</div>
             </div>
-            <MediaQuery query='(max-width: 700px)'>
-              <Modal open={this.state.open} onClose={this.handleClose}>
-                <div className={classes.paperMobile}>
-                  <TextField
-                    id='message'
-                    placeholder='Enter Message'
-                    onChange={this.handleChange("message")}
-                    multiline
-                    rows='5'
-                    variant='outlined'
-                  />
-                  <Button
-                    className={classes.button}
-                    onClick={event => {
-                      this.handleSubmit();
-                      this.handleClose();
-                    }}
-                  >
-                    Send
-                  </Button>
-                </div>
-              </Modal>
-            </MediaQuery>
-            <MediaQuery query='(min-width: 700px)'>
-              <Modal open={this.state.open} onClose={this.handleClose}>
-                <div className={classes.paperWeb}>
-                  <h4>Tell us what you like or dislike</h4>
-                  <h5>include your email address if you'd like a response.</h5>
-                  <TextField
-                    id='outlined-multiline-static'
-                    placeholder='Message'
-                    multiline
-                    rows='5'
-                    variant='outlined'
-                    value={this.state.message}
-                    onChange={this.handleChange("message")}
-                  />
-                  <Button
-                    className={classes.button}
-                    onClick={event => {
-                      this.handleSubmit();
-                      this.handleClose();
-                    }}
-                  >
-                    Send
-                  </Button>
-                </div>
-              </Modal>
-            </MediaQuery>
+            <Modal open={this.state.open} onClose={this.handleClose}>
+              <div className={classes.paper}>
+                <h4>Tell us what you like or dislike</h4>
+                <h5>include your email address if you'd like a response.</h5>
+                <TextField
+                  id='outlined-multiline-static'
+                  placeholder='Message'
+                  multiline
+                  rows='5'
+                  variant='outlined'
+                  value={this.state.message}
+                  onChange={this.handleChange("message")}
+                />
+                <Button
+                  className={classes.button}
+                  onClick={event => {
+                    this.handleSubmit();
+                    this.handleClose();
+                  }}
+                >
+                  Send
+                </Button>
+              </div>
+            </Modal>
           </div>
         )}
       </Context.Consumer>

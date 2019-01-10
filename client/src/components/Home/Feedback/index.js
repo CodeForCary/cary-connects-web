@@ -33,12 +33,13 @@ const styles = theme => ({
   feedbackButtonContainer: {
     display: "flex",
     justifyContent: "flex-end",
-    cursor: "pointer"
+    cursor: "pointer",
+    paddingTop: "0.3rem",
+    fontSize: "1.2rem"
   },
   feedbackText: {
     paddingTop: "4px",
     fontWeight: "300",
-    fontSize: "1rem",
     paddingLeft: "0.5em",
     color: "#333"
   }
@@ -87,7 +88,7 @@ class Feedback extends React.Component {
                 context.handleDrawerClose();
               }}
             >
-              <FeedbackIcon />
+              <FeedbackIcon style={{ fontSize: "1.6rem" }} />
               <div className={classes.feedbackText}>Feedback</div>
             </div>
             <Modal open={this.state.open} onClose={this.handleClose}>

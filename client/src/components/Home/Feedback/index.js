@@ -46,6 +46,12 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit
+  },
+  modalQuestion: {
+    color: "#333",
+    fontFamily: "Roboto",
+    fontWeight: "400",
+    fontSize: "1.1rem"
   }
 });
 
@@ -97,7 +103,7 @@ class Feedback extends React.Component {
             </div>
             <Modal open={this.state.open} onClose={this.handleClose}>
               <div className={classes.paper}>
-                <h3 style={{ color: "#333" }}>Please tell us what you like or dislike</h3>
+                <h3 className={classes.modalQuestion}>Please tell us what you like or dislike</h3>
 
                 <TextField
                   id='outlined-multiline-static'

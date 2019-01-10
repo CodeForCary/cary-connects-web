@@ -4,7 +4,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { Context } from "src/components/Provider";
 import { withStyles } from "@material-ui/core/styles";
-import FeedbackIcon from "@material-ui/icons/Feedback";
+import FeedbackIcon from "@material-ui/icons/Comment";
 import MediaQuery from "react-responsive";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -49,7 +49,9 @@ const styles = theme => ({
   feedbackText: {
     paddingTop: "4px",
     fontWeight: "300",
-    fontSize: "14px"
+    fontSize: "1rem",
+    paddingLeft: "0.5em",
+    color: "#333"
   }
 });
 
@@ -119,9 +121,11 @@ class Feedback extends React.Component {
             <MediaQuery query='(min-width: 700px)'>
               <Modal open={this.state.open} onClose={this.handleClose}>
                 <div className={classes.paperWeb}>
+                  <h4>Tell us what you like or dislike</h4>
+                  <h5>include your email address if you'd like a response.</h5>
                   <TextField
                     id='outlined-multiline-static'
-                    placeholder='Enter Message'
+                    placeholder='Message'
                     multiline
                     rows='5'
                     variant='outlined'

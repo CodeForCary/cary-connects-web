@@ -42,6 +42,10 @@ const styles = theme => ({
     fontWeight: "300",
     paddingLeft: "0.5em",
     color: "#333"
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit
   }
 });
 
@@ -98,10 +102,11 @@ class Feedback extends React.Component {
                 <TextField
                   id='outlined-multiline-static'
                   label='Message'
-                  placeholder='Message'
+                  autoFocus={true}
                   multiline
+                  variant='filled'
+                  className={classes.textField}
                   rows='5'
-                  variant='outlined'
                   margin='normal'
                   value={this.state.message}
                   onChange={this.handleChange("message")}
@@ -110,8 +115,10 @@ class Feedback extends React.Component {
                   id='email'
                   label='Email'
                   helperText='(optional)'
-                  variant='outlined'
+                  variant='filled'
+                  className={classes.textField}
                   value={this.state.email}
+                  margin='normal'
                   onChange={this.handleChange("email")}
                 />
                 <Button

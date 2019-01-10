@@ -1,6 +1,7 @@
 import React from "react";
 import Routes from "./Routes/Routes";
 import { withStyles } from "@material-ui/core/styles";
+import version from "../package.json";
 
 const styles = theme => ({
   footer: {
@@ -20,7 +21,7 @@ class App extends React.Component {
     return (
       <div>
         <Routes />
-        <div className={classes.footer}>&#169; 2019 Cary Connects v1.0</div>
+        <div className={classes.footer}>&#169; 2019 Cary Connects {version.version}</div>
       </div>
     );
   }

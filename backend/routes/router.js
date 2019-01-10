@@ -34,10 +34,15 @@ router.get("/getData", (req, res) => {
 // this method overwrites existing data in our database
 router.post("/updateData", (req, res) => {
   const { name } = req.body;
-  Business.findOneAndUpdate({'properties.name': name}, {$inc: {clicks: 1}}, {upsert: true}, err => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true });
-  });
+  Business.findOneAndUpdate(
+    { "properties.name": name },
+    { $inc: { clicks: 1 } },
+    { upsert: true },
+    err => {
+      if (err) return res.json({ success: false, error: err });
+      return res.json({ success: true });
+    }
+  );
 });
 
 // this is our delete method
@@ -65,8 +70,8 @@ router.post("/putData", (req, res) => {
   }
 
   data.id = id;
-  data.properties.name = name
-  data.geometry.coordinates = coords
+  data.properties.name = name;
+  data.geometry.coordinates = coords;
   data.save(err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
@@ -76,18 +81,22 @@ router.post("/putData", (req, res) => {
 router.post("/send", (req, res) => {
   let feedback = new Feedback();
 
-  const { message } = req.body;
+  const { message, email, version } = req.body;
   if (!feedback) {
     return res.json({
       succes: false,
       error: "INVALID"
     });
   }
-  feedback.message = message;
+  feedback = {
+    message,
+    email,
+    version
+  };
   feedback.save(err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
   });
 });
 
-module.exports = router
+module.exports = router;

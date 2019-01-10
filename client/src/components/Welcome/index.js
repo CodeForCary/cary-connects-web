@@ -37,6 +37,10 @@ class Welcome extends Component {
     window.addEventListener("click", this._handleClick);
   }
 
+  componentWillUnmount() {
+    window.removeEventListener("click", this._handleClick);
+  }
+
   render() {
     const { classes } = this.props;
 

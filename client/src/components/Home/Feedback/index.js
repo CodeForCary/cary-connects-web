@@ -7,6 +7,7 @@ import { withStyles } from "@material-ui/core/styles";
 import FeedbackIcon from "@material-ui/icons/Comment";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import version from "../../../../package.json";
 
 const styles = theme => ({
   paper: {
@@ -47,7 +48,8 @@ class Feedback extends React.Component {
   state = {
     open: false,
     message: "",
-    email: ""
+    email: "",
+    version: version.version
   };
 
   handleChange = message => event => {
@@ -55,8 +57,12 @@ class Feedback extends React.Component {
   };
 
   handleSubmit(e) {
-    axios.post("/api/send", { message: this.state.message });
-    this.setState({ message: null });
+    const submission = {
+      message: this.state.message,
+      email: this.state.email
+    };
+    axios.post("/api/send", submission);
+    this.setState({ message: "", email: "" });
   }
 
   openModal = () => {

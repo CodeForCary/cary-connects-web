@@ -49,8 +49,7 @@ class Feedback extends React.Component {
   state = {
     open: false,
     message: "",
-    email: "",
-    version: version.version
+    email: ""
   };
 
   handleChange = message => event => {
@@ -60,7 +59,8 @@ class Feedback extends React.Component {
   handleSubmit(e) {
     const submission = {
       message: this.state.message,
-      email: this.state.email
+      email: this.state.email,
+      version: version.version
     };
     axios.post("/api/send", submission);
     this.setState({ message: "", email: "" });

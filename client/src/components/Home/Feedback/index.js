@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import { Context } from "src/components/Provider";
 import { withStyles } from "@material-ui/core/styles";
 import FeedbackIcon from "@material-ui/icons/Comment";
-import MediaQuery from "react-responsive";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
@@ -47,7 +46,8 @@ const styles = theme => ({
 class Feedback extends React.Component {
   state = {
     open: false,
-    message: null
+    message: "",
+    email: ""
   };
 
   handleChange = message => event => {
@@ -86,16 +86,26 @@ class Feedback extends React.Component {
             </div>
             <Modal open={this.state.open} onClose={this.handleClose}>
               <div className={classes.paper}>
-                <h4>Tell us what you like or dislike</h4>
-                <h5>include your email address if you'd like a response.</h5>
+                <h3 style={{ color: "#333" }}>Please tell us what you like or dislike</h3>
+
                 <TextField
                   id='outlined-multiline-static'
+                  label='Message'
                   placeholder='Message'
                   multiline
                   rows='5'
                   variant='outlined'
+                  margin='normal'
                   value={this.state.message}
                   onChange={this.handleChange("message")}
+                />
+                <TextField
+                  id='email'
+                  label='Email'
+                  helperText='(optional)'
+                  variant='outlined'
+                  value={this.state.email}
+                  onChange={this.handleChange("email")}
                 />
                 <Button
                   className={classes.button}

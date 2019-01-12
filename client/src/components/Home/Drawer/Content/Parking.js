@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PolygonCenter from 'geojson-polygon-center';
 
 import { dataList } from './dataList';
 

@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import flip from "geojson-flip";
-import axios from 'axios';
 import filterLocation from "./Home/NavigationMenu/filterLocation";
 import PolygonCenter from "geojson-polygon-center";
 
 export const Context = React.createContext();
 
 const businessData = null;
-const parkingData = null;
 
 class Provider extends Component {
   constructor(props) {
@@ -138,7 +136,7 @@ class Provider extends Component {
             this.setState({
               filteredLocation: filterLocation("", 0),
             });
-            if (event.target.className == 'MuiGrid-container-124 MuiGrid-align-items-xs-center-132 MuiGrid-justify-xs-center-141 MapComponent-content-122 MapComponent-contentShift-123') {
+            if (event.target.className === 'MuiGrid-container-124 MuiGrid-align-items-xs-center-132 MuiGrid-justify-xs-center-141 MapComponent-content-122 MapComponent-contentShift-123') {
               this.setState({ drawerOpen: false });
               console.log('test')
             };

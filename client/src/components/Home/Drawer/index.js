@@ -33,10 +33,6 @@ const styles = theme => ({
   }
 });
 
-const cursor = {
-  cursor: 'pointer'
-};
-
 const getContent = (type, data) => {
   if(type === 'parking') {
     return <Parking data={data[0].properties} coords={data[0].properties.entrance1.split(" ")} />

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PolygonCenter from 'geojson-polygon-center';
 
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';

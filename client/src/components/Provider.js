@@ -110,7 +110,6 @@ class Provider extends Component {
           },
           // this.createLotMarker
           handleSearchChange: event => {
-            console.log(event.currentTarget);
             if (event.target.value === 0) {
               this.setState({
                 filteredLocation: filterLocation(event.target.value, 0),

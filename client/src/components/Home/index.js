@@ -1,6 +1,5 @@
 import React from 'react';
 import { Context } from '../Provider';
-import classnames from 'classnames';
 //material-ui
 import { withStyles } from '@material-ui/core/styles';
 //components

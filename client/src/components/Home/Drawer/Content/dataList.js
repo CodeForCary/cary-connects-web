@@ -4,8 +4,6 @@ import React from 'react';
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom'
 
 //Material icons
 import AccessibleIcon from '@material-ui/icons/Accessible'
@@ -36,10 +34,10 @@ function pullOutLink(info) {
   if (info.includes('http')) {
     const linkStart = info.search('http')
     var restOfText = info.substr(0,linkStart)
-    if (restOfText[restOfText.length-1] == ":" || restOfText[restOfText.length-2] == ':') {
+    if (restOfText[restOfText.length-1] === ":" || restOfText[restOfText.length-2] === ':') {
       restOfText = restOfText.substr(0,restOfText.length -2)
     }
-    return <a target='_blank' href={info.substr(linkStart,info.length)}><strong>{restOfText}</strong></a>
+    return <a target='_blank' href={info.substr(linkStart,info.length)} rel='noopener noreferrer'><strong>{restOfText}</strong></a>
   } else {
     return info;
   }

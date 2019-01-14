@@ -42,6 +42,16 @@ const styles = theme => ({
     fontWeight: "300",
     paddingLeft: "0.5em",
     color: "#333"
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit
+  },
+  modalQuestion: {
+    color: "#333",
+    fontFamily: "Roboto",
+    fontWeight: "400",
+    fontSize: "1.1rem"
   }
 });
 
@@ -93,15 +103,16 @@ class Feedback extends React.Component {
             </div>
             <Modal open={this.state.open} onClose={this.handleClose}>
               <div className={classes.paper}>
-                <h3 style={{ color: "#333" }}>Please tell us what you like or dislike</h3>
+                <h3 className={classes.modalQuestion}>Please tell us what you like or dislike</h3>
 
                 <TextField
                   id='outlined-multiline-static'
                   label='Message'
-                  placeholder='Message'
+                  autoFocus={true}
                   multiline
+                  variant='filled'
+                  className={classes.textField}
                   rows='5'
-                  variant='outlined'
                   margin='normal'
                   value={this.state.message}
                   onChange={this.handleChange("message")}
@@ -110,8 +121,10 @@ class Feedback extends React.Component {
                   id='email'
                   label='Email'
                   helperText='(optional)'
-                  variant='outlined'
+                  variant='filled'
+                  className={classes.textField}
                   value={this.state.email}
+                  margin='normal'
                   onChange={this.handleChange("email")}
                 />
                 <Button

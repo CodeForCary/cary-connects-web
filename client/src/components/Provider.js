@@ -37,7 +37,7 @@ class Provider extends Component {
       )
         .then(response => response.json())
         .then(rawJSON => rawJSON.features)
-        .then(data => resolve(this.setState({businessData: data})))
+        .then(data => resolve(this.setState({ businessData: data })))
         .catch(err => reject(err));
       fetch(
         "https://raw.githubusercontent.com/CodeForCary/cary-connects-data/master/parking.geojson"
@@ -68,7 +68,7 @@ class Provider extends Component {
             this.setState({
               selectedItem: parkingData,
               drawerOpen: true,
-              dataType: 'parking',
+              dataType: "parking"
             });
           },
           getBusinessData: () => {
@@ -96,10 +96,10 @@ class Provider extends Component {
               zoom: 17.33,
               filteredLocation: filterLocation("", 0),
               searchValue: name.properties.name,
-              searchResultsAnchorEl: false,
+              searchResultsAnchorEl: null,
               selectedItem: feature,
               drawerOpen: true,
-              dataType: 'business',
+              dataType: "business"
             });
             this.createBusinessMarker(
               feature.geometry.coordinates[1],
@@ -112,17 +112,13 @@ class Provider extends Component {
               this.setState({
                 filteredLocation: filterLocation(event.target.value, 0),
                 searchValue: event.target.value,
-                searchResultsAnchorEl: event.target
+                searchResultsAnchorEl: event.currentTarget
               });
             } else {
               this.setState({
-                filteredLocation: filterLocation(
-                  event.target.value,
-                  7,
-                  this.state.businessData
-                ),
+                filteredLocation: filterLocation(event.target.value, 7, this.state.businessData),
                 searchValue: event.target.value,
-                searchResultsAnchorEl: event.target
+                searchResultsAnchorEl: event.currentTarget
               });
             }
           },
@@ -134,12 +130,15 @@ class Provider extends Component {
           },
           clearResultsAndCloseDrawer: event => {
             this.setState({
-              filteredLocation: filterLocation("", 0),
+              filteredLocation: filterLocation("", 0)
             });
-            if (event.target.className === 'MuiGrid-container-124 MuiGrid-align-items-xs-center-132 MuiGrid-justify-xs-center-141 MapComponent-content-122 MapComponent-contentShift-123') {
+            if (
+              event.target.className ===
+              "MuiGrid-container-124 MuiGrid-align-items-xs-center-132 MuiGrid-justify-xs-center-141 MapComponent-content-122 MapComponent-contentShift-123"
+            ) {
               this.setState({ drawerOpen: false });
-              console.log('test')
-            };
+              console.log("test");
+            }
           },
           clearSearch: event => {
             this.setState({

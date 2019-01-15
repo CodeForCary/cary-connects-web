@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Context } from "src/components/Provider";
-
 import { withStyles } from "@material-ui/core/styles";
-
 import Drawer from "@material-ui/core/Drawer";
+import IconButton from "@material-ui/core/IconButton";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 
 import { Business, Parking } from "./Content";
 
@@ -28,6 +28,10 @@ const styles = theme => ({
   },
   header: {
     margin: "0 10px"
+  },
+  menuButton: {
+    marginLeft: "11em",
+    borderRadius: "0"
   }
 });
 
@@ -56,6 +60,14 @@ class index extends Component {
                 paper: classes.drawerPaper
               }}
             >
+              <IconButton
+                color='inherit'
+                aria-label='Close drawer'
+                className={classes.menuButton}
+                onClick={context.handleDrawerClose}
+              >
+                <ChevronLeftIcon />
+              </IconButton>
               {context.state.drawerOpen ? getContent(type, data) : null}
             </Drawer>
           )}

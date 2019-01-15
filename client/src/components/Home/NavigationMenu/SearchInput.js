@@ -51,42 +51,39 @@ class SearchInput extends Component {
         <Context.Consumer>
           {context => (
             <div className={classes.flex}>
-              <MediaQuery query="(max-width: 700px)">
-                <label className="visuallyhidden" htmlFor="mobile-search">
+              <MediaQuery query='(max-width: 700px)'>
+                <label className='visuallyhidden' htmlFor='mobile-search'>
                   Where to?
                 </label>
                 <InputBase
-                  id="mobile-search"
-                  tabIndex="1"
-                  variant="outlined"
-                  placeholder="Where to?"
+                  id='mobile-search'
+                  tabIndex='1'
+                  variant='outlined'
+                  placeholder='Where to?'
+                  autoComplete='off'
+                  autoFocus={true}
                   value={context.state.searchValue}
                   onChange={this.handleChange}
                   onClick={context.clearSearch}
-                  className={classnames(
-                    classes.componentSearchInputMobile,
-                    classes.width
-                  )}
+                  className={classnames(classes.componentSearchInputMobile, classes.width)}
                   endAdornment={<SearchIcon />}
                 />
               </MediaQuery>
-              <MediaQuery query="(min-width: 700px)">
-                <label className="visuallyhidden" htmlFor="desktop-search">
+              <MediaQuery query='(min-width: 700px)'>
+                <label className='visuallyhidden' htmlFor='desktop-search'>
                   Where to?
                 </label>
                 <InputBase
-                  id="desktop-search"
-                  tabIndex="1"
-                  variant="outlined"
-                  placeholder="Where to?"
+                  id='desktop-search'
+                  tabIndex='1'
+                  variant='outlined'
+                  placeholder='Where to?'
+                  autoComplete='off'
                   value={context.state.searchValue}
                   autoFocus={true}
                   onChange={context.handleSearchChange}
                   onClick={context.clearSearch}
-                  className={classnames(
-                    classes.componentSearchInputComputer,
-                    classes.width
-                  )}
+                  className={classnames(classes.componentSearchInputComputer, classes.width)}
                   endAdornment={<SearchIcon />}
                 />
               </MediaQuery>

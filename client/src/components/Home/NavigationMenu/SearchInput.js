@@ -57,7 +57,6 @@ class SearchInput extends Component {
                 </label>
                 <InputBase
                   id='mobile-search'
-                  tabIndex='1'
                   variant='outlined'
                   placeholder='Where to?'
                   autoComplete='off'
@@ -75,7 +74,6 @@ class SearchInput extends Component {
                 </label>
                 <InputBase
                   id='desktop-search'
-                  tabIndex='1'
                   variant='outlined'
                   placeholder='Where to?'
                   autoComplete='off'

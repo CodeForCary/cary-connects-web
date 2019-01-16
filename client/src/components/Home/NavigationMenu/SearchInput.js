@@ -34,7 +34,7 @@ const styles = theme => ({
     border: "1px solid #fff",
     width: "100%",
     margin: "10px",
-    "font-size": "11px"
+    "font-size": "14px"
   }
 });
 

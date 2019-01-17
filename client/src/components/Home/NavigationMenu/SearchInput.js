@@ -5,7 +5,6 @@ import classnames from "classnames";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
 import { Context } from "src/components/Provider";
-import MediaQuery from "react-responsive";
 
 import "./SearchInput.css";
 
@@ -18,23 +17,17 @@ const styles = theme => ({
   width: {
     width: "40%"
   },
-  componentSearchInputComputer: {
+  componentSearchInput: {
     color: "#FFF",
     borderRadius: "4px",
     padding: "10px 8px",
     border: "1px solid #fff",
     width: "100%",
     margin: "10px",
+    [theme.breakpoints.down("sm")]: {
+      "font-size": "14px"
+    },
     "font-size": "18px"
-  },
-  componentSearchInputMobile: {
-    color: "#FFF",
-    borderRadius: "4px",
-    padding: "10px 8px",
-    border: "1px solid #fff",
-    width: "100%",
-    margin: "10px",
-    "font-size": "14px"
   }
 });
 
@@ -51,40 +44,21 @@ class SearchInput extends Component {
         <Context.Consumer>
           {context => (
             <div className={classes.flex}>
-              <MediaQuery query='(max-width: 700px)'>
-                <label className='visuallyhidden' htmlFor='mobile-search'>
-                  Where to?
-                </label>
-                <InputBase
-                  id='mobile-search'
-                  variant='outlined'
-                  placeholder='Where to?'
-                  autoComplete='off'
-                  autoFocus={true}
-                  value={context.state.searchValue}
-                  onChange={this.handleChange}
-                  onClick={context.clearSearch}
-                  className={classnames(classes.componentSearchInputMobile, classes.width)}
-                  endAdornment={<SearchIcon />}
-                />
-              </MediaQuery>
-              <MediaQuery query='(min-width: 700px)'>
-                <label className='visuallyhidden' htmlFor='desktop-search'>
-                  Where to?
-                </label>
-                <InputBase
-                  id='desktop-search'
-                  variant='outlined'
-                  placeholder='Where to?'
-                  autoComplete='off'
-                  value={context.state.searchValue}
-                  autoFocus={true}
-                  onChange={context.handleSearchChange}
-                  onClick={context.clearSearch}
-                  className={classnames(classes.componentSearchInputComputer, classes.width)}
-                  endAdornment={<SearchIcon />}
-                />
-              </MediaQuery>
+              <label className='visuallyhidden' htmlFor='mobile-search'>
+                Where to?
+              </label>
+              <InputBase
+                id='mobile-search'
+                variant='outlined'
+                placeholder='Where to?'
+                autoComplete='off'
+                autoFocus={true}
+                value={context.state.searchValue}
+                onChange={context.handleSearchChange}
+                onClick={context.clearSearch}
+                className={classnames(classes.componentSearchInput, classes.width)}
+                endAdornment={<SearchIcon />}
+              />
             </div>
           )}
         </Context.Consumer>

@@ -32,10 +32,6 @@ const styles = theme => ({
 });
 
 class SearchInput extends Component {
-  handleChange = event => {
-    this.props.textChange(event);
-  };
-
   render() {
     const { classes } = this.props;
 

@@ -42,7 +42,7 @@ class NavigationMenu extends Component {
                   Cary Connects
                 </Typography>
                 <div className={classes.grow} />
-                <SearchInput textChange={context.handleSearchChange} />
+                <SearchInput />
               </Toolbar>
             </AppBar>
             <Results locationData={context.state.filteredLocation} />

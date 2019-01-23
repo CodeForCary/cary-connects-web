@@ -14,26 +14,30 @@ export default class ResultsList extends Component {
   render() {
     return (
       <Context.Consumer>
-        {context => (
-          <List>
-            {this.props.data.map(location => (
-              <ListItem
-                button
-                key={location.properties.name}
-                name={location.properties.name}
-                onClick={event => {
-                  context.chooseBusiness(location);
-                  this.handleSubmit(location.properties.name);
-                }}
-              >
-                <ListItemText
-                  primary={location.properties.name}
-                  secondary={capitalize(location.properties["marker-symbol"])}
-                />
-              </ListItem>
-            ))}
-          </List>
-        )}
+        {context => {
+          const { filteredLocation } = context.state;
+          return (
+            <List>
+              {filteredLocation.map(location => (
+                <ListItem
+                  data-testid='search-result'
+                  button
+                  key={location.properties.name}
+                  name={location.properties.name}
+                  onClick={event => {
+                    context.chooseBusiness(location);
+                    this.handleSubmit(location.properties.name);
+                  }}
+                >
+                  <ListItemText
+                    primary={location.properties.name}
+                    secondary={capitalize(location.properties["marker-symbol"])}
+                  />
+                </ListItem>
+              ))}
+            </List>
+          );
+        }}
       </Context.Consumer>
     );
   }

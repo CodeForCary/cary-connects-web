@@ -40,11 +40,12 @@ class SearchInput extends Component {
         <Context.Consumer>
           {context => (
             <div className={classes.flex}>
-              <label className='visuallyhidden' htmlFor='mobile-search'>
+              <label className='visuallyhidden' htmlFor='search'>
                 Where to?
               </label>
               <InputBase
-                id='mobile-search'
+                id='search'
+                data-testid='search'
                 variant='outlined'
                 placeholder='Where to?'
                 autoComplete='off'

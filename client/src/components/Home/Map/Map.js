@@ -21,8 +21,28 @@ class Map extends Component {
   state = {
     minZoom: 15,
     animate: true,
-    bounds: [[35.773958, -78.798776], [35.796304, -78.761682]]
+    bounds: [[35.773958, -78.798776], [35.796304, -78.761682]],
+     colors: [{
+         id: 'public',
+         color: 'green'
+       },
+       {
+         id: 'private',
+         color: 'red'
+       },
+       {
+         id: 'restricted',
+         color: 'orange'
+       },
+     ],
   };
+    getColor(category) {
+      for (var i = 0; i < this.state.colors.length; i++) {
+        if (this.state.colors[i].id == category) {
+          return this.state.colors[i].color;
+        }
+      }
+    }
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(position => {
@@ -63,7 +83,7 @@ class Map extends Component {
               <Polygon
                 onClick={(event) => {context.createLotMarker(polygonData); context.clickPolygon(event);}}
                 positions={polygonData.geometry.coordinates[0]}
-                color="red"
+                color = {this.getColor(polygonData.properties.category)}
                 name={polygonData.properties.name}
                 key={polygonData.geometry.coordinates[0]}
               >

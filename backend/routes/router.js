@@ -88,11 +88,11 @@ router.post("/send", (req, res) => {
       error: "INVALID"
     });
   }
-  feedback = {
-    message,
-    email,
-    version
-  };
+
+  feedback.message = message;
+  feedback.email = email;
+  feedback.version = version;
+  
   feedback.save(err => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });

@@ -29,8 +29,10 @@ class Welcome extends Component {
     };
   }
 
-  _handleClick = () => {
-    this.setState({ redirect: true });
+  _handleClick = (event) => {
+    if (!event.target.matches('.aboutButton, .cfcButton, .hocButton')) {
+      this.setState({ redirect: true });
+    }
   };
 
   componentDidMount() {
@@ -51,17 +53,15 @@ class Welcome extends Component {
       <div className={classes.root} >
         <FadeIn transitionDuration={5000}>
           <h1 className={classes.title}>Welcome to our Cary Downtown Parking site!</h1>
-          <center><font face="sans-serif" size="5" color="whitesmoke"></font><a href="http://codeforcary.org/parking"><font face="sans-serif" size="5" color="#1a1a1c"><i>Click here for more info</i></font></a></center>
+
+          <center><font class="aboutButton" face="sans-serif" size="5" color="white"></font><a href="http://codeforcary.org/parking"><font class="aboutButton" face="sans-serif" size="5" color="#1a1a1c"><i>Click here for more info</i></font></a></center>
           <br></br>
-          <center><font face="sans-serif" size="8" color="white">The first app for our Cary Connects platform</font></center>
-          <br>
-          </br>
+          <center className={classes.subtitle}><font face="sans-serif" size="8" color="white">The first app for our Cary Connects platform</font></center>
           <br></br>
           <center><font face="sans-serif" size="5" color="white">Created by Volunteers</font></center>
-          <br></br>
-          <center><font face="sans-serif" size="5" color="white">with the </font><a href="https://www.heartofcary.org/caryapp.html"><font face="sans-serif" size="5" color="#1a1a1c">Heart of Cary</font></a></center>
+          <center><font face="sans-serif" size="5" color="white">with the </font><a href="https://www.heartofcary.org/caryapp.html"><font class="hocButton" face="sans-serif" size="5" color="#1a1a1c">Heart of Cary</font></a></center>
           <center><font face="sans-serif" size="5" color="white">and</font></center>
-          <center><font face="sans-serif" size="5" color="white"></font><a href="http://codeforcary.org/parking/"><font face="sans-serif" size="5" color="#1a1a1c">Code for Cary</font></a></center>
+          <center><font face="sans-serif" size="5" color="white"></font><a href="http://codeforcary.org/parking/"><font class="cfcButton" face="sans-serif" size="5" color="#1a1a1c">Code for Cary</font></a></center>
         </FadeIn>
       </div>
     );

@@ -4,7 +4,7 @@
   "description": "A Web page for Downtown Cary Parking",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cd client && npm run test",
     "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\"",
     "dev": "concurrently \"cd backend && nodemon server.js\" \"cd client && npm start\"",
     "install": "concurrently \"cd backend && npm install\" \"cd client && npm install\"",
@@ -24,9 +24,17 @@
     "concurrently": "^4.1.0",
     "cookies": "^0.7.3",
     "mongoose-seed": "^0.5.1",
+<<<<<<< HEAD
     "react": "^16.8.1",
+=======
+    "react": "^16.6.3",
+    "react-dom": "^16.7.0",
+>>>>>>> fccd0365be69467fd6d37f18f84a377925622c36
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "read-pkg-up": "^4.0.0"
+  },
+  "devDependencies": {
+    "react-testing-library": "^5.4.4"
   }
 }

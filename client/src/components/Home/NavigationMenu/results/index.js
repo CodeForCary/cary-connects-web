@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
-import { withStyles } from '@material-ui/core';
-import Popover from '@material-ui/core/Popover'
+import React, { Component } from "react";
+import { withStyles } from "@material-ui/core";
+import Popover from "@material-ui/core/Popover";
 import { Context } from "src/components/Provider";
-import ResultsList from './ResultsList';
+import ResultsList from "./ResultsList";
 
-const styles = theme => ({
-
-});
+const styles = theme => ({});
 
 class index extends Component {
   render() {
@@ -23,20 +21,20 @@ class index extends Component {
               onClose={context.clearSearch}
               disableAutoFocus={true}
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left'
+                vertical: "bottom",
+                horizontal: "left"
               }}
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'center'
+                vertical: "top",
+                horizontal: "center"
               }}
             >
-              <ResultsList data={context.state.filteredLocation} />
+              <ResultsList />
             </Popover>
-          )
+          );
         }}
       </Context.Consumer>
-    )
+    );
   }
 }
 

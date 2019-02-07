@@ -1,22 +1,19 @@
-import React from 'react';
+import React from "react";
 
 //Material-UI
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom'
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
 
 //Material icons
-import AccessibleIcon from '@material-ui/icons/Accessible'
-import ParkingIcon from '@material-ui/icons/LocalParking'
-import RestrictionsIcon from '@material-ui/icons/NotInterested'
-import CommuteIcon from '@material-ui/icons/Commute'
-import PhoneIcon from '@material-ui/icons/Phone'
-import AddressIcon from '@material-ui/icons/Place'
-import WebsiteIcon from '@material-ui/icons/Launch'
-import NoteIcon from '@material-ui/icons/Note'
-
+import AccessibleIcon from "@material-ui/icons/Accessible";
+import ParkingIcon from "@material-ui/icons/LocalParking";
+import RestrictionsIcon from "@material-ui/icons/NotInterested";
+import CommuteIcon from "@material-ui/icons/Commute";
+import PhoneIcon from "@material-ui/icons/Phone";
+import AddressIcon from "@material-ui/icons/Place";
+import WebsiteIcon from "@material-ui/icons/Launch";
+import NoteIcon from "@material-ui/icons/Note";
 
 /**
  *
@@ -33,45 +30,48 @@ website: "www.lafarmbakery.com"} theme
  */
 
 function pullOutLink(info) {
-  if (info.includes('http')) {
-    const linkStart = info.search('http')
-    var restOfText = info.substr(0,linkStart)
-    if (restOfText[restOfText.length-1] == ":" || restOfText[restOfText.length-2] == ':') {
-      restOfText = restOfText.substr(0,restOfText.length -2)
+  if (info.includes("http")) {
+    const linkStart = info.search("http");
+    var restOfText = info.substr(0, linkStart);
+    if (restOfText[restOfText.length - 1] === ":" || restOfText[restOfText.length - 2] === ":") {
+      restOfText = restOfText.substr(0, restOfText.length - 2);
     }
-    return <a target='_blank' href={info.substr(linkStart,info.length)}><strong>{restOfText}</strong></a>
+    return (
+      <a target='_blank' href={info.substr(linkStart, info.length)} rel='noopener noreferrer'>
+        <strong>{restOfText}</strong>
+      </a>
+    );
   } else {
     return info;
   }
 }
 
-
 const ListItemEl = props => {
   let icon;
   switch (props.icon) {
-    case 'accessible':
-      icon = <AccessibleIcon />
+    case "accessible":
+      icon = <AccessibleIcon />;
       break;
-    case 'parking':
-      icon = <ParkingIcon />
+    case "parking":
+      icon = <ParkingIcon />;
       break;
-    case 'restrictions':
-      icon = <RestrictionsIcon />
+    case "restrictions":
+      icon = <RestrictionsIcon />;
       break;
-    case 'directions':
-      icon = <CommuteIcon />
+    case "directions":
+      icon = <CommuteIcon />;
       break;
-    case 'website':
-      icon = <WebsiteIcon />
+    case "website":
+      icon = <WebsiteIcon />;
       break;
-    case 'address':
-      icon = <AddressIcon />
+    case "address":
+      icon = <AddressIcon />;
       break;
-    case 'phone':
-      icon = <PhoneIcon />
+    case "phone":
+      icon = <PhoneIcon />;
       break;
-    case 'note':
-      icon = <NoteIcon />
+    case "note":
+      icon = <NoteIcon />;
       break;
     default:
       break;
@@ -80,103 +80,97 @@ const ListItemEl = props => {
   return (
     <React.Fragment>
       <ListItem>
-        <ListItemIcon>
-          {icon}
-        </ListItemIcon>
+        <ListItemIcon>{icon}</ListItemIcon>
         <ListItemText primary={props.text} />
       </ListItem>
     </React.Fragment>
-  )
-}
+  );
+};
 
 export const dataList = data => {
   const arr = [];
-  let id=0;
+  let id = 0;
 
-  for(let key in data) {
+  for (let key in data) {
     let item;
     let text;
     //replace -1 values with 'none'
-    if(data[key] === -1) {
-      text = 'None'
+    if (data[key] === -1) {
+      text = "None";
     } else {
       text = data[key];
     }
 
     switch (key) {
-      case 'hcParking':
-        item = <ListItemEl
-          icon='accessible'
-          text={`Accessible: ${text}`}
-          key="accessible"
-        />
+      case "hcParking":
+        item = <ListItemEl icon='accessible' text={`Accessible: ${text}`} key='accessible' />;
         arr.push(item);
-        id++
+        id++;
         break;
-      case 'stdParking':
-        item = <ListItemEl
-          icon='parking'
-          text={`Standard Spaces: ${text}`}
-          key="parking"
-          id={id}
-        />
+      case "stdParking":
+        item = (
+          <ListItemEl icon='parking' text={`Standard Spaces: ${text}`} key='parking' id={id} />
+        );
         arr.push(item);
-        id++
+        id++;
         break;
-      case 'restrictions':
-        item = <ListItemEl
-          icon= 'restrictions'
-          text={`Restrictions: ${text}`}
-          key="restrictions"
-          id={id}
-        />
-        arr.push(item);
-        id++
-        break;
-      case 'address':
-        item = <ListItemEl
-            icon= 'address'
-            text={`Address: ${text}`}
-            key="Address"
+      case "restrictions":
+        item = (
+          <ListItemEl
+            icon='restrictions'
+            text={`Restrictions: ${text}`}
+            key='restrictions'
             id={id}
           />
-          arr.push(item);
-          id++
+        );
+        arr.push(item);
+        id++;
         break;
-      case 'phone':
-        item = <ListItemEl
-            icon= 'phone'
-            text={<div>Phone: <a href={'tel:'+ text}>{text}</a></div>}
-            key="Phone"
+      case "address":
+        item = <ListItemEl icon='address' text={`${text}`} key='Address' id={id} />;
+        arr.push(item);
+        id++;
+        break;
+      case "phone":
+        item = (
+          <ListItemEl
+            icon='phone'
+            text={
+              <div>
+                <a href={"tel:" + text}>{text}</a>
+              </div>
+            }
+            key='Phone'
             id={id}
           />
-          arr.push(item);
-          id++
-        break;
-      case 'website':
-        item = <ListItemEl
-          icon= 'website'
-          text={<a target='blank' href={'http://' + text}><strong>Website</strong></a>}
-          key="Website"
-          id={id}
-          />
+        );
         arr.push(item);
-        id++
+        id++;
         break;
-      case 'note':
-        item=<ListItemEl
-          icon='note'
-          text={pullOutLink(text)}
-          key='Note'
-          id={id}
+      case "website":
+        item = (
+          <ListItemEl
+            icon='website'
+            text={
+              <a target='blank' href={"http://" + text}>
+                <strong>Website</strong>
+              </a>
+            }
+            key='Website'
+            id={id}
           />
+        );
         arr.push(item);
-        id++
+        id++;
+        break;
+      case "note":
+        item = <ListItemEl icon='note' text={pullOutLink(text)} key='Note' id={id} />;
+        arr.push(item);
+        id++;
         break;
       default:
         break;
     }
-
   }
   return arr;
-}
+};

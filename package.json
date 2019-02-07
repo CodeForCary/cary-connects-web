@@ -21,10 +21,10 @@
   },
   "homepage": "https://github.com/CodeForCary/cary-connects-web#readme",
   "dependencies": {
-    "concurrently": "^4.0.1",
+    "concurrently": "^4.1.0",
     "cookies": "^0.7.3",
     "mongoose-seed": "^0.5.1",
-    "react": "^16.6.3",
+    "react": "^16.8.1",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "read-pkg-up": "^4.0.0"

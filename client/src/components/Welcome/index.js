@@ -33,7 +33,7 @@ class Welcome extends Component {
   }
 
   _handleClick = (event) => {
-    if (!event.target.matches('.aboutButton')) {
+    if (!event.target.matches('.aboutButton, .cfcButton, .hocButton')) {
       this.setState({ redirect: true });
     }
   };
@@ -59,9 +59,9 @@ class Welcome extends Component {
           <center><font class="aboutButton" face="sans-serif" size="4" color="white"></font><a href="http://codeforcary.org/parking"><font class="aboutButton" face="sans-serif" size="4" color="#D0D3D4">Click here for more info</font></a></center>
           <center className={classes.subtitle}><font face="sans-serif" size="10" color="white">The first app for our Cary Connects platform</font></center>
           <center><font face="sans-serif" size="4" color="white">Created by Volunteers</font></center>
-          <center><font face="sans-serif" size="4" color="white">with the </font><a href="https://www.heartofcary.org/caryapp.html"><font face="sans-serif" size="4" color="#D0D3D4">Heart of Cary</font></a></center>
+          <center><font face="sans-serif" size="4" color="white">with the </font><a href="https://www.heartofcary.org/caryapp.html"><font class="hocButton" face="sans-serif" size="4" color="#D0D3D4">Heart of Cary</font></a></center>
           <center><font face="sans-serif" size="4" color="white">and</font></center>
-          <center><font face="sans-serif" size="4" color="white"></font><a href="http://codeforcary.org/parking/"><font face="sans-serif" size="4" color="#D0D3D4">Code for Cary</font></a></center>
+          <center><font face="sans-serif" size="4" color="white"></font><a href="http://codeforcary.org/parking/"><font class="cfcButton" face="sans-serif" size="4" color="#D0D3D4">Code for Cary</font></a></center>
         </FadeIn>
       </div>
     );

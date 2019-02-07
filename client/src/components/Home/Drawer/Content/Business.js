@@ -1,26 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Button from '@material-ui/core/Button';
+import { withStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import Button from "@material-ui/core/Button";
 
-import { dataList } from './dataList';
+import { dataList } from "./dataList";
 
-const styles = theme => ({
+const styles = theme => ({});
 
-});
-
-const openGoogleMaps = (coords) => {
-  console.log(coords)
-  window.open(
-    "https://www.google.com/maps/dir/?api=1&destination=" +
-      coords[1] +
-      "," +
-      coords[0]
-  )
-}
+const openGoogleMaps = coords => {
+  console.log(coords);
+  window.open("https://www.google.com/maps/dir/?api=1&destination=" + coords[1] + "," + coords[0]);
+};
 
 class Business extends Component {
   render() {
@@ -28,22 +21,19 @@ class Business extends Component {
     const list = dataList(business);
     return (
       <div>
-        <Typography variant="title">
+        <Typography variant='h6'>
           Business: <br /> {business.name}
         </Typography>
         <List>
           {list}
           <ListItem>
-            <Button
-              variant="outlined"
-              onClick={() => (openGoogleMaps(this.props.coords))}
-            >
+            <Button variant='outlined' onClick={() => openGoogleMaps(this.props.coords)}>
               Directions
             </Button>
           </ListItem>
         </List>
       </div>
-    )
+    );
   }
 }
 

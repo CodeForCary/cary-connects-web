@@ -1,0 +1,28 @@
+.root {
+  text-align: center;
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.title {
+  padding-top: 10%;
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 6vw;
+  color: white;
+}
+.subtitle {
+  font-size: 2vw;
+  color: white;
+}
+.anchor {
+  color: white;
+}
+.verticalcenter {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

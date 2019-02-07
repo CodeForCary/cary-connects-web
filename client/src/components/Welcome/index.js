@@ -17,9 +17,6 @@ const styles = theme => ({
     fontWeight: "100",
     fontSize: "72px",
     color: "white"
-  },
-  subtitle: {
-    fontSize: "50px"
   }
 });
 
@@ -39,7 +36,7 @@ class Welcome extends Component {
   };
 
   componentDidMount() {
-    window.addEventListener("click", this._handleClick)
+    window.addEventListener("click", this._handleClick);
   }
 
   componentWillUnmount() {

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import Link from "@material-ui/core/Link";
 import FadeIn from "react-fade-in";
 
 const styles = theme => ({
@@ -12,7 +13,7 @@ const styles = theme => ({
     height: "100%",
     width: "100%",
     position: "absolute"
-  }, 
+  },
   title: {
     paddingTop: "10%"
   }
@@ -27,8 +28,8 @@ class Welcome extends Component {
     };
   }
 
-  _handleClick = (event) => {
-    if (!event.target.matches('a')) {
+  _handleClick = event => {
+    if (!event.target.matches("a")) {
       this.setState({ redirect: true });
     }
   };
@@ -48,18 +49,28 @@ class Welcome extends Component {
       return <Redirect push to='/home' />;
     }
     return (
-      <div className={classes.root} >
+      <div className={classes.root}>
         <FadeIn transitionDuration={5000}>
-        <Typography variant='h1' className={classes.title}>Welcome to our Cary Downtown Parking site!</Typography>
-          <br/>
+          <Typography variant='h1' className={classes.title}>
+            Welcome to our Cary Downtown Parking site!
+          </Typography>
+          <br />
           <Typography variant='h6'>
-          <a href="http://codeforcary.org/parking">Click here for more info</a></Typography>
-          <br/>
+            <a href='http://codeforcary.org/parking'>Click here for more info</a>
+          </Typography>
+          <br />
           <Typography variant='body1'>The first app for our Cary Connects platform</Typography>
-          <br/>
-          <Typography variant='body2'>Created by Volunteers
-          with the <a href="https://www.heartofcary.org/caryapp.html">Heart of Cary </a>and
-          <a href="http://codeforcary.org/parking/"> Code for Cary</a></Typography>
+          <br />
+          <Typography variant='body2'>
+            Created by Volunteers with{" "}
+            <Link variant='body2' href='https://www.heartofcary.org/caryapp.html'>
+              Heart of Cary
+            </Link>{" "}
+            and{" "}
+            <Link variant='body2' href='http://codeforcary.org/parking/'>
+              Code for Cary
+            </Link>
+          </Typography>
         </FadeIn>
       </div>
     );

@@ -55,9 +55,7 @@ class Welcome extends Component {
             Welcome to our Cary Downtown Parking site!
           </Typography>
           <br />
-          <Typography variant='h6'>
-            <a href='http://codeforcary.org/parking'>Click here for more info</a>
-          </Typography>
+          <Link variant="h6" href='http://codeforcary.org/parking'>Click here for more info</Link>
           <br />
           <Typography variant='body1'>The first app for our Cary Connects platform</Typography>
           <br />

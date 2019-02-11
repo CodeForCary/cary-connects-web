@@ -51,16 +51,19 @@ class Welcome extends Component {
     return (
       <div className={classes.root}>
         <FadeIn transitionDuration={5000}>
-          <Typography variant='h1' className={classes.title}>
+          <Typography variant='h2' className={classes.title}>
             Welcome to our Cary Downtown Parking site!
           </Typography>
           <br />
-          <Link variant="h6" href='http://codeforcary.org/parking'>Click here for more info</Link>
+          <Link variant='h6' href='http://codeforcary.org/parking'>
+            Click here for more info
+          </Link>
           <br />
           <Typography variant='body1'>The first app for our Cary Connects platform</Typography>
           <br />
           <Typography variant='body2'>
-            Created by Volunteers with{" "}
+            Created by Volunteers with
+            <br />
             <Link variant='body2' href='https://www.heartofcary.org/caryapp.html'>
               Heart of Cary
             </Link>{" "}

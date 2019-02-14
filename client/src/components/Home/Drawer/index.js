@@ -3,7 +3,7 @@ import { Context } from "src/components/Provider";
 import { withStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import Close from "@material-ui/icons/Close";
 
 import { Business, Parking } from "./Content";
 
@@ -66,7 +66,7 @@ class index extends Component {
                 className={classes.menuButton}
                 onClick={context.handleDrawerClose}
               >
-                <ChevronLeftIcon />
+                <Close />
               </IconButton>
               {context.state.drawerOpen ? getContent(type, data) : null}
             </Drawer>

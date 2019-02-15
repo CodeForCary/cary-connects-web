@@ -50,7 +50,7 @@ class Welcome extends Component {
     }
     return (
       <div className={classes.root}>
-        <FadeIn transitionDuration={5000}>
+        <FadeIn transitionDuration={400}>
           <Typography variant='h2' className={classes.title}>
             Welcome to our Cary Downtown Parking site!
           </Typography>

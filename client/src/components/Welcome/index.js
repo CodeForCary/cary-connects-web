@@ -15,7 +15,7 @@ const styles = theme => ({
     position: "absolute"
   },
   title: {
-    paddingTop: "10%"
+    paddingTop: "20%"
   }
 });
 

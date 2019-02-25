@@ -8,9 +8,12 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: "#76BE4E",
-      main: "#0190BE",
+      light: "#e2ffbf",
+      main: "#11c4ab",
       dark: "#EB2392"
+    },
+    secondary: {
+      main: '#00ffdd'
     }
   },
   typography: {
@@ -26,7 +29,10 @@ const theme = createMuiTheme({
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"'
-    ].join(",")
+    ].join(","),
+    h2: {
+      color: "white"
+    }
   }
 });
 

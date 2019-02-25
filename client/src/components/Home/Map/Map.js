@@ -24,15 +24,15 @@ class Map extends Component {
     bounds: [[35.773958, -78.798776], [35.796304, -78.761682]],
      colors: [{
          id: 'public',
-         color: 'green'
+         color: '#11c4ab'
        },
        {
          id: 'private',
-         color: 'red'
+         color: '#bf1313'
        },
        {
          id: 'restricted',
-         color: 'orange'
+         color: '#d60ec5'
        },
      ],
   };

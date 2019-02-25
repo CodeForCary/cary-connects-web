@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import { withStyles } from "@material-ui/core";
 import Popover from "@material-ui/core/Popover";
 import { Context } from "src/components/Provider";
 import ResultsList from "./ResultsList";
-
-const styles = theme => ({});
 
 class index extends Component {
   render() {
@@ -38,4 +35,4 @@ class index extends Component {
   }
 }
 
-export default withStyles(styles)(index);
+export default index;

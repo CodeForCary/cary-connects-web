@@ -16,6 +16,16 @@ export default class ResultsList extends Component {
       <Context.Consumer>
         {context => {
           const { filteredLocation } = context.state;
+          if (filteredLocation.length == 0) {
+            return (
+              <List>
+              <ListItem>
+              <ListItemText>
+              No Results
+              </ListItemText>
+              </ListItem>
+              </List>
+          )} else {
           return (
             <List>
               {filteredLocation.map(location => (
@@ -36,8 +46,8 @@ export default class ResultsList extends Component {
                 </ListItem>
               ))}
             </List>
-          );
-        }}
+          )};
+      }}
       </Context.Consumer>
     );
   }

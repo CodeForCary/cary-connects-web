@@ -38,7 +38,7 @@ class Map extends Component {
   };
     getColor(category) {
       for (var i = 0; i < this.state.colors.length; i++) {
-        if (this.state.colors[i].id == category) {
+        if (this.state.colors[i].id === category) {
           return this.state.colors[i].color;
         }
       }

@@ -1,9 +1,5 @@
 import React, { Component } from "react";
 import Typography from "@material-ui/core/Typography";
-import Link from "@material-ui/core/Link";
-import FadeIn from "react-fade-in";
-import { compose } from "recompose";
-import { withStyles } from "@material-ui/core/styles";
 import { withTheme } from "@material-ui/core/styles";
 
 import InputLabel from "@material-ui/core/InputLabel";
@@ -11,12 +7,6 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
 import { Context } from "./components/Provider";
-
-const styles = theme => ({
-  bodyText: {
-    color: "white"
-  }
-});
 
 class ThemePicker extends Component {
   constructor(props) {
@@ -27,23 +17,26 @@ class ThemePicker extends Component {
     };
   }
 
-  handleChange = name => event => {
-    this.setState({ [name]: event.target.value });
-  };
-
   render() {
-    const { classes } = this.props;
+    const { theme } = this.props;
+
+    const styles = {
+      bodyText: {
+        color: theme.palette.primary.contrastText
+      }
+    };
+
     return (
       <Context.Consumer>
         {context => (
           <>
-            <Typography className={classes.bodyText} variant='body1'>
-              Choose Theme: <br />
-            </Typography>
-            <form className={classes.root} autoComplete='off'>
-              <FormControl className={classes.formControl}>
-                <InputLabel htmlFor='theme'>Theme</InputLabel>
+            <form autoComplete='off'>
+              <FormControl style={styles.formControl}>
+                <InputLabel style={styles.bodyText} htmlFor='theme'>
+                  Theme
+                </InputLabel>
                 <Select
+                  style={styles.bodyText}
                   native
                   value={context.state.theme}
                   onChange={context.handleThemeChange}
@@ -64,7 +57,4 @@ class ThemePicker extends Component {
     );
   }
 }
-export default compose(
-  withTheme(),
-  withStyles(styles)
-)(ThemePicker);
+export default withTheme()(ThemePicker);

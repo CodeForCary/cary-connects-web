@@ -1,30 +1,11 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router";
-import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import FadeIn from "react-fade-in";
-import { compose } from "recompose";
 import { withTheme } from "@material-ui/core/styles";
 
 import ThemePicker from "../../ThemePicker";
-
-const styles = theme => ({
-  root: {
-    textAlign: "center",
-    verticleAlign: "middle",
-    backgroundColor: theme.palette.primary.main,
-    height: "100%",
-    width: "100%",
-    position: "absolute"
-  },
-  title: {
-    paddingTop: "20%"
-  },
-  bodyText: {
-    color: "white"
-  }
-});
 
 class Welcome extends Component {
   constructor(props) {
@@ -53,27 +34,51 @@ class Welcome extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { theme } = this.props;
+
+    const styles = {
+      root: {
+        textAlign: "center",
+        verticleAlign: "middle",
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.primary.contrastText,
+        height: "100%",
+        width: "100%",
+        position: "absolute"
+      },
+      title: {
+        paddingTop: "20%"
+      },
+      bodyText: {
+        color: theme.palette.primary.contrastText
+      },
+      themePicker: {
+        marginTop: "5rem"
+      }
+    };
 
     if (this.state.redirect) {
       return <Redirect push to='/home' />;
     }
+
     return (
-      <div className={classes.root}>
+      <div style={styles.root}>
         <FadeIn transitionDuration={400}>
-          <Typography variant='h2' className={classes.title}>
+          <Typography variant='h2' style={styles.title}>
             Welcome to our Cary Downtown Parking site!
           </Typography>
           <br />
-          <Link color='secondary' variant='h6' href='http://codeforcary.org/parking'>
-            Click here for more info
-          </Link>
+          <Typography>
+            <Link variant='h6' color='secondary' href='http://codeforcary.org/parking'>
+              Click here for more info
+            </Link>
+          </Typography>
           <br />
-          <Typography className={classes.bodyText} variant='body1'>
+          <Typography variant='body1' style={styles.bodyText}>
             The first app for our Cary Connects platform
           </Typography>
           <br />
-          <Typography className={classes.bodyText} variant='body2'>
+          <Typography style={styles.bodyText} variant='body2'>
             Created by Volunteers with
             <br />
             <Link color='secondary' variant='body2' href='https://www.heartofcary.org/caryapp.html'>
@@ -84,15 +89,13 @@ class Welcome extends Component {
               Code for Cary
             </Link>
           </Typography>
-
-          <ThemePicker />
+          <div style={styles.themePicker}>
+            <ThemePicker />
+          </div>
         </FadeIn>
       </div>
     );
   }
 }
 
-export default compose(
-  withTheme(),
-  withStyles(styles)
-)(Welcome);
+export default withTheme()(Welcome);

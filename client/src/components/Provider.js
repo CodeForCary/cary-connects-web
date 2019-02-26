@@ -26,7 +26,8 @@ class Provider extends Component {
       searchValue: "",
       drawerOpen: false,
       searchResultsAnchorEl: null,
-      markers: [[1, 1]]
+      markers: [[1, 1]],
+      theme: "mintGreen"
     };
   }
 
@@ -152,6 +153,9 @@ class Provider extends Component {
           },
           handleSearchResultsOpen: event => {
             this.setState({ searchResultsAnchorEl: event.target });
+          },
+          handleThemeChange: event => {
+            this.setState({ theme: event.target.value });
           }
         }}
       >

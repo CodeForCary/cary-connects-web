@@ -1,6 +1,11 @@
 import React from "react";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { Context } from "./components/Provider";
+
+import KindaBeachy from "./themes/KindaBeachy";
+import ItsBlue from "./themes/ItsBlue";
+import ReallyGreen from "./themes/ReallyGreen";
+
 //#EB2392
 //#76BE4E
 //#0190BE
@@ -11,112 +16,19 @@ const Theme = props => (
     {context => {
       const uiTheme = context.state.theme;
 
-      const mintGreen = {
-        palette: {
-          primary: {
-            main: "#11c4ab",
-            contrastText: "#fff"
-          },
-          secondary: {
-            main: "#00ffdd"
-          }
-        },
-        typography: {
-          useNextVariants: true,
-          fontFamily: [
-            "-apple-system",
-            "BlinkMacSystemFont",
-            '"Segoe UI"',
-            "Roboto",
-            '"Helvetica Neue"',
-            "Arial",
-            "sans-serif",
-            '"Apple Color Emoji"',
-            '"Segoe UI Emoji"',
-            '"Segoe UI Symbol"'
-          ].join(","),
-          h2: {
-            color: "white"
-          }
-        }
-      };
-
-      const blue = {
-        palette: {
-          primary: {
-            light: "#76BE4E",
-            main: "#0190BE",
-            dark: "#EB2392"
-          },
-          secondary: {
-            main: "#00ffdd"
-          }
-        },
-        typography: {
-          useNextVariants: true,
-          fontFamily: [
-            "-apple-system",
-            "BlinkMacSystemFont",
-            '"Segoe UI"',
-            "Roboto",
-            '"Helvetica Neue"',
-            "Arial",
-            "sans-serif",
-            '"Apple Color Emoji"',
-            '"Segoe UI Emoji"',
-            '"Segoe UI Symbol"'
-          ].join(","),
-          h2: {
-            color: "white"
-          }
-        }
-      };
-
-      const brightGreen = {
-        palette: {
-          primary: {
-            light: "#76BE4E",
-            main: "#d0e2aa",
-            dark: "#EB2392",
-            contrastText: "#333"
-          },
-          secondary: {
-            main: "#00695c"
-          }
-        },
-        typography: {
-          useNextVariants: true,
-          fontFamily: [
-            "-apple-system",
-            "BlinkMacSystemFont",
-            '"Segoe UI"',
-            "Roboto",
-            '"Helvetica Neue"',
-            "Arial",
-            "sans-serif",
-            '"Apple Color Emoji"',
-            '"Segoe UI Emoji"',
-            '"Segoe UI Symbol"'
-          ].join(","),
-          h2: {
-            color: "#333"
-          }
-        }
-      };
-
       let selectedTheme;
       switch (uiTheme) {
-        case "mintGreen":
-          selectedTheme = mintGreen;
+        case "KindaBeachy":
+          selectedTheme = KindaBeachy;
           break;
-        case "blue":
-          selectedTheme = blue;
+        case "ItsBlue":
+          selectedTheme = ItsBlue;
           break;
-        case "brightGreen":
-          selectedTheme = brightGreen;
+        case "ReallyGreen":
+          selectedTheme = ReallyGreen;
           break;
         default:
-          selectedTheme = mintGreen;
+          selectedTheme = KindaBeachy;
       }
 
       const theme = createMuiTheme(selectedTheme);

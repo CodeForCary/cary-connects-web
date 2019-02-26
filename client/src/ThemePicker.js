@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Typography from "@material-ui/core/Typography";
 import { withTheme } from "@material-ui/core/styles";
 
 import InputLabel from "@material-ui/core/InputLabel";
@@ -13,7 +12,7 @@ class ThemePicker extends Component {
     super(props);
 
     this.state = {
-      theme: "mintGreen"
+      theme: "KindaBeachy"
     };
   }
 
@@ -45,9 +44,9 @@ class ThemePicker extends Component {
                     id: "theme"
                   }}
                 >
-                  <option value='mintGreen'>Mint Green</option>
-                  <option value='blue'>Blue</option>
-                  <option value='brightGreen'>Bright Green</option>
+                  <option value='KindaBeachy'>Kinda Beachy</option>
+                  <option value='ItsBlue'>It's Blue</option>
+                  <option value='ReallyGreen'>Really Green</option>
                 </Select>
               </FormControl>
             </form>

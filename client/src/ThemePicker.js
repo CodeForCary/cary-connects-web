@@ -22,6 +22,9 @@ class ThemePicker extends Component {
     const styles = {
       bodyText: {
         color: theme.palette.primary.contrastText
+      },
+      option: {
+        background: theme.palette.primary.main
       }
     };
 
@@ -44,9 +47,15 @@ class ThemePicker extends Component {
                     id: "theme"
                   }}
                 >
-                  <option value='KindaBeachy'>Kinda Beachy</option>
-                  <option value='ItsBlue'>It's Blue</option>
-                  <option value='ReallyGreen'>Really Green</option>
+                  <option value='KindaBeachy' style={styles.option}>
+                    Kinda Beachy
+                  </option>
+                  <option value='ItsBlue' style={styles.option}>
+                    It's Blue
+                  </option>
+                  <option value='ReallyGreen' style={styles.option}>
+                    Really Green
+                  </option>
                 </Select>
               </FormControl>
             </form>

@@ -27,7 +27,7 @@ class Provider extends Component {
       drawerOpen: false,
       searchResultsAnchorEl: null,
       markers: [[1, 1]],
-      theme: "mintGreen"
+      theme: "KindaBeachy"
     };
   }
 

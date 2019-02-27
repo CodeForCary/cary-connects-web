@@ -7,41 +7,41 @@ import CaryConnectsIcon from "src/assets/CaryConnectIcon.png";
 import { Context } from "src/components/Provider";
 import Results from "./results";
 
-import { withStyles } from "@material-ui/core/styles";
-
-const styles = theme => ({
-  root: {
-    width: "100%",
-    marginBottom: theme.spacing.unit * 3
-  },
-  grow: {
-    flexGrow: "1"
-  },
-  icon: {
-    height: "50px",
-    marginRight: "5px"
-  },
-  brandText: {
-    color: "#fff"
-  },
-  toolbar: theme.mixins.toolbar
-});
+import { withTheme } from "@material-ui/core/styles";
 
 class NavigationMenu extends Component {
   render() {
-    const { classes } = this.props;
+    const { theme } = this.props;
+
+    const styles = {
+      root: {
+        width: "100%",
+        marginBottom: theme.spacing.unit * 3
+      },
+      grow: {
+        flexGrow: "1"
+      },
+      icon: {
+        height: "50px",
+        marginRight: "5px"
+      },
+      brandText: {
+        color: theme.palette.primary.contrastText
+      },
+      toolbar: theme.mixins.toolbar
+    };
 
     return (
       <Context.Consumer>
         {context => (
-          <div className={classes.root}>
+          <div style={styles.root}>
             <AppBar position='static' onClick={context.handleDrawerClose}>
               <Toolbar>
-                <img className={classes.icon} src={CaryConnectsIcon} alt='cary connects icon' />
-                <Typography variant='h6' className={classes.brandText}>
+                <img style={styles.icon} src={CaryConnectsIcon} alt='cary connects icon' />
+                <Typography variant='h6' style={styles.brandText}>
                   Cary Connects
                 </Typography>
-                <div className={classes.grow} />
+                <div style={styles.grow} />
                 <SearchInput />
               </Toolbar>
             </AppBar>
@@ -53,4 +53,4 @@ class NavigationMenu extends Component {
   }
 }
 
-export default withStyles(styles)(NavigationMenu);
+export default withTheme()(NavigationMenu);

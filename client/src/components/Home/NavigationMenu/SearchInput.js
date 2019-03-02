@@ -1,45 +1,37 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import classnames from "classnames";
+import { withTheme } from "@material-ui/core/styles";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
 import { Context } from "src/components/Provider";
 
 import "./SearchInput.css";
 
-const styles = theme => ({
-  flex: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "flex-end"
-  },
-  width: {
-    width: "40%"
-  },
-  componentSearchInput: {
-    color: "#FFF",
-    borderRadius: "4px",
-    padding: "10px 8px",
-    border: "1px solid #fff",
-    width: "100%",
-    margin: "10px",
-    [theme.breakpoints.down("sm")]: {
-      "font-size": "14px"
-    },
-    "font-size": "18px"
-  }
-});
-
 class SearchInput extends Component {
   render() {
-    const { classes } = this.props;
+    const { theme } = this.props;
+
+    const styles = {
+      flex: {
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "flex-end"
+      },
+      componentSearchInput: {
+        color: theme.palette.primary.contrastText,
+        borderRadius: "4px",
+        padding: "10px 8px",
+        border: `1px solid ${theme.palette.primary.contrastText}`,
+        width: "100%",
+        margin: "10px",
+        fontSize: "18px"
+      }
+    };
 
     return (
       <div>
         <Context.Consumer>
           {context => (
-            <div className={classes.flex}>
+            <div style={styles.flex}>
               <label className='visuallyhidden' htmlFor='search'>
                 Where to?
               </label>
@@ -53,7 +45,7 @@ class SearchInput extends Component {
                 value={context.state.searchValue}
                 onChange={context.handleSearchChange}
                 onClick={context.clearSearch}
-                className={classnames(classes.componentSearchInput, classes.width)}
+                style={styles.componentSearchInput}
                 endAdornment={<SearchIcon />}
               />
             </div>
@@ -63,7 +55,5 @@ class SearchInput extends Component {
     );
   }
 }
-SearchInput.propTypes = {
-  textChange: PropTypes.func
-};
-export default withStyles(styles)(SearchInput);
+
+export default withTheme()(SearchInput);

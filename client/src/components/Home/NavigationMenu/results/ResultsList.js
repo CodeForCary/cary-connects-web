@@ -16,27 +16,37 @@ export default class ResultsList extends Component {
       <Context.Consumer>
         {context => {
           const { filteredLocation } = context.state;
-          return (
-            <List>
-              {filteredLocation.map(location => (
-                <ListItem
-                  data-testid='search-result'
-                  button
-                  key={location.properties.name}
-                  name={location.properties.name}
-                  onClick={event => {
-                    context.chooseBusiness(location);
-                    this.handleSubmit(location.properties.name);
-                  }}
-                >
-                  <ListItemText
-                    primary={location.properties.name}
-                    secondary={capitalize(location.properties["marker-symbol"])}
-                  />
+          if (filteredLocation.length === 0) {
+            return (
+              <List>
+                <ListItem>
+                  <ListItemText>No Results</ListItemText>
                 </ListItem>
-              ))}
-            </List>
-          );
+              </List>
+            );
+          } else {
+            return (
+              <List>
+                {filteredLocation.map(location => (
+                  <ListItem
+                    data-testid='search-result'
+                    button
+                    key={location.properties.name}
+                    name={location.properties.name}
+                    onClick={event => {
+                      context.chooseBusiness(location);
+                      this.handleSubmit(location.properties.name);
+                    }}
+                  >
+                    <ListItemText
+                      primary={location.properties.name}
+                      secondary={capitalize(location.properties["marker-symbol"])}
+                    />
+                  </ListItem>
+                ))}
+              </List>
+            );
+          }
         }}
       </Context.Consumer>
     );

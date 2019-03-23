@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import CaryConnectsIcon from "src/assets/CaryConnectIcon.png";
 import { Context } from "src/components/Provider";
 import Results from "./results";
+import {Link} from 'react-router-dom';
 
 import { withStyles } from "@material-ui/core/styles";
 
@@ -38,9 +39,11 @@ class NavigationMenu extends Component {
             <AppBar position='static' onClick={context.handleDrawerClose}>
               <Toolbar>
                 <img className={classes.icon} src={CaryConnectsIcon} alt='cary connects icon' />
-                <Typography variant='h6' className={classes.brandText}>
-                  Cary Connects
-                </Typography>
+                <Link to="/home">
+                  <Typography variant='h6' className={classes.brandText}>
+                    Cary Connects
+                  </Typography>
+                </Link>
                 <div className={classes.grow} />
                 <SearchInput />
               </Toolbar>

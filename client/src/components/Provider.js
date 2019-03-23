@@ -3,6 +3,9 @@ import flip from "geojson-flip";
 import filterLocation from "./Home/NavigationMenu/filterLocation";
 import PolygonCenter from "geojson-polygon-center";
 
+// Events stored locally for now
+import events from './events.json';
+
 export const Context = React.createContext();
 
 const businessData = null;
@@ -26,7 +29,8 @@ class Provider extends Component {
       searchValue: "",
       drawerOpen: false,
       searchResultsAnchorEl: null,
-      markers: [[1, 1]]
+      markers: [[1, 1]],
+      events
     };
   }
 

@@ -8,6 +8,8 @@ import Map from './Map';
 import NavigationMenu from './NavigationMenu';
 import Container from './Container';
 
+import EventSnackbar from './Events/EventSnackbar';
+
 const styles = theme => ({
   mainContent: {
     position: 'relative',
@@ -22,15 +24,17 @@ const styles = theme => ({
   }
 });
 
+
+
 class Home extends React.Component {
   render () {
     const { classes } = this.props;
-
 
     return (
       <Context.Consumer>
         {context => (
             <div className={classes.mainContent} onClick={context.clearResultsAndCloseDrawer}>
+              <EventSnackbar />
               <NavigationMenu />
               <Container >
                 <Drawer type={context.state.dataType} data={context.state.selectedItem ? context.state.selectedItem : null} />

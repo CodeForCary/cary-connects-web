@@ -4,6 +4,8 @@ import { Context } from '../../Provider';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close'
+import { Link as RouterLink } from 'react-router-dom'
+import Link from '@material-ui/core/Link';
 
 const styles = theme => ({
     color: {
@@ -41,12 +43,13 @@ class EventSnackbar extends Component {
         const {vertical, horizontal, open} = this.state;
         const {classes} = this.props;
 
-        console.log(classes.color)
         return (
             <Context.Consumer>
                 { context => {
                     const {events} = context.state;
                     if (!events) return;
+
+                    const link = `/events/${events[0].slug}`
                     return (
                         <Snackbar 
                             anchorOrigin={{ vertical, horizontal }}
@@ -68,7 +71,7 @@ class EventSnackbar extends Component {
                                 </IconButton>,
                             ]}
                             open={open}
-                            message={<span id="message-id">Going to {events[0].title}?</span>}
+                            message={<span id="message-id">Going to <Link component={RouterLink} to={link}>{events[0].title}</Link>?</span>}
                         />
                     )
                     }
@@ -79,3 +82,4 @@ class EventSnackbar extends Component {
 }
 
 export default withStyles(styles)(EventSnackbar)
+

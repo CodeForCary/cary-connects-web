@@ -71,7 +71,7 @@ class EventSnackbar extends Component {
                                 </IconButton>,
                             ]}
                             open={open}
-                            message={<span id="message-id">Going to <Link component={RouterLink} to={link}>{events[0].title}</Link>?</span>}
+                            message={<span id="message-id">Going to <Link onClick={() => context.setSelectedEvent(events[0])}>{events[0].title}</Link>?</span>}
                         />
                     )
                     }

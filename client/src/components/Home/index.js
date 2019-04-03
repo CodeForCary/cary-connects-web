@@ -36,6 +36,7 @@ class Home extends React.Component {
             <div className={classes.mainContent} onClick={context.clearResultsAndCloseDrawer}>
               <EventSnackbar />
               <NavigationMenu />
+              {context.state.selectedEvent && <EventTitle event={context.state.selectedEvent} />}
               <Container >
                 <Drawer type={context.state.dataType} data={context.state.selectedItem ? context.state.selectedItem : null} />
                 <Map />
@@ -48,3 +49,10 @@ class Home extends React.Component {
   }
 
 export default withStyles(styles)(Home);
+
+
+function EventTitle({event}) {
+ return(
+   <div>{event.title}</div>
+ )
+}

@@ -30,7 +30,10 @@ class Provider extends Component {
       drawerOpen: false,
       searchResultsAnchorEl: null,
       markers: [[1, 1]],
-      events
+      events,
+      selectedEvent: {
+        title: ""
+      }
     };
   }
 
@@ -52,6 +55,7 @@ class Provider extends Component {
         .catch(err => reject(err));
     });
   }
+
   createBusinessMarker = (lat, lng) => {
     const { markers } = this.state;
     markers.pop();
@@ -156,6 +160,11 @@ class Provider extends Component {
           },
           handleSearchResultsOpen: event => {
             this.setState({ searchResultsAnchorEl: event.target });
+          },
+          setSelectedEvent: event => {
+            this.setState({
+              selectedEvent: event
+            });
           }
         }}
       >

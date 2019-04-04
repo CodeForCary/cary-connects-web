@@ -162,9 +162,30 @@ class Provider extends Component {
             this.setState({ searchResultsAnchorEl: event.target });
           },
           setSelectedEvent: event => {
+            // Add selectedEvent to state
             this.setState({
               selectedEvent: event
             });
+
+            // Move map
+            // Requires event to have a centerOfEvent String that matches name in BusinessData
+
+            const { businessData } = this.state;
+            const matchedBusiness = businessData.filter((business) => {
+              return business.properties.name === event.centerOfEvent;
+            });
+
+            if(matchedBusiness.length === 1) {
+              this.setState({
+                location: {
+                  lat: matchedBusiness[0].geometry.coordinates[1],
+                  lng: matchedBusiness[0].geometry.coordinates[0]
+                },
+                zoom: 18
+              });
+            } else {
+              console.warn('Did not match an event.');
+            }
           }
         }}
       >

@@ -79,16 +79,24 @@ class Map extends Component {
             />
             <Marker icon={pIcon} position={context.state.markers[0]}></Marker>
 
-            {this.props.polygonData.map(polygonData => (
-              <Polygon
-                onClick={(event) => {context.createLotMarker(polygonData); context.clickPolygon(event);}}
-                positions={polygonData.geometry.coordinates[0]}
-                color = {this.getColor(polygonData.properties.category)}
-                name={polygonData.properties.name}
-                key={polygonData.geometry.coordinates[0]}
-              >
-              </Polygon>
-            ))}
+            {this.props.polygonData.map(polygonData => {
+              return  (
+                <Polygon
+                  onClick={(event) => {context.createLotMarker(polygonData); context.clickPolygon(event);}}
+                  positions={polygonData.geometry.coordinates[0]}
+                  fillColor = {polygonData.properties.fill}
+                  fillOpacity = {polygonData.properties["fill-opacity"]}
+                  color={polygonData.properties.stroke}
+                  opacity={polygonData.properties.opacity}
+                  weight={polygonData.properties["stroke-width"]}
+                  name={polygonData.properties.name}
+                  key={polygonData.geometry.coordinates[0]}
+                >
+                </Polygon>
+              )
+            }
+            
+)}
           </LeafletMap>
         )}
       </Context.Consumer>

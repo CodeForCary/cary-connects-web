@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import flip from "geojson-flip";
 import filterLocation from "./Home/NavigationMenu/filterLocation";
-import PolygonCenter from "geojson-polygon-center";
 
 export const Context = React.createContext();
 
@@ -55,6 +54,14 @@ class Provider extends Component {
     this.setState({ markers });
   };
 
+  pushEntrance = (entrance) => {
+    const { markers } = this.state;
+    if(entrance.length > 0){
+      let entranceLoc = entrance.split(",");
+      markers.push([Number(entranceLoc[1].trim()), Number(entranceLoc[0].trim())]);
+    }
+  }
+
   render() {
     return (
       <Context.Provider
@@ -106,7 +113,6 @@ class Provider extends Component {
               feature.geometry.coordinates[0]
             );
           },
-          // this.createLotMarker
           handleSearchChange: event => {
             if (event.target.value === 0) {
               this.setState({
@@ -122,10 +128,13 @@ class Provider extends Component {
               });
             }
           },
-          createLotMarker: e => {
+          createLotMarkerAtEntrance: e => {
             const { markers } = this.state;
-            markers.pop();
-            markers.push(PolygonCenter(e.geometry).coordinates);
+            markers.splice(0, markers.length);
+
+            this.pushEntrance(e.properties.entrance1);
+            this.pushEntrance(e.properties.entrance2);
+
             this.setState({ markers });
           },
           clearResultsAndCloseDrawer: event => {

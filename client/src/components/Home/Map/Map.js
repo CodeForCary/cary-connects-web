@@ -57,12 +57,15 @@ class Map extends Component {
               attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker icon={pIcon} position={context.state.markers[0]}></Marker>
+            
+            {context.state.markers.map(function(marker, index){
+                    return <Marker icon={pIcon} position={context.state.markers[index]}></Marker>;
+                  })}
 
             {this.props.polygonData.map(polygonData => {
               return  (
                 <Polygon
-                  onClick={(event) => {context.createLotMarker(polygonData); context.clickPolygon(event);}}
+                  onClick={(event) => {context.createLotMarkerAtEntrance(polygonData); context.clickPolygon(event);}}
                   positions={polygonData.geometry.coordinates[0]}
                   fillColor = {polygonData.properties.fill}
                   fillOpacity = {polygonData.properties["fill-opacity"]}

@@ -168,6 +168,14 @@ export const dataList = data => {
         arr.push(item);
         id++;
         break;
+      case "townowned":
+        if(text === 'true') text = "Town";
+        else text = "Private";
+
+        item = <ListItemEl icon='parking'  text={`Lot Owner: ${text}`} key='ownership' id={id} />;
+        arr.push(item);
+        id++;
+        break;
       default:
         break;
     }

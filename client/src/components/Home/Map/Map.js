@@ -21,28 +21,8 @@ class Map extends Component {
   state = {
     minZoom: 15,
     animate: true,
-    bounds: [[35.773958, -78.798776], [35.796304, -78.761682]],
-     colors: [{
-         id: 'public',
-         color: '#11c4ab'
-       },
-       {
-         id: 'private',
-         color: '#bf1313'
-       },
-       {
-         id: 'restricted',
-         color: '#d60ec5'
-       },
-     ],
+    bounds: [[35.773958, -78.798776], [35.796304, -78.761682]]
   };
-    getColor(category) {
-      for (var i = 0; i < this.state.colors.length; i++) {
-        if (this.state.colors[i].id === category) {
-          return this.state.colors[i].color;
-        }
-      }
-    }
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(position => {
@@ -77,18 +57,29 @@ class Map extends Component {
               attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker icon={pIcon} position={context.state.markers[0]}></Marker>
 
-            {this.props.polygonData.map(polygonData => (
-              <Polygon
-                onClick={(event) => {context.createLotMarker(polygonData); context.clickPolygon(event);}}
-                positions={polygonData.geometry.coordinates[0]}
-                color = {this.getColor(polygonData.properties.category)}
-                name={polygonData.properties.name}
-                key={polygonData.geometry.coordinates[0]}
-              >
-              </Polygon>
-            ))}
+            {context.state.markers.map(function(marker, index){
+                    return <Marker icon={pIcon} position={context.state.markers[index]}></Marker>;
+                  })}
+
+            {this.props.polygonData.filter(dat => dat.properties.active.toLowerCase() == "true").map(polygonData => {
+              return  (
+                <Polygon
+                  onClick={(event) => {context.createLotMarkerAtEntrance(polygonData); context.clickPolygon(event);}}
+                  positions={polygonData.geometry.coordinates[0]}
+                  fillColor = {polygonData.properties.fill}
+                  fillOpacity = {polygonData.properties["fill-opacity"]}
+                  color={polygonData.properties.stroke}
+                  opacity={polygonData.properties.opacity}
+                  weight={polygonData.properties["stroke-width"]}
+                  name={polygonData.properties.name}
+                  key={polygonData.geometry.coordinates[0]}
+                >
+                </Polygon>
+              )
+            }
+
+)}
           </LeafletMap>
         )}
       </Context.Consumer>

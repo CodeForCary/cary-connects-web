@@ -56,7 +56,7 @@ class Provider extends Component {
 
   pushEntrance = (entrance) => {
     const { markers } = this.state;
-    if(entrance.length > 0){
+    if(entrance != null && entrance.length > 0){
       let entranceLoc = entrance.split(",");
       markers.push([Number(entranceLoc[1].trim()), Number(entranceLoc[0].trim())]);
     }
@@ -157,7 +157,9 @@ class Provider extends Component {
             });
           },
           handleDrawerClose: event => {
-            this.setState({ drawerOpen: false });
+            this.setState({ 
+              drawerOpen: false,
+              markers: [[1, 1]] });
           },
           handleSearchResultsOpen: event => {
             this.setState({ searchResultsAnchorEl: event.target });
